@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui
+Bundle-SymbolicName: totem.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.resources,
+ totem.trm.reduce;bundle-version="1.0.0",
+ org.eclipse.ui.workbench,
+ org.eclipse.jface,
+ org.eclipse.m2m.atl.core;bundle-version="3.6.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: mmfootprint.codegen,
+ org.eclipse.core.runtime,
+ org.miso_disim.requirementmetamodel.reduce
+Export-Package: org.misodisim.requirementmetamodels.ui.popup.actions

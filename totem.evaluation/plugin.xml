@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="mm-footprint.evaluation.contribution1"
+            nameFilter="*.atl"
+            objectClass="org.eclipse.core.resources.IFile">
+         <menu
+               id="mm-footprint.evaluation.menu1"
+               label="EVALUATE Requirements MM"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="mmfootprint.evaluation.popup.actions.EvaluationAction"
+               enablesFor="1"
+               id="mm-footprint.evaluation.EvaluationAction"
+               label="EVALUATE Requirements MM"
+               menubarPath="mm-footprint.evaluation.menu1">
+         </action>
+      </objectContribution>
+   </extension>
+</plugin>
