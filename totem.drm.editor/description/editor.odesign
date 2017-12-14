@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="editor" version="12.0.0.2017041100">
+  <ownedViewpoints name="mm_uncertainty" modelFileExtension="mm_uncertainty">
+    <ownedRepresentations xsi:type="description_1:DiagramDescription" name="drm" domainClass="MM_uncertainty::Metamodel">
+      <metamodel href="/DRM_Modeling/model/MM_uncertainty.ecore#/"/>
+      <defaultLayer name="Default">
+        <nodeMappings name="StringTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="String_">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="NumericTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::Number">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="RealTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::Real_">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="IntegerTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::Integer_">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="LiteralTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::Literal">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="BoolTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="Boolean_">
+          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <nodeMappings name="UnknownType" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::UnknownType">
+          <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="UnknownType" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+        </nodeMappings>
+        <edgeMappings name="ReferenceEdge" preconditionExpression="aql:not self.hasType->isEmpty()" semanticCandidatesExpression="aql:self.classes.feats" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="service:getEReferenceTarget()" sourceFinderExpression="feature:eContainer" domainClass="MM_uncertainty::Feature" useDomainElement="true">
+          <style sizeComputationExpression="2" routingStyle="manhattan">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription showIcon="false" labelExpression="aql:self.name">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+            <endLabelStyleDescription showIcon="false" labelExpression="aql:self.getCardinality()">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </endLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="AncsEdge" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:ancs">
+          <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <edgeMappings name="AntiacsEdge" synchronizationLock="true" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:antiancs">
+          <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <centerLabelStyleDescription labelExpression="inherits" iconPath="/totem.drm.editor/icons/x.gif">
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            </centerLabelStyleDescription>
+          </style>
+        </edgeMappings>
+        <containerMappings name="Class" semanticCandidatesExpression="aql:self.classes" synchronizationLock="true" domainClass="MM_uncertainty::Class" childrenPresentation="List">
+          <subNodeMappings name="FeaturesNode" preconditionExpression="aql:self.hasType->isEmpty()" semanticCandidatesExpression="aql:self.feats" domainClass="MM_uncertainty::Feature">
+            <style xsi:type="style:SquareDescription" labelExpression="service:GenericFeatureLabel()" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <subNodeMappings name="AttributeNode" semanticCandidatesExpression="aql:self.feats.hasType" synchronizationLock="true" domainClass="MM_uncertainty::Attribute">
+            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.eContainer().name+' ('+(self.type->collect(t|t.eClass().name).toString())+')'" labelPosition="node" resizeKind="NSEW">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            </style>
+          </subNodeMappings>
+          <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1">
+            <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+            <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+            <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+          </style>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::DontKnow and not self.oclIsTypeOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/AC.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::True and not self.oclIsTypeOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/A.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::False  and not self.oclIsKindOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/C.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::DontKnow and self.oclIsTypeOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/AC.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::True and self.oclIsTypeOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/A.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </conditionnalStyles>
+          <conditionnalStyles predicateExpression="aql:self.isAbstract==MM_uncertainty::UBoolean::False  and self.oclIsKindOf(MM_uncertainty::UnknowClass)">
+            <style xsi:type="style:FlatContainerStyleDescription" borderSizeComputationExpression="1" iconPath="/totem.drm.editor/icons/C.gif">
+              <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
+              <backgroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='white']"/>
+              <foregroundColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_green']"/>
+            </style>
+          </conditionnalStyles>
+        </containerMappings>
+        <toolSections name="Class">
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="UnknownClass" containerMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::UnknowClass" referenceName="classes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'u'  + self.eContainer().eContents(MM_uncertainty::UnknowClass)->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:ContainerCreationDescription" name="NamedClass" containerMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Class" referenceName="classes">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'u'  + self.eContainer().eContents(MM_uncertainty::Class)->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Feature">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Untyped Feature" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='AttributeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'feature'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Attribute" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='AttributeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'attr'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="hasType" valueExpression="[self.createAttr(self.eContainer().eContainer().eContents(MM_uncertainty::Metamodel).dataType )/]"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections name="Data Type Declaration">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="String type" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='StringTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::String_" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Numeric Type" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='NumericTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Numeric" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Integer type" elementsToSelect="feature: dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='IntegerTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Integer_" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Unknown type" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='UnknownType']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::UnknownType" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+        </toolSections>
+        <toolSections>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Refinements for UnkwnownClass" precondition="aql:self.isUnknownClsss()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Assign a Name to Unnamed" precondition="aql:self.isUnknownClsss()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="unknown" id="UnknownToNamedClass"/>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Popup menu for Class" precondition="service:self.isClass()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Abstract" precondition="service:canBecomeAbstract()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="setToAbstract" id="SetToAbstract"/>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Add type to untyped feature">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Convert open feature to Attribute" precondition="service:isUntypedFeature()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set to Attribute" id="SetUntypedFeatToAttr">
+                  <parameters name="types" value="aql:self.eContainer().eContainer().eContents(MM_uncertainty::DataType)"/>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Convert open feature to Reference" precondition="service:isUntypedFeature()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set to Reference"/>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+        </toolSections>
+      </defaultLayer>
+    </ownedRepresentations>
+    <ownedJavaExtensions qualifiedClassName="totem.drm.editor.Services"/>
+  </ownedViewpoints>
+</description:Group>

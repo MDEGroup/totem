@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.sirius.componentization">
+    <component class="totem.drm.editor.Activator"
+               id="it.gssi.cs.drm.editor"
+	       name="editor">
+    </component>
+  </extension>
+  <extension
+        point="org.eclipse.sirius.externalJavaAction">
+     <javaActions
+           actionClass="totem.drm.editor.UnknownClassToNamed"
+           id="UnknownToNamedClass">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetToAbstract"
+           id="SetToAbstract">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetUntypedFeatureToAttr"
+           id="SetUntypedFeatToAttr">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetUntypedFeatureToRef"
+           id="SetUntypedFeatToRef">
+     </javaActions>
+  </extension>
+</plugin>
