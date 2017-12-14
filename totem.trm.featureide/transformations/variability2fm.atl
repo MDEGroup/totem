@@ -1,0 +1,190 @@
+-- @nsURI FM=http://simplefm.emf
+-- @nsURI TRM=VariabilityFM
+
+module variability2fm;
+create OUT : FM from IN : TRM;
+
+
+-- @precondition
+helper def : onlyOneRoot() : Boolean = 
+	TRM!VariabilityModel.allInstances()->size() = 1;
+
+
+-- @precondition
+helper def : nodeHasParent() : Boolean = 
+	TRM!Node.allInstances()->forAll(n | n.refImmediateComposite() <> OclUndefined);
+
+
+-- Feature IDE requires that every feature has a different name.
+-- @target_constraint
+helper def : differentNames() : Boolean = 
+	FM!Feature.allInstances()->forAll(f1 | 
+		FM!Feature.allInstances()->excluding(f1)->forAll(f2 | f1.name <> f2.name)	
+	);
+
+rule VariabilityModel2FeatureModel {
+   from v : TRM!VariabilityModel
+     to f : FM!FeatureModel (
+		name <- 'variability',
+		children <- Sequence { srcFeature, tgtFeature },
+		constraints <- TRM!Constraint.allInstances(),
+		kind <- #AND
+	),
+	srcFeature : FM!Feature (
+		name <- 'Source',
+		children <- v.source.features,
+		kind <- #AND
+	),
+	tgtFeature : FM!Feature (
+		name <- 'Target',
+		children <- v.target.features,
+		kind <- #AND		
+	)
+}
+
+helper context TRM!Node def : toNodeName() : String =
+	let c : OclAny = self.refImmediateComposite() in
+			    if c.oclIsKindOf(TRM!Node) then c.toNodeName() else '' endif
+				+ '::' + self.name
+	;
+
+--helper context TRM!Node def : toNodeName() : String =
+--	let c : OclAny = self.refImmediateComposite() in
+--			    if c.oclIsKindOf(TRM!Node) then c.name.debug(c) else '' endif
+--				+ '::' + self.name -- + ' (' + n.oclType().name + ')'
+--	;
+
+--helper context TRM!AttOrReferenceExclusiveChoice def : toNodeName() : String =
+--	let c : OclAny = self.refImmediateComposite() in
+--			    if c.oclIsKindOf(TRM!Node) then c.name.debug(c) else '' endif
+--				+ '::' + self.name -- + ' (' + n.oclType().name + ')'
+--	;
+
+
+
+abstract rule Node2Feature {
+   from n : TRM!Node
+     to f : FM!Feature (
+		name <- n.toNodeName()
+	)
+}
+
+
+rule VariableFeature2Feature extends Node2Feature {
+   from n : TRM!VariableFeature
+     to f : FM!Feature (
+     	children <- n.kind,
+		children <- n.cardinality,
+		kind <- #AND
+     )
+}
+
+rule FeatureCardinalityGroup2Feature extends Node2Feature {
+   from n : TRM!FeatureCardinalityGroup
+     to f : FM!Feature (
+     	name <- 'Cardinality ' + n.toNodeName(),
+		children <- Sequence { min, max },
+		kind <- #AND
+	), min : FM!Feature (
+		name <- 'Min ' + n.toNodeName(),
+		children <- n.min,
+		kind <- #ALTERNATIVE
+	), max : FM!Feature (
+		name <- 'Max ' + n.toNodeName(),
+		children <- n.max,
+		kind <- #ALTERNATIVE
+	)
+
+}
+
+rule FeatureKindGroup2Feature extends Node2Feature {
+   from n : TRM!FeatureKindGroup
+     to f : FM!Feature (     	
+     	name <- 'Kind ' + n.toNodeName(),
+     	children <- Sequence { n.attOrRef.attributeChoice, n.attOrRef.referenceChoice },
+     	kind <- #ALTERNATIVE
+     )	 
+}
+
+rule AttributeTypeGroup2Feature extends Node2Feature {
+   from n : TRM!AttributeTypeGroup
+     to f : FM!Feature (
+     	children <- n.choices
+     )
+}
+
+rule AttributeTypeChoice2Feature extends Node2Feature {
+   from n : TRM!AttributeTypeChoice
+     to f : FM!Feature
+}
+
+rule ReferenceTypeGroup2Feature extends Node2Feature {
+   from n : TRM!ReferenceTypeGroup
+     to f : FM!Feature (
+     	children <- n.choices
+     )
+}
+
+rule ReferenceTypeChoice2Feature extends Node2Feature {
+   from n : TRM!ReferenceTypeChoice
+     to f : FM!Feature 
+}
+
+rule FeatureMaxCardinalityChoice2Feature extends Node2Feature {
+   from n : TRM!FeatureMaxCardinalityChoice
+     to f : FM!Feature
+}
+
+rule FeatureMinCardinalityChoice2Feature extends Node2Feature {
+   from n : TRM!FeatureMinCardinalityChoice
+     to f : FM!Feature
+}
+
+
+-- @precondition
+helper context TRM!OrRequires def : nodesCardinality() : Boolean = 
+	self.nodes->size() >= 1;
+
+
+--
+-- Transformation of constraints
+--
+
+-- X requires Y or Z is translated as (Y or Z) implies X
+rule FeatureImpliesOr {
+   from c : TRM!OrRequires
+     to i : FM!ImpliesExpr (
+     	
+		left <- thisModule.createFeatureExists(c.refImmediateComposite()),
+		right <-
+			if c.nodes->size() = 0 then thisModule.fail_('Expected at least one element')
+			else if c.nodes->size() = 1 then
+				thisModule.createFeatureExists(c.nodes->first())
+			else
+				thisModule.createOr(c.nodes->first(), c.nodes->excluding(c.nodes->first()))
+			endif endif
+	)
+}
+
+rule createOr(f : TRM!Node, rest : Sequence(TRM!Node)) {
+	to o : FM!OrExpr (
+		left <- thisModule.createFeatureExists(f), 		
+		right <- 
+			if rest->size() = 0 then thisModule.fail_('Expected at least one element')
+			else if rest->size() = 1 then
+				thisModule.createFeatureExists(rest->first())
+			else 				
+				thisModule.createOr(rest->first(), rest->excluding(rest->first()))
+			endif endif
+	)
+	do {
+		o;
+	}
+}
+
+lazy rule createFeatureExists {
+   from n : TRM!Node
+     to f : FM!FeatureExists (
+		feature <- n
+	)
+}

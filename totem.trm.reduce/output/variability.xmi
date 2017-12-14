@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="ASCII"?>
 <VariabilityFM:VariabilityModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:VariabilityFM="VariabilityFM">
   <source name="Source">
-    <features>
+    <features name="ClassDeclaration::methods">
       <feature href="Input.ecore#//@classes.1/@feats.0"/>
-      <kind name="JavaPackage.sources" nodeKind="COMPULSORY">
-        <attOrRef>
+      <kind name="ClassDeclaration.methods" nodeKind="COMPULSORY">
+        <attOrRef name="AttOrReferenceExclusiveChoice-methods">
           <attributeChoice name="Attribute">
             <choices name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
@@ -23,65 +23,105 @@
           </attributeChoice>
           <referenceChoice name="Reference">
             <choices name="MethodDefinition">
-              <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.2"/>
+              <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.1"/>
               <klass href="Input.ecore#//@classes.0"/>
             </choices>
-            <choices name="JavaPackage">
+            <choices name="ClassDeclaration">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.0"/>
               <klass href="Input.ecore#//@classes.1"/>
             </choices>
-            <choices name="JavaSource">
-              <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.1"/>
+            <choices name="u1">
               <klass href="Input.ecore#//@classes.2"/>
             </choices>
-            <choices name="u1">
+            <choices name="u2">
               <klass href="Input.ecore#//@classes.3"/>
             </choices>
-            <choices name="u2">
+            <choices name="u3">
               <klass href="Input.ecore#//@classes.4"/>
             </choices>
-            <choices name="u3">
-              <klass href="Input.ecore#//@classes.5"/>
-            </choices>
             <choices name="u4">
-              <klass href="Input.ecore#//@classes.6"/>
+              <klass href="Input.ecore#//@classes.5"/>
             </choices>
           </referenceChoice>
         </attOrRef>
       </kind>
-      <cardinality name="JavaPackage.sources" nodeKind="COMPULSORY">
-        <min name="JavaPackage.sources min 0"/>
-        <min name="JavaPackage.sources min 1" value="1"/>
-        <max name="JavaPackage.sources max 1" value="1">
+      <cardinality name="ClassDeclaration.methods" nodeKind="COMPULSORY">
+        <min name="ClassDeclaration.methods min 0"/>
+        <min name="ClassDeclaration.methods min 1" value="1"/>
+        <max name="ClassDeclaration.methods max 1" value="1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@cardinality/@max.0 //@target/@features.0/@cardinality/@max.1"/>
         </max>
-        <max name="JavaPackage.sources max *" value="-1">
+        <max name="ClassDeclaration.methods max *" value="-1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@cardinality/@max.1"/>
         </max>
       </cardinality>
     </features>
-    <features>
-      <feature href="Input.ecore#//@classes.3/@feats.0"/>
-      <kind name="u1.name" nodeKind="COMPULSORY"/>
-      <cardinality name="u1.name" nodeKind="COMPULSORY">
-        <min name="u1.name min 0"/>
-        <min name="u1.name min 1" value="1"/>
-        <max name="u1.name max 1" value="1"/>
-        <max name="u1.name max *" value="-1"/>
-      </cardinality>
-    </features>
-    <features>
+    <features name="MethodDefinition::invocations">
       <feature href="Input.ecore#//@classes.0/@feats.0"/>
-      <cardinality name="MethodDefinition.class" nodeKind="COMPULSORY">
-        <min name="MethodDefinition.class min 0"/>
-        <min name="MethodDefinition.class min 1" value="1"/>
-        <max name="MethodDefinition.class max 1" value="1"/>
-        <max name="MethodDefinition.class max *" value="-1"/>
+      <cardinality name="MethodDefinition.invocations" nodeKind="COMPULSORY">
+        <min name="MethodDefinition.invocations min 0"/>
+        <min name="MethodDefinition.invocations min 1" value="1"/>
+        <max name="MethodDefinition.invocations max *" value="-1"/>
       </cardinality>
     </features>
-    <features>
+    <features name="u2::name">
+      <feature href="Input.ecore#//@classes.3/@feats.0"/>
+      <kind name="u2.name" nodeKind="COMPULSORY">
+        <attOrRef name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice name="Attribute">
+            <choices name="String">
+              <datatype_ href="Input.ecore#//@dataType.0"/>
+            </choices>
+            <choices name="Integer">
+              <datatype_ href="Input.ecore#//@dataType.1"/>
+            </choices>
+            <choices name="Real">
+              <datatype_ href="Input.ecore#//@dataType.2"/>
+            </choices>
+            <choices name="Boolean">
+              <datatype_ href="Input.ecore#//@dataType.3"/>
+            </choices>
+          </attributeChoice>
+          <referenceChoice name="Reference"/>
+        </attOrRef>
+      </kind>
+      <cardinality name="u2.name" nodeKind="COMPULSORY">
+        <min name="u2.name min 0"/>
+        <min name="u2.name min 1" value="1"/>
+        <max name="u2.name max 1" value="1"/>
+        <max name="u2.name max *" value="-1"/>
+      </cardinality>
+    </features>
+    <features name="u1::method">
+      <feature href="Input.ecore#//@classes.2/@feats.0"/>
+      <cardinality name="u1.method" nodeKind="COMPULSORY">
+        <min name="u1.method min 0"/>
+        <min name="u1.method min 1" value="1"/>
+        <max name="u1.method max 1" value="1"/>
+        <max name="u1.method max *" value="-1"/>
+      </cardinality>
+    </features>
+    <features name="MethodDefinition::name">
       <feature href="Input.ecore#//@classes.0/@feats.1"/>
-      <kind name="MethodDefinition.name" nodeKind="COMPULSORY"/>
+      <kind name="MethodDefinition.name" nodeKind="COMPULSORY">
+        <attOrRef name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice name="Attribute">
+            <choices name="String">
+              <datatype_ href="Input.ecore#//@dataType.0"/>
+            </choices>
+            <choices name="Integer">
+              <datatype_ href="Input.ecore#//@dataType.1"/>
+            </choices>
+            <choices name="Real">
+              <datatype_ href="Input.ecore#//@dataType.2"/>
+            </choices>
+            <choices name="Boolean">
+              <datatype_ href="Input.ecore#//@dataType.3"/>
+            </choices>
+          </attributeChoice>
+          <referenceChoice name="Reference"/>
+        </attOrRef>
+      </kind>
       <cardinality name="MethodDefinition.name" nodeKind="COMPULSORY">
         <min name="MethodDefinition.name min 0"/>
         <min name="MethodDefinition.name min 1" value="1"/>
@@ -89,27 +129,10 @@
         <max name="MethodDefinition.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features>
-      <feature href="Input.ecore#//@classes.0/@feats.2"/>
-      <cardinality name="MethodDefinition.invocations" nodeKind="COMPULSORY">
-        <min name="MethodDefinition.invocations min 0"/>
-        <min name="MethodDefinition.invocations min 1" value="1"/>
-        <max name="MethodDefinition.invocations max *" value="-1"/>
-      </cardinality>
-    </features>
-    <features>
+    <features name="u3::name">
       <feature href="Input.ecore#//@classes.4/@feats.0"/>
-      <cardinality name="u2.method" nodeKind="COMPULSORY">
-        <min name="u2.method min 0"/>
-        <min name="u2.method min 1" value="1"/>
-        <max name="u2.method max 1" value="1"/>
-        <max name="u2.method max *" value="-1"/>
-      </cardinality>
-    </features>
-    <features>
-      <feature href="Input.ecore#//@classes.5/@feats.0"/>
       <kind name="u3.name" nodeKind="COMPULSORY">
-        <attOrRef>
+        <attOrRef name="AttOrReferenceExclusiveChoice-name">
           <attributeChoice name="Attribute">
             <choices name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
@@ -134,10 +157,19 @@
         <max name="u3.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features>
-      <feature href="Input.ecore#//@classes.6/@feats.0"/>
+    <features name="u2::class">
+      <feature href="Input.ecore#//@classes.3/@feats.1"/>
+      <cardinality name="u2.class" nodeKind="COMPULSORY">
+        <min name="u2.class min 0"/>
+        <min name="u2.class min 1" value="1"/>
+        <max name="u2.class max 1" value="1"/>
+        <max name="u2.class max *" value="-1"/>
+      </cardinality>
+    </features>
+    <features name="u4::name">
+      <feature href="Input.ecore#//@classes.5/@feats.0"/>
       <kind name="u4.name" nodeKind="COMPULSORY">
-        <attOrRef>
+        <attOrRef name="AttOrReferenceExclusiveChoice-name">
           <attributeChoice name="Attribute">
             <choices name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
@@ -162,48 +194,21 @@
         <max name="u4.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features>
-      <feature href="Input.ecore#//@classes.5/@feats.1"/>
-      <cardinality name="u3.class" nodeKind="COMPULSORY">
-        <min name="u3.class min 0"/>
-        <min name="u3.class min 1" value="1"/>
-        <max name="u3.class max 1" value="1"/>
-        <max name="u3.class max *" value="-1"/>
-      </cardinality>
-    </features>
-    <features>
-      <feature href="Input.ecore#//@classes.2/@feats.0"/>
-      <kind name="JavaSource.classes" nodeKind="COMPULSORY">
-        <attOrRef>
-          <attributeChoice name="Attribute">
-            <choices name="String">
-              <datatype_ href="Input.ecore#//@dataType.0"/>
-            </choices>
-            <choices name="Integer">
-              <datatype_ href="Input.ecore#//@dataType.1"/>
-            </choices>
-            <choices name="Real">
-              <datatype_ href="Input.ecore#//@dataType.2"/>
-            </choices>
-            <choices name="Boolean">
-              <datatype_ href="Input.ecore#//@dataType.3"/>
-            </choices>
-          </attributeChoice>
-          <referenceChoice name="Reference"/>
-        </attOrRef>
-      </kind>
-      <cardinality name="JavaSource.classes" nodeKind="COMPULSORY">
-        <min name="JavaSource.classes min 0"/>
-        <min name="JavaSource.classes min 1" value="1"/>
-        <max name="JavaSource.classes max *" value="-1"/>
+    <features name="MethodDefinition::class">
+      <feature href="Input.ecore#//@classes.0/@feats.2"/>
+      <cardinality name="MethodDefinition.class" nodeKind="COMPULSORY">
+        <min name="MethodDefinition.class min 0"/>
+        <min name="MethodDefinition.class min 1" value="1"/>
+        <max name="MethodDefinition.class max 1" value="1"/>
+        <max name="MethodDefinition.class max *" value="-1"/>
       </cardinality>
     </features>
   </source>
   <target name="Target">
-    <features>
+    <features name="Table::rows">
       <feature href="Output.ecore#//@classes.0/@feats.0"/>
-      <kind name="Document.tables" nodeKind="COMPULSORY">
-        <attOrRef>
+      <kind name="Table.rows" nodeKind="COMPULSORY">
+        <attOrRef name="AttOrReferenceExclusiveChoice-rows">
           <attributeChoice name="Attribute">
             <choices name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
@@ -221,50 +226,39 @@
             </choices>
           </attributeChoice>
           <referenceChoice name="Reference">
-            <choices name="Document">
+            <choices name="Table">
               <klass href="Output.ecore#//@classes.0"/>
             </choices>
-            <choices name="Table">
+            <choices name="Row">
               <klass href="Output.ecore#//@classes.1"/>
             </choices>
-            <choices name="Row">
-              <klass href="Output.ecore#//@classes.2"/>
-            </choices>
             <choices name="Cell">
-              <klass href="Output.ecore#//@classes.3"/>
+              <klass href="Output.ecore#//@classes.2"/>
             </choices>
           </referenceChoice>
         </attOrRef>
       </kind>
-      <cardinality name="Document.tables" nodeKind="COMPULSORY">
-        <min name="Document.tables min 0"/>
-        <min name="Document.tables min 1" value="1"/>
-        <max name="Document.tables max 1" value="1">
+      <cardinality name="Table.rows" nodeKind="COMPULSORY">
+        <min name="Table.rows min 0"/>
+        <min name="Table.rows min 1" value="1"/>
+        <max name="Table.rows max 1" value="1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@cardinality/@max.0"/>
         </max>
-        <max name="Document.tables max *" value="-1">
+        <max name="Table.rows max *" value="-1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@cardinality/@max.0 //@source/@features.0/@cardinality/@max.1"/>
         </max>
       </cardinality>
     </features>
-    <features>
+    <features name="Row::cells">
       <feature href="Output.ecore#//@classes.1/@feats.0"/>
-      <cardinality name="Table.rows" nodeKind="COMPULSORY">
-        <min name="Table.rows min 0"/>
-        <min name="Table.rows min 1" value="1"/>
-        <max name="Table.rows max *" value="-1"/>
-      </cardinality>
-    </features>
-    <features>
-      <feature href="Output.ecore#//@classes.2/@feats.0"/>
       <cardinality name="Row.cells" nodeKind="COMPULSORY">
         <min name="Row.cells min 0"/>
         <min name="Row.cells min 1" value="1"/>
         <max name="Row.cells max *" value="-1"/>
       </cardinality>
     </features>
-    <features>
-      <feature href="Output.ecore#//@classes.3/@feats.0"/>
+    <features name="Cell::content">
+      <feature href="Output.ecore#//@classes.2/@feats.0"/>
       <cardinality name="Cell.content" nodeKind="COMPULSORY">
         <min name="Cell.content min 0"/>
         <min name="Cell.content min 1" value="1"/>
