@@ -1,0 +1,42 @@
+@namespace(
+	uri="http://simplefm.emf",
+	prefix="simplefm.emf")
+package simplefm;
+
+class FeatureModel extends FeatureContainer {
+	attr String[1] name;
+	val Constraint[*] constraints;
+}
+
+abstract class FeatureContainer {
+	val Feature[*] children;
+	attr ChildrenKind[1] kind;
+}
+
+class Feature extends FeatureContainer {
+	attr String[1] name;
+	attr boolean[1] mandatory;
+}
+
+enum ChildrenKind {
+	ALTERNATIVE = 1;
+	AND = 2;
+	OR = 3;
+}
+
+abstract class Constraint {
+	
+}
+
+class FeatureExists extends Constraint {
+	ref Feature[1] feature;
+}
+
+abstract class BinaryConstraint extends Constraint {
+	val Constraint[1] left;
+	val Constraint[1] right;
+}
+
+class AndExpr extends BinaryConstraint { }
+class OrExpr extends BinaryConstraint { }
+class ImpliesExpr extends BinaryConstraint { }

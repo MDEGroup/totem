@@ -16,7 +16,9 @@ Require-Bundle: org.eclipse.emf.ecore,
  org.eclipse.m2m.atl.engine;bundle-version="3.6.0",
  anatlyzer.atl.typing,
  anatlyzer.use.witness,
- totem.codegen;bundle-version="1.0.0"
+ totem.codegen;bundle-version="1.0.0",
+ anatlyzer.testing.mutants;bundle-version="1.0.0",
+ anatlyzer.atl.editor;bundle-version="0.7.1"
 Import-Package: anatlyzer.atl.analyser,
  anatlyzer.atl.analyser.batch,
  anatlyzer.atl.analyser.namespaces,

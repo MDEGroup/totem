@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="org.miso-disim.requirementmetamodels.ui.contribution2">         
+         <action
+               label="Convert to FeatureIDE"
+               class="totem.trm.featureide.actions.ConvertToFeatureIDE"
+               menubarPath="org.miso-disim.requirementmetamodels.ui.menu1/group1"
+               enablesFor="1"
+               id="totem.trm.featureide.actions.ConvertToFeatureIDE">
+         </action>
+	</objectContribution>
+   </extension>
+   
+</plugin>

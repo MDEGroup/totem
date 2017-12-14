@@ -53,9 +53,9 @@ public class RequirementsModel {
 		try {
 			IEolExecutableModule module = new EglTemplateFactoryModuleAdapter(new EglFileGeneratingTemplateFactory());
 			// load egl template
-			if (module.parse(getResourceFile(REQUIREMENTS_MODEL_GENERATOR, "mm-footprint.codegen"))) {
+			if (module.parse(getResourceFile(REQUIREMENTS_MODEL_GENERATOR, CodeGenConstants.CODEGEN_PLUGIN_NAME))) {
 				// load requirements model
-				IModel model = createEmfModel(REQUIREMENTS_MODEL_NAME, this.fileRequirementsModel, getResourceFile(REQUIREMENTS_METAMODEL_FILE, "org.miso-disim.requirementmetamodel").getAbsolutePath(), true, true, false);
+				IModel model = createEmfModel(REQUIREMENTS_MODEL_NAME, this.fileRequirementsModel, getResourceFile(REQUIREMENTS_METAMODEL_FILE, CodeGenConstants.REQ_PLUGIN_NAME).getAbsolutePath(), true, true, false);
 				module.getContext().getModelRepository().addModel(model);
 				// execute egl template
 				Object result = module.execute();

@@ -13,10 +13,10 @@ Require-Bundle: org.eclipse.emf;bundle-version="2.6.0",
  anatlyzer.use.witness;bundle-version="0.1.0",
  org.eclipse.m2m.atl.core,
  org.eclipse.m2m.atl.core.emf,
- org.eclipse.m2m.atl.emftvm;bundle-version="3.8.0",
+ org.eclipse.m2m.atl.emftvm;bundle-version="3.7.0",
  totem.trm;bundle-version="1.0.0",
- org.eclipse.ocl;bundle-version="3.6.200",
- org.eclipse.ocl.common;bundle-version="1.4.200",
+ org.eclipse.ocl,
+ org.eclipse.ocl.common,
  org.eclipse.ocl.ecore,
  anatlyzer.atl.standalone.api
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8

@@ -37,20 +37,6 @@ import org.eclipse.m2m.atl.engine.parser.AtlParser;
 import org.eclipse.ocl.ParserException;
 import org.miso_disim.requirementmetamodel.reduce.TestMain;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import anatlyzer.atl.analyser.Analyser;
 import anatlyzer.atl.analyser.AnalysisResult;
 import anatlyzer.atl.analyser.batch.RuleConflictAnalysis.OverlappingRules;
@@ -74,6 +60,7 @@ import anatlyzer.ui.util.AtlEngineUtils;
 import mmfootprint.codegen.RequirementsModel;
 import mmfootprint.codegen.VariabilityModel;
 import mmfootprint.evaluation.report.Report;
+import testing.metamodel.EcoreMutantGenerator;
 import transML.exceptions.transException;
 import transML.utils.modeling.EMFUtils;
 
@@ -273,7 +260,7 @@ public class Tester {
 	 */
 	private void generateMetamodelMutants () {
 		EcoreMutantGenerator  generator  = new EcoreMutantGenerator();
-		Map<String, Resource> metamodels = this.namespace.getLogicalNamesToMetamodels();
+		Map<String, Resource> metamodels = this.namespace.getLogicalNamesToMetamodels(false);
 		for (String name : metamodels.keySet()) {
 			URI ecoreFile = metamodels.get(name).getURI();
 			String folder = getMutantsFolder(name);

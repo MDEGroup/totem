@@ -152,11 +152,11 @@ public class VariabilityDiscoverer {
 			find(srcAttChoice.getChoices(), Integer_.class, (srcChoice) -> {
 				List<Node> constrainedNodes = new ArrayList<Node>();
 
-				find(srcAttChoice.getChoices(), Integer_.class, (tgtChoice) -> {
+				find(tgtAttChoice.getChoices(), Integer_.class, (tgtChoice) -> {
 					constrainedNodes.add(tgtChoice);
 				});				
 				
-				find(srcAttChoice.getChoices(), Real_.class, (tgtChoice) -> {
+				find(tgtAttChoice.getChoices(), Real_.class, (tgtChoice) -> {
 					constrainedNodes.add(tgtChoice);
 				});				
 
@@ -344,6 +344,7 @@ public class VariabilityDiscoverer {
 		
 			if ( hasVariability ) {
 				VariableFeature vf = VariabilityFMFactory.eINSTANCE.createVariableFeature();
+				vf.setName( ((MM_uncertainty.Class) feature.eContainer()).getName() + "::" + feature.getName());
 				vf.setFeature(feature);
 				vm.getFeatures().add(vf);
 				// vf.setFeature()
@@ -433,6 +434,7 @@ public class VariabilityDiscoverer {
 		/** Create both attributes and references */
 		if ( feature.getHasType().isEmpty() || hasBothTypes(feature) ) {
 			AttOrReferenceExclusiveChoice attOrRef = VariabilityFMFactory.eINSTANCE.createAttOrReferenceExclusiveChoice();
+			attOrRef.setName("AttOrReferenceExclusiveChoice-" + feature.getName());
 			fkind.setAttOrRef(attOrRef);
 			
 			// Attribute choice
