@@ -39,15 +39,15 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="BoolTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="Boolean_">
-          <style xsi:type="style:SquareDescription" labelExpression="[eClass().name/]" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+        <nodeMappings name="UnknownTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::UnknownType">
+          <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="UnknownType" labelPosition="node" resizeKind="NSEW" width="8" height="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </nodeMappings>
-        <nodeMappings name="UnknownType" semanticCandidatesExpression="feature:dataType" domainClass="MM_uncertainty::UnknownType">
-          <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="UnknownType" labelPosition="node" resizeKind="NSEW" width="8" height="5">
+        <nodeMappings name="BooleanTypeNode" semanticCandidatesExpression="feature:dataType" domainClass="Boolean_">
+          <style xsi:type="style:SquareDescription" labelExpression="Boolean" labelPosition="node" resizeKind="NSEW" width="8" height="5">
             <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
@@ -200,32 +200,46 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Data Type Declaration">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="String type" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='StringTypeNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="String type" precondition="[not container.dataType->exists(e|e.oclIsTypeOf(String_))/]" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='StringTypeNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::String_" referenceName="dataType"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Numeric Type" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='NumericTypeNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Numeric type" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='NumericTypeNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Numeric" referenceName="dataType"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Integer type" elementsToSelect="feature: dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='IntegerTypeNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Integer type" precondition="[not container.dataType->exists(e|e.oclIsTypeOf(Integer_))/]" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='IntegerTypeNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Integer_" referenceName="dataType"/>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Unknown type" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='UnknownType']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Unknown type" precondition="[not container.dataType->exists(e|e.oclIsTypeOf(UnknownType))/]" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='UnknownTypeNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
               <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::UnknownType" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Real type" precondition="[not container.dataType->exists(e|e.oclIsTypeOf(Real_))/]" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='RealTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Real_" referenceName="dataType"/>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Boolean type" precondition="[not container.dataType->exists(e|e.oclIsTypeOf(Boolean_))/]" elementsToSelect="feature:dataType" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@nodeMappings[name='BooleanTypeNode']">
+            <variable name="container"/>
+            <viewVariable name="containerView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="Boolean_" referenceName="dataType"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
