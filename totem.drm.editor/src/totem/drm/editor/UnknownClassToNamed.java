@@ -27,55 +27,53 @@ public class UnknownClassToNamed implements IExternalJavaAction {
 	@Override
 	public void execute(Collection<? extends EObject> selections, Map<String, Object> parameters) {
 		// TODO Auto-generated method stub
-		//System.out.println("ciao");
+		// System.out.println("ciao");
 		for (EObject eObject : selections) {
-			UnknowClass uc=(UnknowClass)eObject;
-		MM_uncertaintyFactory factory = MM_uncertaintyFactory.eINSTANCE;
-		Class c=factory.createClass();
-		
-		c.setIsAbstract(uc.getIsAbstract());
-		c.setMandatoryAllowed(uc.isMandatoryAllowed());
-		
-		c.setName("Assign Class Name");
-		for (MM_uncertainty.Feature f : uc.getFeats()) {
-			c.getFeats().add(EcoreUtil.copy(f));
-		}
-		for (Class antiac : uc.getAntiancs()) {
-			c.getAntiancs().add(EcoreUtil.copy(antiac));
-		}
-		for (Class anc : uc.getAncs()) {
-			c.getAncs().add(EcoreUtil.copy(anc));
-		}
-		
-		Metamodel mm=(Metamodel)uc.eContainer();
-		
-		
-		mm.getClasses().remove(uc);
-		mm.getClasses().add(c);
-		
-		//Update references types
-				for (Iterator i = mm.eResource().getAllContents(); i.hasNext(); )
-				{
+			UnknowClass uc = (UnknowClass) eObject;
+			MM_uncertaintyFactory factory = MM_uncertaintyFactory.eINSTANCE;
+			Class c = factory.createClass();
+
+			c.setIsAbstract(uc.getIsAbstract());
+			c.setMandatoryAllowed(uc.isMandatoryAllowed());
+
+			c.setName("Assign Class Name");
+			for (MM_uncertainty.Feature f : uc.getFeats()) {
+				c.getFeats().add(EcoreUtil.copy(f));
+			}
+			for (Class antiac : uc.getAntiancs()) {
+				c.getAntiancs().add(EcoreUtil.copy(antiac));
+			}
+			for (Class anc : uc.getAncs()) {
+				c.getAncs().add(EcoreUtil.copy(anc));
+			}
+
+			Metamodel mm = (Metamodel) uc.eContainer();
+
+			mm.getClasses().remove(uc);
+			mm.getClasses().add(c);
+
+			// Update references types
+			for (Iterator i = mm.eResource().getAllContents(); i.hasNext();) {
 				Object object = i.next();
-				if (Reference.class.isInstance(object))
-				{
-				//...
-				Reference ref=(Reference)object;
-				EList<Class> targets=ref.getTarget();
-				boolean found=false;
-				for (Class class1 : targets) {
-					
-					if(class1.equals(uc)) {
-						System.err.println("found dangling node");
-						//redirect target to the new class
-						found=true;
-						
+				if (Reference.class.isInstance(object)) {
+					// ...
+					Reference ref = (Reference) object;
+					EList<Class> targets = ref.getTarget();
+					boolean found = false;
+					for (Class class1 : targets) {
+
+						if (class1.equals(uc)) {
+							System.err.println("found dangling node");
+							// redirect target to the new class
+							found = true;
+
+						}
 					}
+					// if found a dangling node
+					if (found)
+						ref.getTarget().add(c);
 				}
-				//if found a dangling node
-				if(found)ref.getTarget().add(c);
-				}
-				}
+			}
 		}
 	}
 
@@ -83,7 +81,7 @@ public class UnknownClassToNamed implements IExternalJavaAction {
 	public boolean canExecute(Collection<? extends EObject> selections) {
 		// TODO Auto-generated method stub
 		for (EObject eObject : selections) {
-			if(!(eObject instanceof UnknowClass)) {				
+			if (!(eObject instanceof UnknowClass)) {
 				return false;
 			}
 		}

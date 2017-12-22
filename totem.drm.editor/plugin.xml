@@ -25,5 +25,9 @@
            actionClass="totem.drm.editor.SetUntypedFeatureToRef"
            id="SetUntypedFeatToRef">
      </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetToConcrete"
+           id="SetToConcrete">
+     </javaActions>
   </extension>
 </plugin>

@@ -34,6 +34,10 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.helper.OCLHelper;
 
+import MM_uncertainty.Cardinality;
+import MM_uncertainty.Feature;
+import MM_uncertainty.MM_uncertaintyFactory;
+import MM_uncertainty.MM_uncertaintyPackage;
 import MM_uncertainty.Metamodel;
 import VariabilityFM.VariabilityModel;
 import anatlyzer.atl.model.ATLModel;
@@ -107,6 +111,15 @@ public class ReduceRequirementMetamodels {
 		imv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootIn(), 
 				vv.getOclComputedType());
 		Metamodel mm = imv.getRootIn();
+
+		// Init features cardinality
+		List<Feature> features = getFeatures(mm);
+		for (Feature feature : features) {
+			if(feature.getMax()==null)
+				feature.setMax(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
+			if(feature.getMin()==null)
+				feature.setMin(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
+		}
 		serialize(mm, outputFolder + "_sourceDRM.ecore");
 		OutputMetamodelVisitor omv = new OutputMetamodelVisitor();
 		vv = new VariableVisitor();
@@ -114,6 +127,15 @@ public class ReduceRequirementMetamodels {
 		omv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootOut(), 
 			vv.getOclComputedType());
 		Metamodel mmout = omv.getRootOut();
+
+		//Init features cardinality
+		features = getFeatures(mmout);
+		for (Feature feature : features) {
+			if(feature.getMax()==null)
+				feature.setMax(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
+			if(feature.getMin()==null)
+				feature.setMin(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
+		}
 		serialize(mmout, outputFolder + "_targetDRM.ecore");
 		System.out.println("END PROCESS");
 		
@@ -136,6 +158,7 @@ public class ReduceRequirementMetamodels {
 		
 		System.out.println("Done!");
 	}
+	
 	public boolean checkConformance (String rMpdelPath, String tempFolder, String metamodelPath){
 		RequirementsModel reqmodel_source = new RequirementsModel(rMpdelPath, tempFolder);
 		return reqmodel_source.checkConformance(metamodelPath);
@@ -193,6 +216,34 @@ public class ReduceRequirementMetamodels {
 			callableMethods.add((SimpleOutPatternElement) object);
 		System.out.println("EXTRACTED CALLABLE ELEMENTS FROM A ATL MODEL");
 		return callableMethods;
+
+	}
+	
+	public static List<Feature> getFeatures(Metamodel metamodel) throws ParserException {
+		System.out.println("EXTRACTING CALLABLE ELEMENTS FROM A ATL MODEL");
+		//DEFINE OCL AND HELPER
+		OCL<?, EClassifier, ?, ?, ?, EParameter, ?, ?, ?, Constraint, EClass, EObject> ocl;
+		OCLHelper<EClassifier, ?, ?, Constraint> helper;
+		
+		//INSTANCIATE OCL
+		ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		//INSTANCIATE NEW HELPER FROM OCLEXPRESSION
+		helper = ocl.createOCLHelper();
+		//SET HELPER CONTEXT
+		helper.setContext(MM_uncertaintyPackage.eINSTANCE.getMetamodel());
+		
+		//CREATE OCLEXPRESSION
+		OCLExpression<EClassifier> expression = helper.createQuery("Feature.allInstances()");
+		//CREATE QUERY FROM OCLEXPRESSION
+		Query<EClassifier, EClass, EObject> query = ocl.createQuery(expression);
+		
+		//EVALUATE OCL
+		HashSet<Object> success = (HashSet<Object>) query.evaluate(metamodel);
+		List<Feature> feature = new ArrayList<>();
+		for (Object object : success)
+			feature.add((Feature) object);
+		System.out.println("EXTRACTED CALLABLE ELEMENTS FROM A ATL MODEL");
+		return feature;
 
 	}
 	

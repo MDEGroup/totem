@@ -175,25 +175,38 @@
           </ownedTools>
         </toolSections>
         <toolSections name="Feature">
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Untyped Feature" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='AttributeNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Untyped Feature" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='FeaturesNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container.feats">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'feature'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:NodeCreationDescription" name="Attribute" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='AttributeNode']">
+          <ownedTools xsi:type="tool:NodeCreationDescription" name="Attribute" nodeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']/@subNodeMappings[name='FeaturesNode']">
             <variable name="container"/>
             <viewVariable name="containerView"/>
             <initialOperation>
-              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container">
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container.feats">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'attr'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
-                  <subModelOperations xsi:type="tool_1:SetValue" featureName="hasType" valueExpression="[self.createAttr(self.eContainer().eContainer().eContents(MM_uncertainty::Metamodel).dataType )/]"/>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Attribute" referenceName="hasType"/>
+                </subModelOperations>
+              </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Reference" edgeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@edgeMappings[name='ReferenceEdge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container.feats">
+                <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
+                  <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'ref'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -257,6 +270,12 @@
               <view name="views"/>
               <initialOperation>
                 <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="setToAbstract" id="SetToAbstract"/>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Concrete" precondition="service:canBecomeConcrete()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="setToConcrete" id="SetToConcrete"/>
               </initialOperation>
             </menuItemDescription>
           </ownedTools>

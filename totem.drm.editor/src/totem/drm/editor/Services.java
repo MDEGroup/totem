@@ -25,98 +25,110 @@ import MM_uncertainty.UnknowClass;
  * The services class used by VSM.
  */
 public class Services {
-    
-    /**
-    * See http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.sirius.doc%2Fdoc%2Findex.html&cp=24 for documentation on how to write service methods.
-    */
- 
-    public Boolean isUnknownClsss(EObject any) {
+
+	/**
+	 * See
+	 * http://help.eclipse.org/neon/index.jsp?topic=%2Forg.eclipse.sirius.doc%2Fdoc%2Findex.html&cp=24
+	 * for documentation on how to write service methods.
+	 */
+
+	public Boolean isUnknownClsss(EObject any) {
 		return any instanceof UnknowClass;
 	}
-    public Boolean isClass(EObject any) {
+
+	public Boolean isClass(EObject any) {
 		return any instanceof Class;
 	}
-    
-    public Boolean isUntypedFeature(EObject any) {
-    	if(any instanceof Feature) {
-    		Feature f=(Feature) any;
-    		if(f.getHasType().size()==0) {
-    			return true;
-    		}
-    	}
-    	return false;
-    }
-    
-    public Boolean canBecomeAbstract(EObject any) {
-    	
-    if( any instanceof Class) {
-    	Class c=(Class)any;
-    		if(c.getIsAbstract()==UBoolean.DONT_KNOW) {
-    			return true;
-    		}
-    }
-    return false;
-    }
 
-    public EList<Class> getEReferenceTarget(Feature self) {
-    		if(!self.getHasType().isEmpty()) {
-        if( self.getHasType().get(0) instanceof Reference) {
-        	return ((Reference)self.getHasType().get(0)).getTarget();
-        }}
-        return null;
-    }
-    
-    public Attribute createAttr(Feature self,EList<DataType> types) {
-    	
-    	Attribute a=MM_uncertaintyFactory.eINSTANCE.createAttribute();
-    	
-	a.getType().addAll(types);
+	public Boolean isUntypedFeature(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if (f.getHasType().size() == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Boolean canBecomeAbstract(EObject any) {
+
+		if (any instanceof Class) {
+			Class c = (Class) any;
+			if (c.getIsAbstract() == UBoolean.DONT_KNOW) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
-    	return a;
-    }
-    
-    
-    public String GenericFeatureLabel(Feature self) {
-    	
-  
-    	return "? "+self.getName()+" ("+getCardinality(self)+")";
-    	
-    }
-    
-    public String getCardinality(Feature self) {
-    	String min = "?";
-    	String max="?";
-    	MM_uncertaintyFactory factory=MM_uncertaintyFactory.eINSTANCE;
-    
-    	if(self.getMin()==null) {
-    		self.setMin(factory.createUnknownCardinality());
-    		
-    		min="?";
-    	}
-    
-    	if(self.getMax()==null) {
-    		self.setMax(factory.createUnknownCardinality());
-    		//System.out.println("----> "+self.getMax());
-    		max="?";
-    	}
-    	
-    	if(self.getMin() instanceof MM_uncertainty.Number) {
-    		MM_uncertainty.Number num=(MM_uncertainty.Number)self.getMin();
-    		min=Integer.toString(num.getValue());
-    	}
-    	if( self.getMax() instanceof Number) {
-    		MM_uncertainty.Number num=(MM_uncertainty.Number)self.getMax();
-    		max=Integer.toString(num.getValue());
-    	}
-    	
-        if( self.getMax() instanceof Many) {
-        	max="*";
-        }
-        if(self.getMin() instanceof Many) {
-        min="*";
-        }
-        
-       
-        return min+".."+max;
-    }
+	public Boolean canBecomeConcrete(EObject any) {
+
+		if (any instanceof Class) {
+			Class c = (Class) any;
+			if (c.getIsAbstract() == UBoolean.DONT_KNOW) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public EList<Class> getEReferenceTarget(Feature self) {
+		if (!self.getHasType().isEmpty()) {
+			if (self.getHasType().get(0) instanceof Reference) {
+				return ((Reference) self.getHasType().get(0)).getTarget();
+			}
+		}
+		return null;
+	}
+
+	public Attribute createAttr(Feature self, EList<DataType> types) {
+
+		Attribute a = MM_uncertaintyFactory.eINSTANCE.createAttribute();
+
+		a.getType().addAll(types);
+
+		return a;
+	}
+
+	public String GenericFeatureLabel(Feature self) {
+
+		return "? " + self.getName() + " (" + getCardinality(self) + ")";
+
+	}
+
+	public String getCardinality(Feature self) {
+		String min = "?";
+		String max = "?";
+		MM_uncertaintyFactory factory = MM_uncertaintyFactory.eINSTANCE;
+
+		if (self.getMin() == null) {
+			self.setMin(factory.createUnknownCardinality());
+
+			min = "?";
+		}
+
+		if (self.getMax() == null) {
+			self.setMax(factory.createUnknownCardinality());
+			// System.out.println("----> "+self.getMax());
+			max = "?";
+		}
+
+		if (self.getMin() instanceof MM_uncertainty.Number) {
+			MM_uncertainty.Number num = (MM_uncertainty.Number) self.getMin();
+			min = Integer.toString(num.getValue());
+		}
+		if (self.getMax() instanceof Number) {
+			MM_uncertainty.Number num = (MM_uncertainty.Number) self.getMax();
+			max = Integer.toString(num.getValue());
+		}
+
+		if (self.getMax() instanceof Many) {
+			max = "*";
+		}
+		if (self.getMin() instanceof Many) {
+			min = "*";
+		}
+
+		return min + ".." + max;
+	}
 }

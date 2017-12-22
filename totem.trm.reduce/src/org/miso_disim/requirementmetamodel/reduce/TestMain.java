@@ -56,7 +56,7 @@ public class TestMain {
 //		String transformation = "transformation/Families2Persons.atl";
 //		String transformation = "transformation/PN2matrix.atl";
 		String transformation = "transformation/JavaSource2Table_PaperUserCase.atl";
-		new TestMain().generateRMM(transformation, "output" + File.separator);
+		new ReduceRequirementMetamodels().generateRMM(transformation, "output" + File.separator);
 	}
 	
 	public void generateRMM(String transformation, String outputFolder) throws ATLCoreException, ParserException {
