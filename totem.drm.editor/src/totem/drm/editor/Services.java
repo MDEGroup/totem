@@ -1,7 +1,9 @@
 package totem.drm.editor;
 
 import java.util.Collection;
+import java.util.StringJoiner;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -73,12 +75,13 @@ public class Services {
 	}
 
 	public EList<Class> getEReferenceTarget(Feature self) {
+		EList<Class> result = new BasicEList<>();
 		if (!self.getHasType().isEmpty()) {
 			if (self.getHasType().get(0) instanceof Reference) {
-				return ((Reference) self.getHasType().get(0)).getTarget();
+				result.addAll(((Reference) self.getHasType().get(0)).getTarget());
 			}
 		}
-		return null;
+		return result;
 	}
 
 	public Attribute createAttr(Feature self, EList<DataType> types) {
@@ -95,6 +98,23 @@ public class Services {
 		return "? " + self.getName() + " (" + getCardinality(self) + ")";
 
 	}
+	
+	public String GenericAttributeLabel(Attribute self) {
+		Feature feat = (Feature)self.eContainer();
+		StringBuilder result = new StringBuilder();
+		result.append(feat.getName()).append("(")
+			  .append(getCardinality(feat))
+			  .append(")").append("[");
+		StringJoiner sj = new StringJoiner(",");
+		for (DataType i : self.getType()) {
+			sj.add(i.eClass().getName());
+		}
+		result.append(sj.toString());
+		result.append("]");
+		return result.toString();
+
+	}
+	
 
 	public String getCardinality(Feature self) {
 		String min = "?";
@@ -129,6 +149,9 @@ public class Services {
 			min = "*";
 		}
 
-		return min + ".." + max;
+		return new StringBuilder()
+				.append(min)
+				.append("..")
+				.append( max).toString();
 	}
 }
