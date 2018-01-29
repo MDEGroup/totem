@@ -9,14 +9,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
 
-import com.sun.org.apache.xalan.internal.utils.FeatureManager.Feature;
-
 import MM_uncertainty.Class;
 import MM_uncertainty.MM_uncertaintyFactory;
 import MM_uncertainty.Metamodel;
 import MM_uncertainty.Reference;
 import MM_uncertainty.UnknowClass;
-import MM_uncertainty.UnknownCardinality;
 
 public class UnknownClassToNamed implements IExternalJavaAction {
 

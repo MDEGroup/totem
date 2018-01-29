@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="editor" version="12.0.0.2017041100">
+<description:Group xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:description="http://www.eclipse.org/sirius/description/1.1.0" xmlns:description_1="http://www.eclipse.org/sirius/diagram/description/1.1.0" xmlns:properties="http://www.eclipse.org/sirius/properties/1.0.0" xmlns:properties-ext-widgets-reference="http://www.eclipse.org/sirius/properties/1.0.0/ext/widgets/reference" xmlns:style="http://www.eclipse.org/sirius/diagram/description/style/1.1.0" xmlns:tool="http://www.eclipse.org/sirius/diagram/description/tool/1.1.0" xmlns:tool_1="http://www.eclipse.org/sirius/description/tool/1.1.0" name="editor" version="12.0.0.2017041100">
   <ownedViewpoints name="mm_uncertainty" modelFileExtension="mm_uncertainty">
     <ownedRepresentations xsi:type="description_1:DiagramDescription" name="drm" domainClass="MM_uncertainty::Metamodel">
       <metamodel href="/DRM_Modeling/model/MM_uncertainty.ecore#/"/>
@@ -89,7 +89,7 @@
             </style>
           </subNodeMappings>
           <subNodeMappings name="AttributeNode" semanticCandidatesExpression="aql:self.feats.hasType" synchronizationLock="true" domainClass="MM_uncertainty::Attribute">
-            <style xsi:type="style:SquareDescription" showIcon="false" labelExpression="aql:self.eContainer().name+' ('+(self.type->collect(t|t.eClass().name).toString())+')'" labelPosition="node" resizeKind="NSEW">
+            <style xsi:type="style:SquareDescription" labelExpression="service:GenericAttributeLabel()" labelPosition="node" resizeKind="NSEW">
               <borderColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
               <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
@@ -194,6 +194,12 @@
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'attr'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
                   <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Attribute" referenceName="hasType"/>
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:container.mandatoryAllowed">
+                    <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Number" referenceName="min">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="0"/>
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="allowMore" valueExpression="false"/>
+                    </subModelOperations>
+                  </subModelOperations>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -207,6 +213,15 @@
               <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:container.feats">
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'ref'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Reference" referenceName="hasType">
+                    <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
+                  </subModelOperations>
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:source.mandatoryAllowed">
+                    <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Number" referenceName="min">
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="0"/>
+                      <subModelOperations xsi:type="tool_1:SetValue" featureName="allowMore" valueExpression="false"/>
+                    </subModelOperations>
+                  </subModelOperations>
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
@@ -291,7 +306,30 @@
             <menuItemDescription xsi:type="tool_1:OperationAction" name="Convert open feature to Reference" precondition="service:isUntypedFeature()">
               <view name="views"/>
               <initialOperation>
-                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set to Reference"/>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set to Reference" id="SetUntypedFeatToRef">
+                  <parameters name="target" value="aql:self.eContainer().eContainer().eContents(MM_uncertainty::Class)"/>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="test" precondition="service:isUntypedFeature()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Reference" referenceName="hasType">
+                  <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self.hasType">
+                    <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="New Dialog">
+                      <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                        <initialOperation/>
+                      </buttons>
+                      <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                        <initialOperation/>
+                      </buttons>
+                      <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Add%20type%20to%20untyped%20feature']/@menuItemDescription.2/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                      <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self">
+                        <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="ref" labelExpression="ref" referenceNameExpression="target"/>
+                      </groups>
+                    </subModelOperations>
+                  </subModelOperations>
+                </firstModelOperations>
               </initialOperation>
             </menuItemDescription>
           </ownedTools>
