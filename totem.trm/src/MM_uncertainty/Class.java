@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link MM_uncertainty.Class#getFeats <em>Feats</em>}</li>
  *   <li>{@link MM_uncertainty.Class#isMandatoryAllowed <em>Mandatory Allowed</em>}</li>
  *   <li>{@link MM_uncertainty.Class#getIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link MM_uncertainty.Class#isSubsAllowed <em>Subs Allowed</em>}</li>
  * </ul>
  *
  * @see MM_uncertainty.MM_uncertaintyPackage#getClass_()
@@ -154,5 +155,31 @@ public interface Class extends ConstrainedElement {
 	 * @generated
 	 */
 	void setIsAbstract(UBoolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Subs Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Subs Allowed</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Subs Allowed</em>' attribute.
+	 * @see #setSubsAllowed(boolean)
+	 * @see MM_uncertainty.MM_uncertaintyPackage#getClass_SubsAllowed()
+	 * @model
+	 * @generated
+	 */
+	boolean isSubsAllowed();
+
+	/**
+	 * Sets the value of the '{@link MM_uncertainty.Class#isSubsAllowed <em>Subs Allowed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Subs Allowed</em>' attribute.
+	 * @see #isSubsAllowed()
+	 * @generated
+	 */
+	void setSubsAllowed(boolean value);
 
 } // Class

@@ -375,6 +375,15 @@ public class MM_uncertaintyPackageImpl extends EPackageImpl implements MM_uncert
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getClass_SubsAllowed() {
+		return (EAttribute)classEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFeature() {
 		return featureEClass;
 	}
@@ -727,6 +736,7 @@ public class MM_uncertaintyPackageImpl extends EPackageImpl implements MM_uncert
 		createEReference(classEClass, CLASS__FEATS);
 		createEAttribute(classEClass, CLASS__MANDATORY_ALLOWED);
 		createEAttribute(classEClass, CLASS__IS_ABSTRACT);
+		createEAttribute(classEClass, CLASS__SUBS_ALLOWED);
 
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__NAME);
@@ -844,6 +854,7 @@ public class MM_uncertaintyPackageImpl extends EPackageImpl implements MM_uncert
 		initEReference(getClass_Feats(), this.getFeature(), null, "feats", null, 0, -1, MM_uncertainty.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getClass_MandatoryAllowed(), ecorePackage.getEBoolean(), "mandatoryAllowed", null, 0, 1, MM_uncertainty.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getClass_IsAbstract(), this.getUBoolean(), "isAbstract", null, 0, 1, MM_uncertainty.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getClass_SubsAllowed(), ecorePackage.getEBoolean(), "subsAllowed", null, 0, 1, MM_uncertainty.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

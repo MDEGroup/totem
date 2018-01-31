@@ -215,13 +215,22 @@ public interface MM_uncertaintyPackage extends EPackage {
 	int CLASS__IS_ABSTRACT = CONSTRAINED_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Subs Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__SUBS_ALLOWED = CONSTRAINED_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
 	 * The number of structural features of the '<em>Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FEATURE_COUNT = CONSTRAINED_ELEMENT_FEATURE_COUNT + 6;
+	int CLASS_FEATURE_COUNT = CONSTRAINED_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Class</em>' class.
@@ -926,6 +935,15 @@ public interface MM_uncertaintyPackage extends EPackage {
 	int UNKNOW_CLASS__IS_ABSTRACT = CLASS__IS_ABSTRACT;
 
 	/**
+	 * The feature id for the '<em><b>Subs Allowed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNKNOW_CLASS__SUBS_ALLOWED = CLASS__SUBS_ALLOWED;
+
+	/**
 	 * The number of structural features of the '<em>Unknow Class</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1110,6 +1128,17 @@ public interface MM_uncertaintyPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getClass_IsAbstract();
+
+	/**
+	 * Returns the meta object for the attribute '{@link MM_uncertainty.Class#isSubsAllowed <em>Subs Allowed</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Subs Allowed</em>'.
+	 * @see MM_uncertainty.Class#isSubsAllowed()
+	 * @see #getClass_()
+	 * @generated
+	 */
+	EAttribute getClass_SubsAllowed();
 
 	/**
 	 * Returns the meta object for class '{@link MM_uncertainty.Feature <em>Feature</em>}'.
@@ -1600,6 +1629,14 @@ public interface MM_uncertaintyPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CLASS__IS_ABSTRACT = eINSTANCE.getClass_IsAbstract();
+
+		/**
+		 * The meta object literal for the '<em><b>Subs Allowed</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLASS__SUBS_ALLOWED = eINSTANCE.getClass_SubsAllowed();
 
 		/**
 		 * The meta object literal for the '{@link MM_uncertainty.impl.FeatureImpl <em>Feature</em>}' class.

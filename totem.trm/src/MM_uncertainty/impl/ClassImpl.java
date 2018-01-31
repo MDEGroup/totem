@@ -37,6 +37,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link MM_uncertainty.impl.ClassImpl#getFeats <em>Feats</em>}</li>
  *   <li>{@link MM_uncertainty.impl.ClassImpl#isMandatoryAllowed <em>Mandatory Allowed</em>}</li>
  *   <li>{@link MM_uncertainty.impl.ClassImpl#getIsAbstract <em>Is Abstract</em>}</li>
+ *   <li>{@link MM_uncertainty.impl.ClassImpl#isSubsAllowed <em>Subs Allowed</em>}</li>
  * </ul>
  *
  * @generated
@@ -131,6 +132,26 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 	 * @ordered
 	 */
 	protected UBoolean isAbstract = IS_ABSTRACT_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isSubsAllowed() <em>Subs Allowed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSubsAllowed()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean SUBS_ALLOWED_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isSubsAllowed() <em>Subs Allowed</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isSubsAllowed()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean subsAllowed = SUBS_ALLOWED_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -255,6 +276,27 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isSubsAllowed() {
+		return subsAllowed;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setSubsAllowed(boolean newSubsAllowed) {
+		boolean oldSubsAllowed = subsAllowed;
+		subsAllowed = newSubsAllowed;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, MM_uncertaintyPackage.CLASS__SUBS_ALLOWED, oldSubsAllowed, subsAllowed));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -284,6 +326,8 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 				return isMandatoryAllowed();
 			case MM_uncertaintyPackage.CLASS__IS_ABSTRACT:
 				return getIsAbstract();
+			case MM_uncertaintyPackage.CLASS__SUBS_ALLOWED:
+				return isSubsAllowed();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -318,6 +362,9 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 			case MM_uncertaintyPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract((UBoolean)newValue);
 				return;
+			case MM_uncertaintyPackage.CLASS__SUBS_ALLOWED:
+				setSubsAllowed((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -348,6 +395,9 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 			case MM_uncertaintyPackage.CLASS__IS_ABSTRACT:
 				setIsAbstract(IS_ABSTRACT_EDEFAULT);
 				return;
+			case MM_uncertaintyPackage.CLASS__SUBS_ALLOWED:
+				setSubsAllowed(SUBS_ALLOWED_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -372,6 +422,8 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 				return mandatoryAllowed != MANDATORY_ALLOWED_EDEFAULT;
 			case MM_uncertaintyPackage.CLASS__IS_ABSTRACT:
 				return isAbstract != IS_ABSTRACT_EDEFAULT;
+			case MM_uncertaintyPackage.CLASS__SUBS_ALLOWED:
+				return subsAllowed != SUBS_ALLOWED_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -392,6 +444,8 @@ public class ClassImpl extends ConstrainedElementImpl implements MM_uncertainty.
 		result.append(mandatoryAllowed);
 		result.append(", isAbstract: ");
 		result.append(isAbstract);
+		result.append(", subsAllowed: ");
+		result.append(subsAllowed);
 		result.append(')');
 		return result.toString();
 	}
