@@ -63,6 +63,17 @@ public class Services {
 		}
 		return false;
 	}
+	public Boolean isFeatureMinAnyCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMin() != null) {
+				if(f.getMin() instanceof UnknownCardinality)
+					return true;
+			}
+			return false;
+		}
+		return false;
+	}
 	public Boolean isFeatureMaxLowerCardinality(EObject any) {
 		if (any instanceof Feature) {
 			Feature f = (Feature) any;
@@ -81,6 +92,31 @@ public class Services {
 			if(f.getMax() != null) {
 				if(f.getMax() instanceof MM_uncertainty.Number)
 					if (!((MM_uncertainty.Number)f.getMax()).isAllowLess() )
+						return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	
+	public Boolean isFeatureMinLowerCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMin() != null) {
+				if(f.getMin() instanceof MM_uncertainty.Number)
+					if (((MM_uncertainty.Number)f.getMin()).isAllowLess() )
+						return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	public Boolean isFeatureMinHigherCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMin() != null) {
+				if(f.getMin() instanceof MM_uncertainty.Number)
+					if (!((MM_uncertainty.Number)f.getMin()).isAllowLess() )
 						return true;
 			}
 			return false;

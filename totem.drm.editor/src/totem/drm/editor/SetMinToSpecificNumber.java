@@ -11,17 +11,17 @@ import MM_uncertainty.DataType;
 import MM_uncertainty.MM_uncertaintyFactory;
 import MM_uncertainty.Number;
 
-public class SetToSpecificNumber implements IExternalJavaAction {
+public class SetMinToSpecificNumber implements IExternalJavaAction {
 
-	public SetToSpecificNumber() {
+	public SetMinToSpecificNumber() {
 	}
 
 	@Override
 	public void execute(Collection<? extends EObject> selections, Map<String, Object> parameters) {
 		for (EObject eObject : selections) {
 			MM_uncertainty.Feature feat=(MM_uncertainty.Feature)eObject;
-			if(feat.getMax() instanceof MM_uncertainty.Number) {
-				MM_uncertainty.Number number = (Number) feat.getMax();
+			if(feat.getMin() instanceof MM_uncertainty.Number) {
+				MM_uncertainty.Number number = (Number) feat.getMin();
 				try{
 					int value = Integer.parseInt(parameters.get("value").toString());
 					boolean allowedLess = Boolean.parseBoolean(parameters.get("allowedLess").toString());

@@ -34,8 +34,16 @@
            id="SetMaxToMany">
      </javaActions>
      <javaActions
-           actionClass="totem.drm.editor.SetToSpecificNumber"
-           id="SetToSpecificNumber">
+           actionClass="totem.drm.editor.SetMaxToSpecificNumber"
+           id="SetMaxToSpecificNumber">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetMinToMany"
+           id="SetMaxToMany">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetMinToSpecificNumber"
+           id="SetMinToSpecificNumber">
      </javaActions>
   </extension>
 </plugin>
