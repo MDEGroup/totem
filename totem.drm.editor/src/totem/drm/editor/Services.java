@@ -53,74 +53,75 @@ public class Services {
 		return false;
 	}
 	public Boolean isFeatureMaxAnyCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMax() != null) {
-				if(f.getMax() instanceof UnknownCardinality)
-					return true;
-			}
-			return false;
-		}
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMax() != null) 
+			if(f.getMax() instanceof UnknownCardinality)
+				return true;
 		return false;
 	}
 	public Boolean isFeatureMinAnyCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMin() != null) {
-				if(f.getMin() instanceof UnknownCardinality)
-					return true;
-			}
-			return false;
-		}
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMin() != null)
+			if(f.getMin() instanceof UnknownCardinality)
+				return true;
 		return false;
 	}
 	public Boolean isFeatureMaxLowerCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMax() != null) {
-				if(f.getMax() instanceof MM_uncertainty.Number)
-					if (((MM_uncertainty.Number)f.getMax()).isAllowLess() )
-						return true;
-			}
-			return false;
-		}
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMax() != null) 
+			if(f.getMax() instanceof MM_uncertainty.Number)
+				if (((MM_uncertainty.Number)f.getMax()).isAllowLess() )
+					return true;
 		return false;
 	}
 	public Boolean isFeatureMaxHigherCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMax() != null) {
-				if(f.getMax() instanceof MM_uncertainty.Number)
-					if (!((MM_uncertainty.Number)f.getMax()).isAllowLess() )
-						return true;
-			}
-			return false;
-		}
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMax() != null) 
+			if(f.getMax() instanceof MM_uncertainty.Number)
+				if (!((MM_uncertainty.Number)f.getMax()).isAllowLess() )
+					return true;
 		return false;
 	}
 	
 	public Boolean isFeatureMinLowerCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMin() != null) {
-				if(f.getMin() instanceof MM_uncertainty.Number)
-					if (((MM_uncertainty.Number)f.getMin()).isAllowLess() )
-						return true;
-			}
-			return false;
-		}
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMin() != null) 
+			if(f.getMin() instanceof MM_uncertainty.Number)
+				if (((MM_uncertainty.Number)f.getMin()).isAllowLess() )
+					return true;
 		return false;
 	}
 	public Boolean isFeatureMinHigherCardinality(EObject any) {
-		if (any instanceof Feature) {
-			Feature f = (Feature) any;
-			if(f.getMin() != null) {
-				if(f.getMin() instanceof MM_uncertainty.Number)
-					if (!((MM_uncertainty.Number)f.getMin()).isAllowLess() )
+		
+		Feature f = null;
+		if (any instanceof Feature)
+			f = (Feature) any;
+		if (any instanceof Attribute)
+			f = (Feature) ((Attribute) any).eContainer();
+		if(f.getMin() != null)
+			if(f.getMin() instanceof MM_uncertainty.Number)
+				if (!((MM_uncertainty.Number)f.getMin()).isAllowLess())
 						return true;
-			}
-			return false;
-		}
 		return false;
 	}
 

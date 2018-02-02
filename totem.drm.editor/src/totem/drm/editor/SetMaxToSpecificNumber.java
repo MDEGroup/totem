@@ -8,6 +8,7 @@ import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
 
 import MM_uncertainty.Attribute;
 import MM_uncertainty.DataType;
+import MM_uncertainty.Feature;
 import MM_uncertainty.MM_uncertaintyFactory;
 import MM_uncertainty.Number;
 
@@ -19,7 +20,11 @@ public class SetMaxToSpecificNumber implements IExternalJavaAction {
 	@Override
 	public void execute(Collection<? extends EObject> selections, Map<String, Object> parameters) {
 		for (EObject eObject : selections) {
-			MM_uncertainty.Feature feat=(MM_uncertainty.Feature)eObject;
+			MM_uncertainty.Feature feat = null;
+			if(eObject instanceof Feature)
+				feat = (MM_uncertainty.Feature)eObject;
+			if(eObject instanceof Attribute)
+				feat = (MM_uncertainty.Feature)eObject.eContainer();
 			if(feat.getMax() instanceof MM_uncertainty.Number) {
 				MM_uncertainty.Number number = (Number) feat.getMax();
 				try{
