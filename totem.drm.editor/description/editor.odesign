@@ -173,7 +173,7 @@
               </firstModelOperations>
             </initialOperation>
           </ownedTools>
-          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add sub type" precondition="aql:preTarget.subsAllowed" edgeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@edgeMappings[name='AncsEdge']">
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add sub type" precondition="aql:preTarget.subsAllowed and preTarget.antiancs->forAll(t | not preSource.ancs->exists(s | s=t)) and preSource.ancs->forAll(s | s &lt;> preTarget)" edgeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@edgeMappings[name='AncsEdge']">
             <sourceVariable name="source"/>
             <targetVariable name="target"/>
             <sourceViewVariable name="sourceView"/>
