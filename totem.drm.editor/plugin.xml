@@ -45,5 +45,9 @@
            actionClass="totem.drm.editor.SetMinToSpecificNumber"
            id="SetMinToSpecificNumber">
      </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.RemoveTarget"
+           id="RemoveReferenceTarget">
+     </javaActions>
   </extension>
 </plugin>

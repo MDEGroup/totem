@@ -9,7 +9,6 @@ import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
 import MM_uncertainty.Attribute;
 import MM_uncertainty.DataType;
 import MM_uncertainty.MM_uncertaintyFactory;
-import MM_uncertainty.UBoolean;
 
 public class SetUntypedFeatureToAttr implements IExternalJavaAction {
 

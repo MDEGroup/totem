@@ -53,7 +53,7 @@
             <color xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='light_gray']"/>
           </style>
         </nodeMappings>
-        <edgeMappings name="ReferenceEdge" preconditionExpression="aql:not self.hasType->isEmpty()" semanticCandidatesExpression="aql:self.classes.feats" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="service:getEReferenceTarget()" sourceFinderExpression="feature:eContainer" domainClass="MM_uncertainty::Feature" useDomainElement="true">
+        <edgeMappings name="ReferenceEdge" preconditionExpression="aql:not self.hasType->isEmpty()" deletionDescription="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.1/@ownedTools[name='DeleteTarget']" semanticCandidatesExpression="aql:self.classes.feats" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="service:getEReferenceTarget()" sourceFinderExpression="feature:eContainer" domainClass="MM_uncertainty::Feature" useDomainElement="true">
           <style sizeComputationExpression="2" routingStyle="manhattan">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription showIcon="false" labelExpression="aql:self.name">
@@ -203,7 +203,7 @@
                 <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Feature" referenceName="feats">
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'attr'  + self.eContainer().eContents(MM_uncertainty::Feature)->size()"/>
                   <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Attribute" referenceName="hasType"/>
-                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:container.mandatoryAllowed">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:not container.mandatoryAllowed">
                     <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Number" referenceName="min">
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="0"/>
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="allowMore" valueExpression="false"/>
@@ -225,7 +225,7 @@
                   <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Reference" referenceName="hasType">
                     <subModelOperations xsi:type="tool_1:SetValue" featureName="target" valueExpression="var:target"/>
                   </subModelOperations>
-                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:source.mandatoryAllowed">
+                  <subModelOperations xsi:type="tool_1:If" conditionExpression="aql:not source.mandatoryAllowed">
                     <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Number" referenceName="min">
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="0"/>
                       <subModelOperations xsi:type="tool_1:SetValue" featureName="allowMore" valueExpression="false"/>
@@ -234,6 +234,12 @@
                 </subModelOperations>
               </firstModelOperations>
             </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:DeleteElementDescription" name="DeleteTarget">
+            <element name="element"/>
+            <elementView name="elementView"/>
+            <containerView name="containerView"/>
+            <initialOperation/>
           </ownedTools>
         </toolSections>
         <toolSections name="Data Type Declaration">
@@ -289,14 +295,14 @@
               </initialOperation>
             </menuItemDescription>
           </ownedTools>
-          <ownedTools xsi:type="tool_1:PopupMenu" name="Popup menu for Class" precondition="service:self.isClass()">
-            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Abstract" precondition="service:canBecomeAbstract()">
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Refine Class" precondition="service:self.isClass()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Abstract" precondition="service:canBecomeConcreteOrAbstract()">
               <view name="views"/>
               <initialOperation>
                 <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="setToAbstract" id="SetToAbstract"/>
               </initialOperation>
             </menuItemDescription>
-            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Concrete" precondition="service:canBecomeConcrete()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set To Concrete" precondition="service:canBecomeConcreteOrAbstract()">
               <view name="views"/>
               <initialOperation>
                 <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="setToConcrete" id="SetToConcrete"/>
@@ -510,6 +516,16 @@
                       </initialOperation>
                     </controls>
                   </groups>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Delete target from reference" precondition="aql:self.isFeatureReference()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Delete it">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="RemoveReferenceTarget" id="RemoveReferenceTarget">
+                  <parameters name="target" value="var:views"/>
                 </firstModelOperations>
               </initialOperation>
             </menuItemDescription>

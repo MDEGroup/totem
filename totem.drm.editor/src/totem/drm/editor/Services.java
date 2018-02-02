@@ -1,24 +1,17 @@
 package totem.drm.editor;
 
-import java.util.Collection;
 import java.util.StringJoiner;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypedElement;
 
 import MM_uncertainty.Attribute;
-import MM_uncertainty.Cardinality;
 import MM_uncertainty.Class;
 import MM_uncertainty.DataType;
 import MM_uncertainty.Feature;
 import MM_uncertainty.MM_uncertaintyFactory;
 import MM_uncertainty.Many;
-import MM_uncertainty.Metamodel;
-import MM_uncertainty.Numeric;
 import MM_uncertainty.Reference;
 import MM_uncertainty.UBoolean;
 import MM_uncertainty.UnknowClass;
@@ -37,6 +30,12 @@ public class Services {
 
 	public Boolean isUnknownClsss(EObject any) {
 		return any instanceof UnknowClass;
+	}
+	
+	public Boolean isFeatureReference(EObject any) {
+		if	(any instanceof Feature)
+			return ((Feature)any).getHasType().stream().anyMatch(z -> z instanceof Reference);
+		else return false;
 	}
 
 	public Boolean isClass(EObject any) {
@@ -125,7 +124,7 @@ public class Services {
 		return false;
 	}
 
-	public Boolean canBecomeAbstract(EObject any) {
+	public Boolean canBecomeConcreteOrAbstract(EObject any) {
 
 		if (any instanceof Class) {
 			Class c = (Class) any;
@@ -136,16 +135,7 @@ public class Services {
 		return false;
 	}
 	
-	public Boolean canBecomeConcrete(EObject any) {
 
-		if (any instanceof Class) {
-			Class c = (Class) any;
-			if (c.getIsAbstract() == UBoolean.DONT_KNOW) {
-				return true;
-			}
-		}
-		return false;
-	}
 
 	public EList<Class> getEReferenceTarget(Feature self) {
 		EList<Class> result = new BasicEList<>();

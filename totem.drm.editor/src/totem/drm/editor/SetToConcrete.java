@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.sirius.tools.api.ui.IExternalJavaAction;
 
 import MM_uncertainty.UBoolean;
-import MM_uncertainty.UnknowClass;
 
 public class SetToConcrete implements IExternalJavaAction {
 
