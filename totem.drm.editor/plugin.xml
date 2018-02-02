@@ -3,7 +3,7 @@
 <plugin>
   <extension point="org.eclipse.sirius.componentization">
     <component class="totem.drm.editor.Activator"
-               id="it.gssi.cs.drm.editor"
+               id="totem.drm.editor"
 	       name="editor">
     </component>
   </extension>
@@ -48,6 +48,10 @@
      <javaActions
            actionClass="totem.drm.editor.RemoveTarget"
            id="RemoveReferenceTarget">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.PushFeature"
+           id="PushFeature">
      </javaActions>
   </extension>
 </plugin>

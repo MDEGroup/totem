@@ -41,6 +41,10 @@ public class Services {
 	public Boolean isClass(EObject any) {
 		return any instanceof Class;
 	}
+	
+	public Boolean isFeature(EObject any) {
+		return any instanceof Feature || any instanceof Attribute;
+	}
 
 	public Boolean isUntypedFeature(EObject any) {
 		if (any instanceof Feature) {

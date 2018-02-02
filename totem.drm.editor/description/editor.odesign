@@ -530,6 +530,21 @@
               </initialOperation>
             </menuItemDescription>
           </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Push features to superclass" precondition="service:self.isFeature()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Push feature">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="push feature" id="PushFeature">
+                  <parameters name="root" value="aql:self.eContainer()"/>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:ExternalJavaAction" name="Push feature" id="PushFeature">
+              <subModelOperations xsi:type="tool_1:ExternalJavaAction" name="push feature" id="PushFeature">
+                <parameters name="pa" value="aql:self.eContainer()"/>
+              </subModelOperations>
+            </menuItemDescription>
+          </ownedTools>
         </toolSections>
       </defaultLayer>
     </ownedRepresentations>

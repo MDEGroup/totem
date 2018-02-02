@@ -2,7 +2,9 @@ package totem.drm.editor;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -29,11 +31,13 @@ public class UnknownClassToNamed implements IExternalJavaAction {
 			UnknowClass uc = (UnknowClass) eObject;
 			MM_uncertaintyFactory factory = MM_uncertaintyFactory.eINSTANCE;
 			Class c = factory.createClass();
-
 			c.setIsAbstract(uc.getIsAbstract());
 			c.setMandatoryAllowed(uc.isMandatoryAllowed());
 
 			c.setName("Assign Class Name");
+			
+			
+			
 			for (MM_uncertainty.Feature f : uc.getFeats()) {
 				c.getFeats().add(EcoreUtil.copy(f));
 			}
@@ -43,9 +47,20 @@ public class UnknownClassToNamed implements IExternalJavaAction {
 			for (Class anc : uc.getAncs()) {
 				c.getAncs().add(EcoreUtil.copy(anc));
 			}
+			
 
 			Metamodel mm = (Metamodel) uc.eContainer();
-
+			List<Class> ancsList = mm.getClasses().stream().filter(z -> z.getAncs().contains(uc)).collect(Collectors.toList());
+			for (Class anc : ancsList) {
+				anc.getAncs().remove(uc);
+				anc.getAncs().add(c);
+			}
+			List<Class> antiAncsList = mm.getClasses().stream().filter(z -> z.getAntiancs().contains(uc)).collect(Collectors.toList());
+			for (Class anc : antiAncsList) {
+				anc.getAntiancs().remove(uc);
+				anc.getAntiancs().add(c);
+			}
+			
 			mm.getClasses().remove(uc);
 			mm.getClasses().add(c);
 
