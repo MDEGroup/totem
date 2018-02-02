@@ -65,7 +65,7 @@
           </style>
         </edgeMappings>
         <edgeMappings name="AncsEdge" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:ancs">
-          <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
+          <style targetArrow="InputClosedArrow" sizeComputationExpression="2">
             <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
             <centerLabelStyleDescription>
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
@@ -74,7 +74,7 @@
         </edgeMappings>
         <edgeMappings name="AntiacsEdge" synchronizationLock="true" sourceMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetMapping="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@containerMappings[name='Class']" targetFinderExpression="feature:antiancs">
           <style targetArrow="InputFillClosedArrow" sizeComputationExpression="2">
-            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='gray']"/>
+            <strokeColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='red']"/>
             <centerLabelStyleDescription labelExpression="inherits" iconPath="/totem.drm.editor/icons/x.gif">
               <labelColor xsi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
             </centerLabelStyleDescription>
@@ -171,6 +171,15 @@
                   <subModelOperations xsi:type="tool_1:SetValue" featureName="name" valueExpression="aql:'u'  + self.eContainer().eContents(MM_uncertainty::Class)->size()"/>
                 </subModelOperations>
               </firstModelOperations>
+            </initialOperation>
+          </ownedTools>
+          <ownedTools xsi:type="tool:EdgeCreationDescription" name="Add sub type" precondition="aql:preTarget.subsAllowed" edgeMappings="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@edgeMappings[name='AncsEdge']">
+            <sourceVariable name="source"/>
+            <targetVariable name="target"/>
+            <sourceViewVariable name="sourceView"/>
+            <targetViewVariable name="targetView"/>
+            <initialOperation>
+              <firstModelOperations xsi:type="tool_1:SetValue" featureName="ancs" valueExpression="var:target"/>
             </initialOperation>
           </ownedTools>
         </toolSections>
@@ -306,30 +315,118 @@
             <menuItemDescription xsi:type="tool_1:OperationAction" name="Convert open feature to Reference" precondition="service:isUntypedFeature()">
               <view name="views"/>
               <initialOperation>
-                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set to Reference" id="SetUntypedFeatToRef">
-                  <parameters name="target" value="aql:self.eContainer().eContainer().eContents(MM_uncertainty::Class)"/>
-                </firstModelOperations>
-              </initialOperation>
-            </menuItemDescription>
-            <menuItemDescription xsi:type="tool_1:OperationAction" name="test" precondition="service:isUntypedFeature()">
-              <view name="views"/>
-              <initialOperation>
                 <firstModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Reference" referenceName="hasType">
                   <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self.hasType">
-                    <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="New Dialog">
+                    <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Set to Reference">
                       <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
                         <initialOperation/>
                       </buttons>
                       <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
                         <initialOperation/>
                       </buttons>
-                      <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Add%20type%20to%20untyped%20feature']/@menuItemDescription.2/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                      <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Add%20type%20to%20untyped%20feature']/@menuItemDescription.1/@initialOperation/@firstModelOperations/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
                       <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self">
                         <controls xsi:type="properties-ext-widgets-reference:ExtReferenceDescription" name="ref" labelExpression="ref" referenceNameExpression="target"/>
                       </groups>
                     </subModelOperations>
                   </subModelOperations>
                 </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Refine max cardinality" precondition="service:isFeatureMaxAnyCardinality()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set to many" precondition="service:isFeatureMaxAnyCardinality()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set many" id="SetMaxToMany"/>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set to number" precondition="service:isFeatureMaxAnyCardinality()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self.max">
+                  <subModelOperations xsi:type="tool_1:Unset" featureName="max"/>
+                  <subModelOperations xsi:type="tool_1:CreateInstance" typeName="MM_uncertainty::Number" referenceName="max">
+                    <subModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self.value">
+                      <subModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Set max cardinality value">
+                        <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                          <initialOperation/>
+                        </buttons>
+                        <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                          <initialOperation/>
+                        </buttons>
+                        <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Refine%20max%20cardinality']/@menuItemDescription.1/@initialOperation/@firstModelOperations/@subModelOperations.1/@subModelOperations.0/@subModelOperations.0/@groups.0"/>
+                        <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self">
+                          <controls xsi:type="properties:TextDescription" name="value" labelExpression="Value">
+                            <initialOperation>
+                              <firstModelOperations xsi:type="tool_1:ChangeContext" browseExpression="var:self">
+                                <subModelOperations xsi:type="tool_1:SetValue" featureName="value" valueExpression="var:newValue"/>
+                              </firstModelOperations>
+                            </initialOperation>
+                          </controls>
+                        </groups>
+                      </subModelOperations>
+                    </subModelOperations>
+                  </subModelOperations>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Refine max cardinality - lower value is allowed" precondition="service:isFeatureMaxLowerCardinality()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set value to higher number" precondition="service:isFeatureMaxLowerCardinality()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Refine max cardinality">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Refine%20max%20cardinality%20-%20lower%20value%20is%20allowed']/@menuItemDescription.0/@initialOperation/@firstModelOperations/@groups.0"/>
+                  <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties:TextDescription">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="SetNumberLess" id="SetToSpecificNumber">
+                          <parameters name="value" value="var:newValue"/>
+                          <parameters name="allowedLess" value="true"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+          </ownedTools>
+          <ownedTools xsi:type="tool_1:PopupMenu" name="Refine max cardinality - higher value is allowed" precondition="service:isFeatureMaxHigherCardinality()">
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set value to higer value" precondition="service:isFeatureMaxHigherCardinality()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="properties:DialogModelOperation" titleExpression="Refine max cardinality">
+                  <buttons labelExpression="Cancel" closeDialogOnClick="true" rollbackChangesOnClose="true">
+                    <initialOperation/>
+                  </buttons>
+                  <buttons labelExpression="OK" default="true" closeDialogOnClick="true">
+                    <initialOperation/>
+                  </buttons>
+                  <page name="Default Page" labelExpression="Page" semanticCandidateExpression="var:self" groups="//@ownedViewpoints[name='mm_uncertainty']/@ownedRepresentations[name='drm']/@defaultLayer/@toolSections.3/@ownedTools[name='Refine%20max%20cardinality%20-%20higher%20value%20is%20allowed']/@menuItemDescription.0/@initialOperation/@firstModelOperations/@groups.0"/>
+                  <groups name="Default Group" labelExpression="Group" semanticCandidateExpression="var:self">
+                    <controls xsi:type="properties:TextDescription">
+                      <initialOperation>
+                        <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="SetNumberLess" id="SetToSpecificNumber">
+                          <parameters name="value" value="var:newValue"/>
+                          <parameters name="allowedLess" value="false"/>
+                        </firstModelOperations>
+                      </initialOperation>
+                    </controls>
+                  </groups>
+                </firstModelOperations>
+              </initialOperation>
+            </menuItemDescription>
+            <menuItemDescription xsi:type="tool_1:OperationAction" name="Set to many" precondition="service:isFeatureMaxAnyCardinality()">
+              <view name="views"/>
+              <initialOperation>
+                <firstModelOperations xsi:type="tool_1:ExternalJavaAction" name="set many" id="SetMaxToMany"/>
               </initialOperation>
             </menuItemDescription>
           </ownedTools>

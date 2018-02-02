@@ -29,5 +29,13 @@
            actionClass="totem.drm.editor.SetToConcrete"
            id="SetToConcrete">
      </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetMaxToMany"
+           id="SetMaxToMany">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetToSpecificNumber"
+           id="SetToSpecificNumber">
+     </javaActions>
   </extension>
 </plugin>

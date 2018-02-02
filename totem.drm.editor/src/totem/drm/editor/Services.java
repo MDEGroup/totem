@@ -22,6 +22,7 @@ import MM_uncertainty.Numeric;
 import MM_uncertainty.Reference;
 import MM_uncertainty.UBoolean;
 import MM_uncertainty.UnknowClass;
+import MM_uncertainty.UnknownCardinality;
 
 /**
  * The services class used by VSM.
@@ -48,6 +49,41 @@ public class Services {
 			if (f.getHasType().size() == 0) {
 				return true;
 			}
+		}
+		return false;
+	}
+	public Boolean isFeatureMaxAnyCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMax() != null) {
+				if(f.getMax() instanceof UnknownCardinality)
+					return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	public Boolean isFeatureMaxLowerCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMax() != null) {
+				if(f.getMax() instanceof MM_uncertainty.Number)
+					if (((MM_uncertainty.Number)f.getMax()).isAllowLess() )
+						return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	public Boolean isFeatureMaxHigherCardinality(EObject any) {
+		if (any instanceof Feature) {
+			Feature f = (Feature) any;
+			if(f.getMax() != null) {
+				if(f.getMax() instanceof MM_uncertainty.Number)
+					if (!((MM_uncertainty.Number)f.getMax()).isAllowLess() )
+						return true;
+			}
+			return false;
 		}
 		return false;
 	}
@@ -137,7 +173,7 @@ public class Services {
 			MM_uncertainty.Number num = (MM_uncertainty.Number) self.getMin();
 			min = Integer.toString(num.getValue());
 		}
-		if (self.getMax() instanceof Number) {
+		if (self.getMax() instanceof MM_uncertainty.Number) {
 			MM_uncertainty.Number num = (MM_uncertainty.Number) self.getMax();
 			max = Integer.toString(num.getValue());
 		}
