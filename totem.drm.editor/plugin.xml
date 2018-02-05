@@ -53,5 +53,13 @@
            actionClass="totem.drm.editor.PushFeature"
            id="PushFeature">
      </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetMinNumber"
+           id="SetMinNumber">
+     </javaActions>
+     <javaActions
+           actionClass="totem.drm.editor.SetMaxNumber"
+           id="SetMaxNumber">
+     </javaActions>
   </extension>
 </plugin>
