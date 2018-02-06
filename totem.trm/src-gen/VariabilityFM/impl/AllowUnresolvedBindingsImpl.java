@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.AllowUnresolvedBindingsImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.AllowUnresolvedBindingsImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.AllowUnresolvedBindingsImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.AllowUnresolvedBindingsImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -40,6 +41,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUnresolvedBindings {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +138,27 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.ALLOW_UNRESOLVED_BINDINGS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -209,6 +251,8 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME:
 				return getName();
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__CHILDREN:
@@ -230,6 +274,9 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME:
 				setName((String)newValue);
 				return;
@@ -256,6 +303,9 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -280,6 +330,8 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__CHILDREN:
@@ -301,6 +353,7 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -320,6 +373,7 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.ALLOW_UNRESOLVED_BINDINGS__NODE_KIND;
@@ -340,7 +394,9 @@ public class AllowUnresolvedBindingsImpl extends OptionalImpl implements AllowUn
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

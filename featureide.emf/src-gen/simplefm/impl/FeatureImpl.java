@@ -21,6 +21,7 @@ import simplefm.SimpleFMPackage;
  * <ul>
  *   <li>{@link simplefm.impl.FeatureImpl#getName <em>Name</em>}</li>
  *   <li>{@link simplefm.impl.FeatureImpl#isMandatory <em>Mandatory</em>}</li>
+ *   <li>{@link simplefm.impl.FeatureImpl#getOrigin <em>Origin</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +66,26 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 	 * @ordered
 	 */
 	protected boolean mandatory = MANDATORY_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrigin()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ORIGIN_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getOrigin() <em>Origin</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOrigin()
+	 * @generated
+	 * @ordered
+	 */
+	protected String origin = ORIGIN_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -132,6 +153,27 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getOrigin() {
+		return origin;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOrigin(String newOrigin) {
+		String oldOrigin = origin;
+		origin = newOrigin;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimpleFMPackage.FEATURE__ORIGIN, oldOrigin, origin));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -139,6 +181,8 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 				return getName();
 			case SimpleFMPackage.FEATURE__MANDATORY:
 				return isMandatory();
+			case SimpleFMPackage.FEATURE__ORIGIN:
+				return getOrigin();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -156,6 +200,9 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 				return;
 			case SimpleFMPackage.FEATURE__MANDATORY:
 				setMandatory((Boolean)newValue);
+				return;
+			case SimpleFMPackage.FEATURE__ORIGIN:
+				setOrigin((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -175,6 +222,9 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 			case SimpleFMPackage.FEATURE__MANDATORY:
 				setMandatory(MANDATORY_EDEFAULT);
 				return;
+			case SimpleFMPackage.FEATURE__ORIGIN:
+				setOrigin(ORIGIN_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -191,6 +241,8 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case SimpleFMPackage.FEATURE__MANDATORY:
 				return mandatory != MANDATORY_EDEFAULT;
+			case SimpleFMPackage.FEATURE__ORIGIN:
+				return ORIGIN_EDEFAULT == null ? origin != null : !ORIGIN_EDEFAULT.equals(origin);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -209,6 +261,8 @@ public class FeatureImpl extends FeatureContainerImpl implements Feature {
 		result.append(name);
 		result.append(", mandatory: ");
 		result.append(mandatory);
+		result.append(", origin: ");
+		result.append(origin);
 		result.append(')');
 		return result.toString();
 	}

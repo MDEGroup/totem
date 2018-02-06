@@ -125,13 +125,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int NODE = 6;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NODE__UNIQUE_ID = 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__NAME = 0;
+	int NODE__NAME = 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -140,7 +149,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__CHILDREN = 1;
+	int NODE__CHILDREN = 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -149,7 +158,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__NODE_KIND = 2;
+	int NODE__NODE_KIND = 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -158,7 +167,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE__CONSTRAINTS = 3;
+	int NODE__CONSTRAINTS = 4;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -167,7 +176,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NODE_FEATURE_COUNT = 4;
+	int NODE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Node</em>' class.
@@ -187,6 +196,15 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	int METAMODEL_VARIABILITY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_VARIABILITY__UNIQUE_ID = NODE__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -374,13 +392,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int VARIABLE_FEATURE = 7;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VARIABLE_FEATURE__UNIQUE_ID = COMPULSORY_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__NAME = COMPULSORY_FEATURE_COUNT + 0;
+	int VARIABLE_FEATURE__NAME = COMPULSORY_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -389,7 +416,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__CHILDREN = COMPULSORY_FEATURE_COUNT + 1;
+	int VARIABLE_FEATURE__CHILDREN = COMPULSORY_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -398,7 +425,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__NODE_KIND = COMPULSORY_FEATURE_COUNT + 2;
+	int VARIABLE_FEATURE__NODE_KIND = COMPULSORY_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -407,7 +434,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__CONSTRAINTS = COMPULSORY_FEATURE_COUNT + 3;
+	int VARIABLE_FEATURE__CONSTRAINTS = COMPULSORY_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -416,7 +443,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__FEATURE = COMPULSORY_FEATURE_COUNT + 4;
+	int VARIABLE_FEATURE__FEATURE = COMPULSORY_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' containment reference.
@@ -425,7 +452,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__KIND = COMPULSORY_FEATURE_COUNT + 5;
+	int VARIABLE_FEATURE__KIND = COMPULSORY_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Cardinality</b></em>' containment reference.
@@ -434,7 +461,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE__CARDINALITY = COMPULSORY_FEATURE_COUNT + 6;
+	int VARIABLE_FEATURE__CARDINALITY = COMPULSORY_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Variable Feature</em>' class.
@@ -443,7 +470,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int VARIABLE_FEATURE_FEATURE_COUNT = COMPULSORY_FEATURE_COUNT + 7;
+	int VARIABLE_FEATURE_FEATURE_COUNT = COMPULSORY_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Variable Feature</em>' class.
@@ -465,13 +492,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int TRANSFORMATION_OPTIONS = 8;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSFORMATION_OPTIONS__UNIQUE_ID = COMPULSORY_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_OPTIONS__NAME = COMPULSORY_FEATURE_COUNT + 0;
+	int TRANSFORMATION_OPTIONS__NAME = COMPULSORY_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -480,7 +516,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_OPTIONS__CHILDREN = COMPULSORY_FEATURE_COUNT + 1;
+	int TRANSFORMATION_OPTIONS__CHILDREN = COMPULSORY_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -489,7 +525,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_OPTIONS__NODE_KIND = COMPULSORY_FEATURE_COUNT + 2;
+	int TRANSFORMATION_OPTIONS__NODE_KIND = COMPULSORY_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -498,7 +534,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_OPTIONS__CONSTRAINTS = COMPULSORY_FEATURE_COUNT + 3;
+	int TRANSFORMATION_OPTIONS__CONSTRAINTS = COMPULSORY_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Transformation Options</em>' class.
@@ -507,7 +543,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSFORMATION_OPTIONS_FEATURE_COUNT = COMPULSORY_FEATURE_COUNT + 4;
+	int TRANSFORMATION_OPTIONS_FEATURE_COUNT = COMPULSORY_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Transformation Options</em>' class.
@@ -529,13 +565,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int ALLOW_UNRESOLVED_BINDINGS = 9;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOW_UNRESOLVED_BINDINGS__UNIQUE_ID = OPTIONAL_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOW_UNRESOLVED_BINDINGS__NAME = OPTIONAL_FEATURE_COUNT + 0;
+	int ALLOW_UNRESOLVED_BINDINGS__NAME = OPTIONAL_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -544,7 +589,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOW_UNRESOLVED_BINDINGS__CHILDREN = OPTIONAL_FEATURE_COUNT + 1;
+	int ALLOW_UNRESOLVED_BINDINGS__CHILDREN = OPTIONAL_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -553,7 +598,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOW_UNRESOLVED_BINDINGS__NODE_KIND = OPTIONAL_FEATURE_COUNT + 2;
+	int ALLOW_UNRESOLVED_BINDINGS__NODE_KIND = OPTIONAL_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -562,7 +607,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOW_UNRESOLVED_BINDINGS__CONSTRAINTS = OPTIONAL_FEATURE_COUNT + 3;
+	int ALLOW_UNRESOLVED_BINDINGS__CONSTRAINTS = OPTIONAL_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Allow Unresolved Bindings</em>' class.
@@ -571,7 +616,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ALLOW_UNRESOLVED_BINDINGS_FEATURE_COUNT = OPTIONAL_FEATURE_COUNT + 4;
+	int ALLOW_UNRESOLVED_BINDINGS_FEATURE_COUNT = OPTIONAL_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Allow Unresolved Bindings</em>' class.
@@ -591,6 +636,15 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	int FEATURE_KIND_GROUP = 10;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_KIND_GROUP__UNIQUE_ID = NODE__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -664,6 +718,15 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	int ATT_OR_REFERENCE_EXCLUSIVE_CHOICE = 11;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATT_OR_REFERENCE_EXCLUSIVE_CHOICE__UNIQUE_ID = NODE__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -748,13 +811,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int ATTRIBUTE_TYPE_GROUP = 12;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_TYPE_GROUP__UNIQUE_ID = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+	int ATTRIBUTE_TYPE_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -763,7 +835,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
+	int ATTRIBUTE_TYPE_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -772,7 +844,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
+	int ATTRIBUTE_TYPE_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -781,7 +853,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
+	int ATTRIBUTE_TYPE_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Choices</b></em>' containment reference list.
@@ -790,7 +862,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP__CHOICES = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
+	int ATTRIBUTE_TYPE_GROUP__CHOICES = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Type Group</em>' class.
@@ -799,7 +871,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
+	int ATTRIBUTE_TYPE_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Attribute Type Group</em>' class.
@@ -821,13 +893,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int REFERENCE_TYPE_GROUP = 13;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TYPE_GROUP__UNIQUE_ID = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+	int REFERENCE_TYPE_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -836,7 +917,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
+	int REFERENCE_TYPE_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -845,7 +926,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
+	int REFERENCE_TYPE_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -854,7 +935,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
+	int REFERENCE_TYPE_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Choices</b></em>' containment reference list.
@@ -863,7 +944,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP__CHOICES = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
+	int REFERENCE_TYPE_GROUP__CHOICES = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Reference Type Group</em>' class.
@@ -872,7 +953,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
+	int REFERENCE_TYPE_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Reference Type Group</em>' class.
@@ -894,13 +975,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int FEATURE_CARDINALITY_GROUP = 14;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CARDINALITY_GROUP__UNIQUE_ID = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 0;
+	int FEATURE_CARDINALITY_GROUP__NAME = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -909,7 +999,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 1;
+	int FEATURE_CARDINALITY_GROUP__CHILDREN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -918,7 +1008,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 2;
+	int FEATURE_CARDINALITY_GROUP__NODE_KIND = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -927,7 +1017,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 3;
+	int FEATURE_CARDINALITY_GROUP__CONSTRAINTS = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Min</b></em>' containment reference list.
@@ -936,7 +1026,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__MIN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 4;
+	int FEATURE_CARDINALITY_GROUP__MIN = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Max</b></em>' containment reference list.
@@ -945,7 +1035,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP__MAX = EXCLUSIVE_CHOICE_FEATURE_COUNT + 5;
+	int FEATURE_CARDINALITY_GROUP__MAX = EXCLUSIVE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Feature Cardinality Group</em>' class.
@@ -954,7 +1044,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 6;
+	int FEATURE_CARDINALITY_GROUP_FEATURE_COUNT = EXCLUSIVE_CHOICE_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of operations of the '<em>Feature Cardinality Group</em>' class.
@@ -976,13 +1066,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int REFERENCE_TYPE_CHOICE = 15;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REFERENCE_TYPE_CHOICE__UNIQUE_ID = SINGLE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 0;
+	int REFERENCE_TYPE_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -991,7 +1090,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 1;
+	int REFERENCE_TYPE_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -1000,7 +1099,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 2;
+	int REFERENCE_TYPE_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1009,7 +1108,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 3;
+	int REFERENCE_TYPE_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -1018,7 +1117,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE__KLASS = SINGLE_CHOICE_FEATURE_COUNT + 4;
+	int REFERENCE_TYPE_CHOICE__KLASS = SINGLE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Reference Type Choice</em>' class.
@@ -1027,7 +1126,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int REFERENCE_TYPE_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 5;
+	int REFERENCE_TYPE_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Reference Type Choice</em>' class.
@@ -1049,13 +1148,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int ATTRIBUTE_TYPE_CHOICE = 16;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE_TYPE_CHOICE__UNIQUE_ID = SINGLE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 0;
+	int ATTRIBUTE_TYPE_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -1064,7 +1172,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 1;
+	int ATTRIBUTE_TYPE_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -1073,7 +1181,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 2;
+	int ATTRIBUTE_TYPE_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1082,7 +1190,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 3;
+	int ATTRIBUTE_TYPE_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Datatype </b></em>' reference.
@@ -1091,7 +1199,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE__DATATYPE_ = SINGLE_CHOICE_FEATURE_COUNT + 4;
+	int ATTRIBUTE_TYPE_CHOICE__DATATYPE_ = SINGLE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Type Choice</em>' class.
@@ -1100,7 +1208,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_TYPE_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 5;
+	int ATTRIBUTE_TYPE_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Attribute Type Choice</em>' class.
@@ -1122,13 +1230,22 @@ public interface VariabilityFMPackage extends EPackage {
 	int FEATURE_CARDINALITY_CHOICE = 17;
 
 	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_CARDINALITY_CHOICE__UNIQUE_ID = SINGLE_CHOICE_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 0;
+	int FEATURE_CARDINALITY_CHOICE__NAME = SINGLE_CHOICE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Children</b></em>' containment reference list.
@@ -1137,7 +1254,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 1;
+	int FEATURE_CARDINALITY_CHOICE__CHILDREN = SINGLE_CHOICE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Node Kind</b></em>' attribute.
@@ -1146,7 +1263,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 2;
+	int FEATURE_CARDINALITY_CHOICE__NODE_KIND = SINGLE_CHOICE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
@@ -1155,7 +1272,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 3;
+	int FEATURE_CARDINALITY_CHOICE__CONSTRAINTS = SINGLE_CHOICE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1164,7 +1281,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE__VALUE = SINGLE_CHOICE_FEATURE_COUNT + 4;
+	int FEATURE_CARDINALITY_CHOICE__VALUE = SINGLE_CHOICE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Feature Cardinality Choice</em>' class.
@@ -1173,7 +1290,7 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_CARDINALITY_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 5;
+	int FEATURE_CARDINALITY_CHOICE_FEATURE_COUNT = SINGLE_CHOICE_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of operations of the '<em>Feature Cardinality Choice</em>' class.
@@ -1193,6 +1310,15 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	int FEATURE_MIN_CARDINALITY_CHOICE = 18;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MIN_CARDINALITY_CHOICE__UNIQUE_ID = FEATURE_CARDINALITY_CHOICE__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1266,6 +1392,15 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	int FEATURE_MAX_CARDINALITY_CHOICE = 19;
+
+	/**
+	 * The feature id for the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_MAX_CARDINALITY_CHOICE__UNIQUE_ID = FEATURE_CARDINALITY_CHOICE__UNIQUE_ID;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1556,6 +1691,17 @@ public interface VariabilityFMPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getNode();
+
+	/**
+	 * Returns the meta object for the attribute '{@link VariabilityFM.Node#getUniqueId <em>Unique Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Unique Id</em>'.
+	 * @see VariabilityFM.Node#getUniqueId()
+	 * @see #getNode()
+	 * @generated
+	 */
+	EAttribute getNode_UniqueId();
 
 	/**
 	 * Returns the meta object for the attribute '{@link VariabilityFM.Node#getName <em>Name</em>}'.
@@ -2049,6 +2195,14 @@ public interface VariabilityFMPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NODE = eINSTANCE.getNode();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute NODE__UNIQUE_ID = eINSTANCE.getNode_UniqueId();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

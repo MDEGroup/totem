@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.ReferenceTypeChoiceImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.ReferenceTypeChoiceImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.ReferenceTypeChoiceImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.ReferenceTypeChoiceImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -42,6 +43,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements ReferenceTypeChoice {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,6 +150,27 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.REFERENCE_TYPE_CHOICE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -259,6 +301,8 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME:
 				return getName();
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__CHILDREN:
@@ -283,6 +327,9 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME:
 				setName((String)newValue);
 				return;
@@ -312,6 +359,9 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -339,6 +389,8 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__CHILDREN:
@@ -362,6 +414,7 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -381,6 +434,7 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.REFERENCE_TYPE_CHOICE__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.REFERENCE_TYPE_CHOICE__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.REFERENCE_TYPE_CHOICE__NODE_KIND;
@@ -401,7 +455,9 @@ public class ReferenceTypeChoiceImpl extends SingleChoiceImpl implements Referen
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

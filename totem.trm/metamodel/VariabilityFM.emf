@@ -3,7 +3,7 @@
 @namespace(uri="VariabilityFM", prefix="VariabilityFM")
 package VariabilityFM;
 
-import "platform:/resource/org.miso-disim.requirementmetamodel/metamodel/MM_uncertainty.ecore";
+import "platform:/resource/totem.trm/metamodel/MM_uncertainty.ecore";
 
 class VariabilityModel {
 	val MetamodelVariability[1] source;
@@ -22,6 +22,8 @@ abstract class ExclusiveChoice { }
 abstract class SingleChoice { }
 
 abstract class Node {
+    attr String[1] uniqueId;
+
     attr String[1] name; 
 	val Node[*] children;
 	attr NodeKind[1] nodeKind;

@@ -15,5 +15,15 @@
          </action>
 	</objectContribution>
    </extension>
+   <extension
+         point="de.ovgu.featureide.core.composers">
+      <composer
+            class="totem.trm.featureide.DRMComposerExtension"
+            description="A composer for DRMs"
+            id="totem.trm.featureide.drm_composer"
+            name="DRM Composer"
+            nature="totem.trm.featureide.composer1">
+      </composer>
+   </extension>
    
 </plugin>

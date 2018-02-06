@@ -382,7 +382,7 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getNode_Name() {
+	public EAttribute getNode_UniqueId() {
 		return (EAttribute)nodeEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -391,8 +391,17 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getNode_Name() {
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EReference getNode_Children() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(1);
+		return (EReference)nodeEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -401,7 +410,7 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 	 * @generated
 	 */
 	public EAttribute getNode_NodeKind() {
-		return (EAttribute)nodeEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)nodeEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -410,7 +419,7 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 	 * @generated
 	 */
 	public EReference getNode_Constraints() {
-		return (EReference)nodeEClass.getEStructuralFeatures().get(3);
+		return (EReference)nodeEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -737,6 +746,7 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 		singleChoiceEClass = createEClass(SINGLE_CHOICE);
 
 		nodeEClass = createEClass(NODE);
+		createEAttribute(nodeEClass, NODE__UNIQUE_ID);
 		createEAttribute(nodeEClass, NODE__NAME);
 		createEReference(nodeEClass, NODE__CHILDREN);
 		createEAttribute(nodeEClass, NODE__NODE_KIND);
@@ -870,6 +880,7 @@ public class VariabilityFMPackageImpl extends EPackageImpl implements Variabilit
 		initEClass(singleChoiceEClass, SingleChoice.class, "SingleChoice", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getNode_UniqueId(), ecorePackage.getEString(), "uniqueId", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_Name(), ecorePackage.getEString(), "name", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getNode_Children(), this.getNode(), null, "children", null, 0, -1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNode_NodeKind(), this.getNodeKind(), "nodeKind", null, 1, 1, Node.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

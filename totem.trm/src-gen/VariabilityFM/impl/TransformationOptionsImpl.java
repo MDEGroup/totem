@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.TransformationOptionsImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.TransformationOptionsImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.TransformationOptionsImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.TransformationOptionsImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -40,6 +41,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class TransformationOptionsImpl extends CompulsoryImpl implements TransformationOptions {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +138,27 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.TRANSFORMATION_OPTIONS;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -209,6 +251,8 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME:
 				return getName();
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__CHILDREN:
@@ -230,6 +274,9 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME:
 				setName((String)newValue);
 				return;
@@ -256,6 +303,9 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -280,6 +330,8 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.TRANSFORMATION_OPTIONS__CHILDREN:
@@ -301,6 +353,7 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.TRANSFORMATION_OPTIONS__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.TRANSFORMATION_OPTIONS__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -320,6 +373,7 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.TRANSFORMATION_OPTIONS__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.TRANSFORMATION_OPTIONS__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.TRANSFORMATION_OPTIONS__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.TRANSFORMATION_OPTIONS__NODE_KIND;
@@ -340,7 +394,9 @@ public class TransformationOptionsImpl extends CompulsoryImpl implements Transfo
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

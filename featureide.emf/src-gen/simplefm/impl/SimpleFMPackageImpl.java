@@ -247,6 +247,15 @@ public class SimpleFMPackageImpl extends EPackageImpl implements SimpleFMPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getFeature_Origin() {
+		return (EAttribute)featureEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getConstraint() {
 		return constraintEClass;
 	}
@@ -371,6 +380,7 @@ public class SimpleFMPackageImpl extends EPackageImpl implements SimpleFMPackage
 		featureEClass = createEClass(FEATURE);
 		createEAttribute(featureEClass, FEATURE__NAME);
 		createEAttribute(featureEClass, FEATURE__MANDATORY);
+		createEAttribute(featureEClass, FEATURE__ORIGIN);
 
 		constraintEClass = createEClass(CONSTRAINT);
 
@@ -439,6 +449,7 @@ public class SimpleFMPackageImpl extends EPackageImpl implements SimpleFMPackage
 		initEClass(featureEClass, Feature.class, "Feature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFeature_Name(), ecorePackage.getEString(), "name", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFeature_Mandatory(), ecorePackage.getEBoolean(), "mandatory", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFeature_Origin(), ecorePackage.getEString(), "origin", null, 1, 1, Feature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

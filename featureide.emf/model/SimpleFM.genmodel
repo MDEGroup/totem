@@ -22,6 +22,7 @@
     <genClasses ecoreClass="SimpleFM.ecore#//Feature">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleFM.ecore#//Feature/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleFM.ecore#//Feature/mandatory"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute SimpleFM.ecore#//Feature/origin"/>
     </genClasses>
     <genClasses image="false" ecoreClass="SimpleFM.ecore#//Constraint"/>
     <genClasses ecoreClass="SimpleFM.ecore#//FeatureExists">

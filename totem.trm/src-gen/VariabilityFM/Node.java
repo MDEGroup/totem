@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.Node#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.Node#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.Node#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.Node#getNodeKind <em>Node Kind</em>}</li>
@@ -26,6 +27,32 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface Node extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Unique Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Unique Id</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Unique Id</em>' attribute.
+	 * @see #setUniqueId(String)
+	 * @see VariabilityFM.VariabilityFMPackage#getNode_UniqueId()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getUniqueId();
+
+	/**
+	 * Sets the value of the '{@link VariabilityFM.Node#getUniqueId <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Unique Id</em>' attribute.
+	 * @see #getUniqueId()
+	 * @generated
+	 */
+	void setUniqueId(String value);
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

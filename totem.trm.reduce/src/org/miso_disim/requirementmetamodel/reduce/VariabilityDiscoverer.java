@@ -12,6 +12,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EObject;
 
 import MM_uncertainty.Attribute;
 import MM_uncertainty.Boolean_;
@@ -102,6 +104,17 @@ public class VariabilityDiscoverer {
 		for (Binding b : model.allObjectsOf(Binding.class)) {
 			if ( bindingToSourceFeature.containsKey(b) && bindingToTargetFeature.containsKey(b) ) {
 				analyseBinding(b, bindingToSourceFeature.get(b), bindingToTargetFeature.get(b));				
+			}
+		}
+		
+		int i = 0;
+		TreeIterator<EObject> it = vm.eAllContents();
+		while ( it.hasNext() ) {
+			EObject obj = it.next();
+			if ( obj instanceof Node ) {
+				Node n = (Node) obj;
+				n.setUniqueId(i + "");
+				i++;
 			}
 		}
 		

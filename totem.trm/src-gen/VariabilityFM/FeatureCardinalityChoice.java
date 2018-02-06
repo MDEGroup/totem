@@ -20,7 +20,6 @@ package VariabilityFM;
  * @generated
  */
 public interface FeatureCardinalityChoice extends SingleChoice, Node {
-
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -46,4 +45,5 @@ public interface FeatureCardinalityChoice extends SingleChoice, Node {
 	 * @generated
 	 */
 	void setValue(int value);
+
 } // FeatureCardinalityChoice

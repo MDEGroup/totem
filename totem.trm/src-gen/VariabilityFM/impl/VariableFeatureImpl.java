@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.VariableFeatureImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.VariableFeatureImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.VariableFeatureImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.VariableFeatureImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -47,6 +48,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeature {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -154,6 +175,27 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.VARIABLE_FEATURE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -374,6 +416,8 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.VARIABLE_FEATURE__NAME:
 				return getName();
 			case VariabilityFMPackage.VARIABLE_FEATURE__CHILDREN:
@@ -402,6 +446,9 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.VARIABLE_FEATURE__NAME:
 				setName((String)newValue);
 				return;
@@ -437,6 +484,9 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.VARIABLE_FEATURE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -470,6 +520,8 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.VARIABLE_FEATURE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.VARIABLE_FEATURE__CHILDREN:
@@ -497,6 +549,7 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.VARIABLE_FEATURE__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.VARIABLE_FEATURE__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.VARIABLE_FEATURE__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -516,6 +569,7 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.VARIABLE_FEATURE__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.VARIABLE_FEATURE__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.VARIABLE_FEATURE__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.VARIABLE_FEATURE__NODE_KIND;
@@ -536,7 +590,9 @@ public class VariableFeatureImpl extends CompulsoryImpl implements VariableFeatu
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

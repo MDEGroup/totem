@@ -65,7 +65,8 @@ helper context TRM!Node def : toNodeName() : String =
 abstract rule Node2Feature {
    from n : TRM!Node
      to f : FM!Feature (
-		name <- n.toNodeName()
+		name <- n.toNodeName(),
+		origin <- n.uniqueId
 	)
 }
 
@@ -88,11 +89,13 @@ rule FeatureCardinalityGroup2Feature extends Node2Feature {
 	), min : FM!Feature (
 		name <- 'Min ' + n.toNodeName(),
 		children <- n.min,
-		kind <- #ALTERNATIVE
+		kind <- #ALTERNATIVE,
+		origin <- n.uniqueId
 	), max : FM!Feature (
 		name <- 'Max ' + n.toNodeName(),
 		children <- n.max,
-		kind <- #ALTERNATIVE
+		kind <- #ALTERNATIVE,
+		origin <- n.uniqueId
 	)
 
 }

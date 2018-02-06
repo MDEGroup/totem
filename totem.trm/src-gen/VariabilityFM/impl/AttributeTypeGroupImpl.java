@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.AttributeTypeGroupImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.AttributeTypeGroupImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.AttributeTypeGroupImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.AttributeTypeGroupImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -42,6 +43,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements AttributeTypeGroup {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -129,6 +150,27 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.ATTRIBUTE_TYPE_GROUP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -235,6 +277,8 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME:
 				return getName();
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__CHILDREN:
@@ -258,6 +302,9 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME:
 				setName((String)newValue);
 				return;
@@ -288,6 +335,9 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -315,6 +365,8 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__CHILDREN:
@@ -338,6 +390,7 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -357,6 +410,7 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.ATTRIBUTE_TYPE_GROUP__NODE_KIND;
@@ -377,7 +431,9 @@ public class AttributeTypeGroupImpl extends ExclusiveChoiceImpl implements Attri
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

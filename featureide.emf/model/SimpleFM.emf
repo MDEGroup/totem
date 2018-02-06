@@ -16,6 +16,7 @@ abstract class FeatureContainer {
 class Feature extends FeatureContainer {
 	attr String[1] name;
 	attr boolean[1] mandatory;
+	attr String[1] origin;
 }
 
 enum ChildrenKind {

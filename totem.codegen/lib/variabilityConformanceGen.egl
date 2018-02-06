@@ -1,4 +1,4 @@
-
+	
 [% for (vf in VM!VariableFeature.allInstances().select(vf | vf.eContainer.name = 'Source') ) { %]
   var match_[%=vf.feature.name%]_[%=vf.feature.eContainer.name%]_[%=vf.eContainer.name%] = findSource('[%=vf.feature.eContainer.name%]', '[%=vf.feature.name%]');
 [% }%]

@@ -214,13 +214,22 @@ public interface SimpleFMPackage extends EPackage {
 	int FEATURE__MANDATORY = FEATURE_CONTAINER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Origin</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE__ORIGIN = FEATURE_CONTAINER_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Feature</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_FEATURE_COUNT = FEATURE_CONTAINER_FEATURE_COUNT + 2;
+	int FEATURE_FEATURE_COUNT = FEATURE_CONTAINER_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Feature</em>' class.
@@ -588,6 +597,17 @@ public interface SimpleFMPackage extends EPackage {
 	EAttribute getFeature_Mandatory();
 
 	/**
+	 * Returns the meta object for the attribute '{@link simplefm.Feature#getOrigin <em>Origin</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Origin</em>'.
+	 * @see simplefm.Feature#getOrigin()
+	 * @see #getFeature()
+	 * @generated
+	 */
+	EAttribute getFeature_Origin();
+
+	/**
 	 * Returns the meta object for class '{@link simplefm.Constraint <em>Constraint</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -790,6 +810,14 @@ public interface SimpleFMPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FEATURE__MANDATORY = eINSTANCE.getFeature_Mandatory();
+
+		/**
+		 * The meta object literal for the '<em><b>Origin</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FEATURE__ORIGIN = eINSTANCE.getFeature_Origin();
 
 		/**
 		 * The meta object literal for the '{@link simplefm.impl.ConstraintImpl <em>Constraint</em>}' class.

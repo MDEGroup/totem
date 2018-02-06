@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.NodeImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.NodeImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.NodeImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.NodeImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -40,6 +41,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public abstract class NodeImpl extends MinimalEObjectImpl.Container implements Node {
+	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -117,6 +138,27 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.NODE;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.NODE__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -209,6 +251,8 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.NODE__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.NODE__NAME:
 				return getName();
 			case VariabilityFMPackage.NODE__CHILDREN:
@@ -230,6 +274,9 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.NODE__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.NODE__NAME:
 				setName((String)newValue);
 				return;
@@ -256,6 +303,9 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.NODE__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.NODE__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -280,6 +330,8 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.NODE__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.NODE__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.NODE__CHILDREN:
@@ -302,7 +354,9 @@ public abstract class NodeImpl extends MinimalEObjectImpl.Container implements N
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

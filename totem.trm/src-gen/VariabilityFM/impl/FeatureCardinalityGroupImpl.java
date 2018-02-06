@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -32,6 +33,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link VariabilityFM.impl.FeatureCardinalityGroupImpl#getUniqueId <em>Unique Id</em>}</li>
  *   <li>{@link VariabilityFM.impl.FeatureCardinalityGroupImpl#getName <em>Name</em>}</li>
  *   <li>{@link VariabilityFM.impl.FeatureCardinalityGroupImpl#getChildren <em>Children</em>}</li>
  *   <li>{@link VariabilityFM.impl.FeatureCardinalityGroupImpl#getNodeKind <em>Node Kind</em>}</li>
@@ -44,6 +46,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements FeatureCardinalityGroup {
 	/**
+	 * The default value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String UNIQUE_ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getUniqueId() <em>Unique Id</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUniqueId()
+	 * @generated
+	 * @ordered
+	 */
+	protected String uniqueId = UNIQUE_ID_EDEFAULT;
+
+	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -52,6 +74,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected static final String NAME_EDEFAULT = null;
+
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -61,6 +84,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getChildren() <em>Children</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -70,6 +94,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected EList<Node> children;
+
 	/**
 	 * The default value of the '{@link #getNodeKind() <em>Node Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -79,6 +104,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected static final NodeKind NODE_KIND_EDEFAULT = NodeKind.ROOT;
+
 	/**
 	 * The cached value of the '{@link #getNodeKind() <em>Node Kind</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -88,6 +114,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected NodeKind nodeKind = NODE_KIND_EDEFAULT;
+
 	/**
 	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -97,6 +124,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected EList<Constraint> constraints;
+
 	/**
 	 * The cached value of the '{@link #getMin() <em>Min</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -106,6 +134,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected EList<FeatureMinCardinalityChoice> min;
+
 	/**
 	 * The cached value of the '{@link #getMax() <em>Max</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -115,6 +144,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	 * @ordered
 	 */
 	protected EList<FeatureMaxCardinalityChoice> max;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -132,6 +162,27 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	@Override
 	protected EClass eStaticClass() {
 		return VariabilityFMPackage.Literals.FEATURE_CARDINALITY_GROUP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getUniqueId() {
+		return uniqueId;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUniqueId(String newUniqueId) {
+		String oldUniqueId = uniqueId;
+		uniqueId = newUniqueId;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID, oldUniqueId, uniqueId));
 	}
 
 	/**
@@ -252,6 +303,8 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID:
+				return getUniqueId();
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME:
 				return getName();
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__CHILDREN:
@@ -277,6 +330,9 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID:
+				setUniqueId((String)newValue);
+				return;
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME:
 				setName((String)newValue);
 				return;
@@ -311,6 +367,9 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID:
+				setUniqueId(UNIQUE_ID_EDEFAULT);
+				return;
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME:
 				setName(NAME_EDEFAULT);
 				return;
@@ -341,6 +400,8 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID:
+				return UNIQUE_ID_EDEFAULT == null ? uniqueId != null : !UNIQUE_ID_EDEFAULT.equals(uniqueId);
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__CHILDREN:
@@ -366,6 +427,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (derivedFeatureID) {
+				case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID: return VariabilityFMPackage.NODE__UNIQUE_ID;
 				case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME: return VariabilityFMPackage.NODE__NAME;
 				case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__CHILDREN: return VariabilityFMPackage.NODE__CHILDREN;
 				case VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NODE_KIND: return VariabilityFMPackage.NODE__NODE_KIND;
@@ -385,6 +447,7 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == Node.class) {
 			switch (baseFeatureID) {
+				case VariabilityFMPackage.NODE__UNIQUE_ID: return VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__UNIQUE_ID;
 				case VariabilityFMPackage.NODE__NAME: return VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NAME;
 				case VariabilityFMPackage.NODE__CHILDREN: return VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__CHILDREN;
 				case VariabilityFMPackage.NODE__NODE_KIND: return VariabilityFMPackage.FEATURE_CARDINALITY_GROUP__NODE_KIND;
@@ -405,7 +468,9 @@ public class FeatureCardinalityGroupImpl extends ExclusiveChoiceImpl implements 
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (name: ");
+		result.append(" (uniqueId: ");
+		result.append(uniqueId);
+		result.append(", name: ");
 		result.append(name);
 		result.append(", nodeKind: ");
 		result.append(nodeKind);

@@ -1,269 +1,269 @@
 <?xml version="1.0" encoding="ASCII"?>
 <VariabilityFM:VariabilityModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:VariabilityFM="VariabilityFM">
-  <source name="Source">
-    <features name="ClassDeclaration::methods">
+  <source uniqueId="0" name="Source">
+    <features uniqueId="1" name="ClassDeclaration::methods">
       <feature href="Input.ecore#//@classes.1/@feats.0"/>
-      <kind name="ClassDeclaration.methods" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-methods">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="2" name="ClassDeclaration.methods" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="3" name="AttOrReferenceExclusiveChoice-methods">
+          <attributeChoice uniqueId="4" name="Attribute">
+            <choices uniqueId="5" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
-              <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@kind/@attOrRef/@attributeChoice/@choices.1 //@source/@features.0/@kind/@attOrRef/@attributeChoice/@choices.2"/>
+            <choices uniqueId="6" name="Integer">
+              <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@attributeChoice/@choices.1 //@target/@features.0/@kind/@attOrRef/@attributeChoice/@choices.2"/>
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="7" name="Real">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@attributeChoice/@choices.2"/>
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="8" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference">
-            <choices name="MethodDefinition">
+          <referenceChoice uniqueId="9" name="Reference">
+            <choices uniqueId="10" name="MethodDefinition">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.1"/>
               <klass href="Input.ecore#//@classes.0"/>
             </choices>
-            <choices name="ClassDeclaration">
+            <choices uniqueId="11" name="ClassDeclaration">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@kind/@attOrRef/@referenceChoice/@choices.0"/>
               <klass href="Input.ecore#//@classes.1"/>
             </choices>
-            <choices name="u1">
+            <choices uniqueId="12" name="u1">
               <klass href="Input.ecore#//@classes.2"/>
             </choices>
-            <choices name="u2">
+            <choices uniqueId="13" name="u2">
               <klass href="Input.ecore#//@classes.3"/>
             </choices>
-            <choices name="u3">
+            <choices uniqueId="14" name="u3">
               <klass href="Input.ecore#//@classes.4"/>
             </choices>
-            <choices name="u4">
+            <choices uniqueId="15" name="u4">
               <klass href="Input.ecore#//@classes.5"/>
             </choices>
           </referenceChoice>
         </attOrRef>
       </kind>
-      <cardinality name="ClassDeclaration.methods" nodeKind="COMPULSORY">
-        <min name="ClassDeclaration.methods min 0"/>
-        <min name="ClassDeclaration.methods min 1" value="1"/>
-        <max name="ClassDeclaration.methods max 1" value="1">
+      <cardinality uniqueId="16" name="ClassDeclaration.methods" nodeKind="COMPULSORY">
+        <min uniqueId="17" name="ClassDeclaration.methods min 0"/>
+        <min uniqueId="18" name="ClassDeclaration.methods min 1" value="1"/>
+        <max uniqueId="19" name="ClassDeclaration.methods max 1" value="1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@cardinality/@max.0 //@target/@features.0/@cardinality/@max.1"/>
         </max>
-        <max name="ClassDeclaration.methods max *" value="-1">
+        <max uniqueId="20" name="ClassDeclaration.methods max *" value="-1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@target/@features.0/@cardinality/@max.1"/>
         </max>
       </cardinality>
     </features>
-    <features name="MethodDefinition::invocations">
+    <features uniqueId="21" name="MethodDefinition::invocations">
       <feature href="Input.ecore#//@classes.0/@feats.0"/>
-      <cardinality name="MethodDefinition.invocations" nodeKind="COMPULSORY">
-        <min name="MethodDefinition.invocations min 0"/>
-        <min name="MethodDefinition.invocations min 1" value="1"/>
-        <max name="MethodDefinition.invocations max *" value="-1"/>
+      <cardinality uniqueId="22" name="MethodDefinition.invocations" nodeKind="COMPULSORY">
+        <min uniqueId="23" name="MethodDefinition.invocations min 0"/>
+        <min uniqueId="24" name="MethodDefinition.invocations min 1" value="1"/>
+        <max uniqueId="25" name="MethodDefinition.invocations max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="u2::name">
+    <features uniqueId="26" name="u2::name">
       <feature href="Input.ecore#//@classes.3/@feats.0"/>
-      <kind name="u2.name" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-name">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="27" name="u2.name" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="28" name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice uniqueId="29" name="Attribute">
+            <choices uniqueId="30" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
+            <choices uniqueId="31" name="Integer">
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="32" name="Real">
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="33" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference"/>
+          <referenceChoice uniqueId="34" name="Reference"/>
         </attOrRef>
       </kind>
-      <cardinality name="u2.name" nodeKind="COMPULSORY">
-        <min name="u2.name min 0"/>
-        <min name="u2.name min 1" value="1"/>
-        <max name="u2.name max 1" value="1"/>
-        <max name="u2.name max *" value="-1"/>
+      <cardinality uniqueId="35" name="u2.name" nodeKind="COMPULSORY">
+        <min uniqueId="36" name="u2.name min 0"/>
+        <min uniqueId="37" name="u2.name min 1" value="1"/>
+        <max uniqueId="38" name="u2.name max 1" value="1"/>
+        <max uniqueId="39" name="u2.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="u1::method">
+    <features uniqueId="40" name="u1::method">
       <feature href="Input.ecore#//@classes.2/@feats.0"/>
-      <cardinality name="u1.method" nodeKind="COMPULSORY">
-        <min name="u1.method min 0"/>
-        <min name="u1.method min 1" value="1"/>
-        <max name="u1.method max 1" value="1"/>
-        <max name="u1.method max *" value="-1"/>
+      <cardinality uniqueId="41" name="u1.method" nodeKind="COMPULSORY">
+        <min uniqueId="42" name="u1.method min 0"/>
+        <min uniqueId="43" name="u1.method min 1" value="1"/>
+        <max uniqueId="44" name="u1.method max 1" value="1"/>
+        <max uniqueId="45" name="u1.method max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="MethodDefinition::name">
+    <features uniqueId="46" name="MethodDefinition::name">
       <feature href="Input.ecore#//@classes.0/@feats.1"/>
-      <kind name="MethodDefinition.name" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-name">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="47" name="MethodDefinition.name" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="48" name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice uniqueId="49" name="Attribute">
+            <choices uniqueId="50" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
+            <choices uniqueId="51" name="Integer">
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="52" name="Real">
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="53" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference"/>
+          <referenceChoice uniqueId="54" name="Reference"/>
         </attOrRef>
       </kind>
-      <cardinality name="MethodDefinition.name" nodeKind="COMPULSORY">
-        <min name="MethodDefinition.name min 0"/>
-        <min name="MethodDefinition.name min 1" value="1"/>
-        <max name="MethodDefinition.name max 1" value="1"/>
-        <max name="MethodDefinition.name max *" value="-1"/>
+      <cardinality uniqueId="55" name="MethodDefinition.name" nodeKind="COMPULSORY">
+        <min uniqueId="56" name="MethodDefinition.name min 0"/>
+        <min uniqueId="57" name="MethodDefinition.name min 1" value="1"/>
+        <max uniqueId="58" name="MethodDefinition.name max 1" value="1"/>
+        <max uniqueId="59" name="MethodDefinition.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="u3::name">
+    <features uniqueId="60" name="u3::name">
       <feature href="Input.ecore#//@classes.4/@feats.0"/>
-      <kind name="u3.name" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-name">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="61" name="u3.name" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="62" name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice uniqueId="63" name="Attribute">
+            <choices uniqueId="64" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
+            <choices uniqueId="65" name="Integer">
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="66" name="Real">
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="67" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference"/>
+          <referenceChoice uniqueId="68" name="Reference"/>
         </attOrRef>
       </kind>
-      <cardinality name="u3.name" nodeKind="COMPULSORY">
-        <min name="u3.name min 0"/>
-        <min name="u3.name min 1" value="1"/>
-        <max name="u3.name max 1" value="1"/>
-        <max name="u3.name max *" value="-1"/>
+      <cardinality uniqueId="69" name="u3.name" nodeKind="COMPULSORY">
+        <min uniqueId="70" name="u3.name min 0"/>
+        <min uniqueId="71" name="u3.name min 1" value="1"/>
+        <max uniqueId="72" name="u3.name max 1" value="1"/>
+        <max uniqueId="73" name="u3.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="u2::class">
+    <features uniqueId="74" name="u2::class">
       <feature href="Input.ecore#//@classes.3/@feats.1"/>
-      <cardinality name="u2.class" nodeKind="COMPULSORY">
-        <min name="u2.class min 0"/>
-        <min name="u2.class min 1" value="1"/>
-        <max name="u2.class max 1" value="1"/>
-        <max name="u2.class max *" value="-1"/>
+      <cardinality uniqueId="75" name="u2.class" nodeKind="COMPULSORY">
+        <min uniqueId="76" name="u2.class min 0"/>
+        <min uniqueId="77" name="u2.class min 1" value="1"/>
+        <max uniqueId="78" name="u2.class max 1" value="1"/>
+        <max uniqueId="79" name="u2.class max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="u4::name">
+    <features uniqueId="80" name="u4::name">
       <feature href="Input.ecore#//@classes.5/@feats.0"/>
-      <kind name="u4.name" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-name">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="81" name="u4.name" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="82" name="AttOrReferenceExclusiveChoice-name">
+          <attributeChoice uniqueId="83" name="Attribute">
+            <choices uniqueId="84" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
+            <choices uniqueId="85" name="Integer">
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="86" name="Real">
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="87" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference"/>
+          <referenceChoice uniqueId="88" name="Reference"/>
         </attOrRef>
       </kind>
-      <cardinality name="u4.name" nodeKind="COMPULSORY">
-        <min name="u4.name min 0"/>
-        <min name="u4.name min 1" value="1"/>
-        <max name="u4.name max 1" value="1"/>
-        <max name="u4.name max *" value="-1"/>
+      <cardinality uniqueId="89" name="u4.name" nodeKind="COMPULSORY">
+        <min uniqueId="90" name="u4.name min 0"/>
+        <min uniqueId="91" name="u4.name min 1" value="1"/>
+        <max uniqueId="92" name="u4.name max 1" value="1"/>
+        <max uniqueId="93" name="u4.name max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="MethodDefinition::class">
+    <features uniqueId="94" name="MethodDefinition::class">
       <feature href="Input.ecore#//@classes.0/@feats.2"/>
-      <cardinality name="MethodDefinition.class" nodeKind="COMPULSORY">
-        <min name="MethodDefinition.class min 0"/>
-        <min name="MethodDefinition.class min 1" value="1"/>
-        <max name="MethodDefinition.class max 1" value="1"/>
-        <max name="MethodDefinition.class max *" value="-1"/>
+      <cardinality uniqueId="95" name="MethodDefinition.class" nodeKind="COMPULSORY">
+        <min uniqueId="96" name="MethodDefinition.class min 0"/>
+        <min uniqueId="97" name="MethodDefinition.class min 1" value="1"/>
+        <max uniqueId="98" name="MethodDefinition.class max 1" value="1"/>
+        <max uniqueId="99" name="MethodDefinition.class max *" value="-1"/>
       </cardinality>
     </features>
   </source>
-  <target name="Target">
-    <features name="Table::rows">
+  <target uniqueId="100" name="Target">
+    <features uniqueId="101" name="Table::rows">
       <feature href="Output.ecore#//@classes.0/@feats.0"/>
-      <kind name="Table.rows" nodeKind="COMPULSORY">
-        <attOrRef name="AttOrReferenceExclusiveChoice-rows">
-          <attributeChoice name="Attribute">
-            <choices name="String">
+      <kind uniqueId="102" name="Table.rows" nodeKind="COMPULSORY">
+        <attOrRef uniqueId="103" name="AttOrReferenceExclusiveChoice-rows">
+          <attributeChoice uniqueId="104" name="Attribute">
+            <choices uniqueId="105" name="String">
               <datatype_ href="Input.ecore#//@dataType.0"/>
             </choices>
-            <choices name="Integer">
+            <choices uniqueId="106" name="Integer">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@kind/@attOrRef/@attributeChoice/@choices.1"/>
               <datatype_ href="Input.ecore#//@dataType.1"/>
             </choices>
-            <choices name="Real">
+            <choices uniqueId="107" name="Real">
               <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@kind/@attOrRef/@attributeChoice/@choices.1 //@source/@features.0/@kind/@attOrRef/@attributeChoice/@choices.2"/>
               <datatype_ href="Input.ecore#//@dataType.2"/>
             </choices>
-            <choices name="Boolean">
+            <choices uniqueId="108" name="Boolean">
               <datatype_ href="Input.ecore#//@dataType.3"/>
             </choices>
           </attributeChoice>
-          <referenceChoice name="Reference">
-            <choices name="Table">
+          <referenceChoice uniqueId="109" name="Reference">
+            <choices uniqueId="110" name="Table">
               <klass href="Output.ecore#//@classes.0"/>
             </choices>
-            <choices name="Row">
+            <choices uniqueId="111" name="Row">
               <klass href="Output.ecore#//@classes.1"/>
             </choices>
-            <choices name="Cell">
+            <choices uniqueId="112" name="Cell">
               <klass href="Output.ecore#//@classes.2"/>
             </choices>
           </referenceChoice>
         </attOrRef>
       </kind>
-      <cardinality name="Table.rows" nodeKind="COMPULSORY">
-        <min name="Table.rows min 0"/>
-        <min name="Table.rows min 1" value="1"/>
-        <max name="Table.rows max 1" value="1">
+      <cardinality uniqueId="113" name="Table.rows" nodeKind="COMPULSORY">
+        <min uniqueId="114" name="Table.rows min 0"/>
+        <min uniqueId="115" name="Table.rows min 1" value="1"/>
+        <max uniqueId="116" name="Table.rows max 1" value="1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@cardinality/@max.0"/>
         </max>
-        <max name="Table.rows max *" value="-1">
+        <max uniqueId="117" name="Table.rows max *" value="-1">
           <constraints xsi:type="VariabilityFM:OrRequires" nodes="//@source/@features.0/@cardinality/@max.0 //@source/@features.0/@cardinality/@max.1"/>
         </max>
       </cardinality>
     </features>
-    <features name="Row::cells">
+    <features uniqueId="118" name="Row::cells">
       <feature href="Output.ecore#//@classes.1/@feats.0"/>
-      <cardinality name="Row.cells" nodeKind="COMPULSORY">
-        <min name="Row.cells min 0"/>
-        <min name="Row.cells min 1" value="1"/>
-        <max name="Row.cells max *" value="-1"/>
+      <cardinality uniqueId="119" name="Row.cells" nodeKind="COMPULSORY">
+        <min uniqueId="120" name="Row.cells min 0"/>
+        <min uniqueId="121" name="Row.cells min 1" value="1"/>
+        <max uniqueId="122" name="Row.cells max *" value="-1"/>
       </cardinality>
     </features>
-    <features name="Cell::content">
+    <features uniqueId="123" name="Cell::content">
       <feature href="Output.ecore#//@classes.2/@feats.0"/>
-      <cardinality name="Cell.content" nodeKind="COMPULSORY">
-        <min name="Cell.content min 0"/>
-        <min name="Cell.content min 1" value="1"/>
-        <max name="Cell.content max 1" value="1"/>
-        <max name="Cell.content max *" value="-1"/>
+      <cardinality uniqueId="124" name="Cell.content" nodeKind="COMPULSORY">
+        <min uniqueId="125" name="Cell.content min 0"/>
+        <min uniqueId="126" name="Cell.content min 1" value="1"/>
+        <max uniqueId="127" name="Cell.content max 1" value="1"/>
+        <max uniqueId="128" name="Cell.content max *" value="-1"/>
       </cardinality>
     </features>
   </target>

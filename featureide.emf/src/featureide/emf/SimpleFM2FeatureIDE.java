@@ -94,7 +94,12 @@ public class SimpleFM2FeatureIDE {
 		
 		s += "name=\"" + parentName + "\" ";
 		s += ">" + "\n";
-		
+		if ( c instanceof Feature ) {
+			String origin = ((Feature) c).getOrigin();
+			if ( origin != null ) {
+				s += "<description>" + "\nFeature:Origin=" + origin + "\n</description>";
+			}
+		}
 		for (Feature feature : c.getChildren()) {
 			s += mapChildren(feature, feature.getName(), feature.isMandatory()); 
 		}
