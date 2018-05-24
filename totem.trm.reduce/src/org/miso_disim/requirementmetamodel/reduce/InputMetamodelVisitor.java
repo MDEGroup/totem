@@ -420,6 +420,13 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 			OclModelElement ome = (OclModelElement) self.getSource();
 			oclComputedTypeMap.put(self, getClassFromName(ome.getName()));
 		}
+		
+		if ( self.getOperationName().equals("oclIsKindOf") || self.getOperationName().equals("oclIsTypeOf")) {
+			OclModelElement ome = (OclModelElement) self.getArguments().get(0);
+			oclComputedTypeMap.put(self, getClassFromName(ome.getName()));			
+			return;
+		}
+		
 		if(self.getOperationName().equals("toString")) {
 			Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
 			Attribute attr = MM_uncertaintyFactory.eINSTANCE.createAttribute();
@@ -473,7 +480,8 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 						}
 						else {
 							Attribute attrType = MM_uncertaintyFactory.eINSTANCE.createAttribute();
-							((Feature) sourceType).getHasType().clear();
+							if ( sourceType instanceof Feature )
+								((Feature) sourceType).getHasType().clear();
 							attrType.getType().add(boolDt);
 						}
 				}

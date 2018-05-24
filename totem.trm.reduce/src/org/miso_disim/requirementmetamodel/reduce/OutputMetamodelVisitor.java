@@ -24,15 +24,20 @@ import MM_uncertainty.Real_;
 import MM_uncertainty.Reference;
 import MM_uncertainty.String_;
 import anatlyzer.atl.model.ATLModel;
+import anatlyzer.atl.util.ATLUtils;
 import anatlyzer.atlext.ATL.Binding;
 import anatlyzer.atlext.ATL.Callable;
 import anatlyzer.atlext.ATL.ContextHelper;
+import anatlyzer.atlext.ATL.Helper;
 import anatlyzer.atlext.ATL.LazyRule;
 import anatlyzer.atlext.ATL.MatchedRule;
 import anatlyzer.atlext.ATL.Module;
 import anatlyzer.atlext.ATL.OutPatternElement;
+import anatlyzer.atlext.ATL.StaticHelper;
 import anatlyzer.atlext.OCL.BooleanType;
+import anatlyzer.atlext.OCL.CollectionExp;
 import anatlyzer.atlext.OCL.CollectionOperationCallExp;
+import anatlyzer.atlext.OCL.EnumLiteralExp;
 import anatlyzer.atlext.OCL.IntegerExp;
 import anatlyzer.atlext.OCL.IntegerType;
 import anatlyzer.atlext.OCL.Iterator;
@@ -50,6 +55,7 @@ import anatlyzer.atlext.OCL.RealExp;
 import anatlyzer.atlext.OCL.RealType;
 import anatlyzer.atlext.OCL.SequenceExp;
 import anatlyzer.atlext.OCL.SequenceType;
+import anatlyzer.atlext.OCL.SetExp;
 import anatlyzer.atlext.OCL.StringExp;
 import anatlyzer.atlext.OCL.StringType;
 import anatlyzer.atlext.OCL.VariableExp;
@@ -127,6 +133,11 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 				ref.getTarget().add(klazz);
 				feat.getHasType().add(ref);
 			}
+			
+			if ( feat == null ) {
+				throw new IllegalStateException("Type not computed for expression in " + self.getValue().getLocation());
+			}
+			
 			feat.setName(self.getPropertyName());
 			klass.getFeats().add(feat);
 		}
@@ -154,7 +165,13 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 							}
 						}
 							
-			}
+			} 
+//			else if ( pair.getKey() instanceof StaticHelper ) {
+//				StaticHelper ch = (StaticHelper) pair.getKey();
+//				if ( ATLUtils.getHelperName(ch).equals(name)) {
+//					result.add(ch.getDefinition().getFeature());
+//				}
+//			}
 		}
 		return result;
 	}
@@ -179,6 +196,14 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 									result.add(pair.getValue());
 							}
 						}
+						else if(ch.getDefinition().getFeature() instanceof anatlyzer.atlext.OCL.Attribute) {
+							anatlyzer.atlext.OCL.Attribute att = (anatlyzer.atlext.OCL.Attribute) ch.getDefinition().getFeature();
+							Object obj = pair.getValue();
+							if(att.getName().equals(name)) {
+								result.add(obj);
+							}
+						}
+						
 							
 			}
 		}
@@ -188,9 +213,16 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		return callableElementsContextType.entrySet().stream().
 				filter(z -> LazyRule.class.isInstance(z.getKey())).
 				map(z -> (LazyRule)z.getKey()).filter(z->name.equals(z.getName())).
-				collect(Collectors.toList());
-		
+				collect(Collectors.toList());		
 	}
+	
+	private List<StaticHelper> checkIsStaticHelper(String name) {
+		return callableElementsReturnType.entrySet().stream().
+				filter(z -> StaticHelper.class.isInstance(z.getKey())).
+				map(z -> (StaticHelper)z.getKey()).filter(z->name.equals(ATLUtils.getHelperName(z))).
+				collect(Collectors.toList());		
+	}
+		
 	private List<ContextHelper> checkIsContextHelper(String name) {
 		return callableElementsContextType.entrySet().stream().
 				filter(z -> ContextHelper.class.isInstance(z.getKey())).
@@ -282,6 +314,17 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		}
 		oclComputedTypeMap.put(self, f);
 	}
+	
+	@Override
+	public void inEnumLiteralExp(EnumLiteralExp self) {
+		// TODO: We are faking enum literals with strings...
+		Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
+		Attribute a = MM_uncertaintyFactory.eINSTANCE.createAttribute();
+		a.getType().add(stringDt);
+		f.getHasType().add(a);
+		oclComputedTypeMap.put(self, f);		
+	}
+	
 	@Override
 	public void beforeNavigationOrAttributeCallExp(NavigationOrAttributeCallExp self) {
 		Feature f;
@@ -308,7 +351,10 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		///NEW
 		List<anatlyzer.atlext.OCL.OclFeature> attrs = checkIsAttribute(self.getName());
 		if(attrs.size() != 0){
-			//TODO Waiting MM_RequirementMetamodel changes
+			List<Object> lAttr = getAttributeValue(self.getName());
+			for (Object object : lAttr) {
+				oclComputedTypeMap.put(self, oclComputedTypeMap.get(object));
+			}
 		}
 		else {
 			if (sourceType instanceof Feature) {
@@ -360,7 +406,7 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		if(sourceType instanceof Feature) {
 			((Feature) sourceType).setMax(TypeUtils.createMany());
 		}
-		if(self.getName().equals("select")) {
+		if(self.getName().equals("select") || self.getName().equals("reject")) {
 			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getSource()));
 		}
 		if(self.getName().equals("sortedBy")) {
@@ -454,7 +500,6 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 			Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
 			f.setMax(TypeUtils.createMany());
 			oclComputedTypeMap.put(self, f);
-			System.out.println(oclComputedTypeMap.get(self.getSource()));
 		}
 	}
 	@Override
@@ -491,6 +536,22 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 			}
 			
 		}
+		
+		List<StaticHelper> staticHelpers = checkIsStaticHelper(self.getOperationName());
+		if(staticHelpers.size()!=0) {
+			for (StaticHelper h : staticHelpers) {
+				OclType t = ATLUtils.getHelperReturnType(h);
+				if ( t instanceof OclModelElement ) {
+					Class klass = getClassFromName(t.getName());
+					oclComputedTypeMap.put(self, klass);
+				}
+				else {
+					throw new UnsupportedOperationException("TODO: Handle data types");
+				}
+			}		
+		}
+		
+		
 		List<ContextHelper> ch = checkIsContextHelper(self.getOperationName());
 		if(ch.size() != 0) {
 		//TODO
@@ -715,6 +776,15 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 	}
 	@Override
 	public void inSequenceExp(SequenceExp self) {
+		computeCollectionLiteralExp(self);
+	}
+	
+	@Override
+	public void inSetExp(SetExp self) {
+		computeCollectionLiteralExp(self);
+	}
+	
+	private void computeCollectionLiteralExp(CollectionExp self) {
 		Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
 		f.setMax(TypeUtils.createMany());
 		for (OclExpression string : self.getElements()) {
