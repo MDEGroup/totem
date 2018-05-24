@@ -42,10 +42,10 @@ public class UnknownClassToNamed implements IExternalJavaAction {
 				c.getFeats().add(EcoreUtil.copy(f));
 			}
 			for (Class antiac : uc.getAntiancs()) {
-				c.getAntiancs().add(EcoreUtil.copy(antiac));
+				c.getAntiancs().add(antiac);
 			}
 			for (Class anc : uc.getAncs()) {
-				c.getAncs().add(EcoreUtil.copy(anc));
+				c.getAncs().add(anc);
 			}
 			
 
