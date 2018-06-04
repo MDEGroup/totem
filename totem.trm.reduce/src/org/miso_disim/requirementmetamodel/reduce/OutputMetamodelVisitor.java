@@ -250,6 +250,7 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		} catch (Exception e) {
 			klass = MM_uncertaintyFactory.eINSTANCE.createClass();
 			klass.setName(name);
+			rootOut.getClasses().add(klass);
 		return klass;
 		}
 	}

@@ -11,13 +11,21 @@ import anatlyzer.atl.model.ATLModel;
 import anatlyzer.atlext.ATL.SimpleInPatternElement;
 import anatlyzer.atlext.ATL.SimpleOutPatternElement;
 import anatlyzer.atlext.OCL.Iterator;
+import anatlyzer.atlext.OCL.OclModelElement;
+import anatlyzer.atlext.OCL.OclType;
 import anatlyzer.atlext.OCL.Parameter;
 import anatlyzer.atlext.processing.AbstractVisitor;
 
 public class VariableVisitor extends AbstractVisitor {
 	private Metamodel rootIn = MM_uncertaintyFactory.eINSTANCE.createMetamodel();;
 	
-	private Metamodel rootOut = MM_uncertaintyFactory.eINSTANCE.createMetamodel();;
+	private Metamodel rootOut = MM_uncertaintyFactory.eINSTANCE.createMetamodel();
+
+	private boolean isIn;;
+	
+	public VariableVisitor(boolean isIn) {
+		this.isIn = isIn;
+	}
 	
 	public Metamodel getRootOut() {
 		return rootOut;
@@ -85,10 +93,21 @@ public class VariableVisitor extends AbstractVisitor {
 
 	@Override
 	public void beforeParameter(Parameter self) {
-		Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
-		c.setIsAbstract(UBoolean.DONT_KNOW);
-		oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
+		if ( isIn ) {
+			Class c = getClassFromName(klassHashMapIn, getTypeName(self.getType()), rootIn);
+			c.setIsAbstract(UBoolean.DONT_KNOW);
+			oclComputedType.put(self, c);
+		}
+		//oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
 	}
+	private String getTypeName(OclType type) {
+		if ( type instanceof OclModelElement ) {
+			return type.getName();
+		} else {
+			return type.getClass().getSimpleName().replace("TypeImpl", "");
+		}
+	}
+
 	@Override
 	public void beforeIterator(Iterator self) {
 		UnknowClass c = MM_uncertaintyFactory.eINSTANCE.createUnknowClass();

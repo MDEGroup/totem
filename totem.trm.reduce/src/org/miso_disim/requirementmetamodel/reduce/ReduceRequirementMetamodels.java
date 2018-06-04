@@ -105,7 +105,7 @@ public class ReduceRequirementMetamodels {
 			System.err.println("UNABLE TO DISCOVER CALLABLE TYPE");
 		}
 		
-		VariableVisitor vv = new VariableVisitor();
+		VariableVisitor vv = new VariableVisitor(true);
 		vv.perform(atlModel);
 		InputMetamodelVisitor imv = new InputMetamodelVisitor();
 		imv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootIn(), 
@@ -122,7 +122,7 @@ public class ReduceRequirementMetamodels {
 		}
 		serialize(mm, outputFolder + "_sourceDRM.ecore");
 		OutputMetamodelVisitor omv = new OutputMetamodelVisitor();
-		vv = new VariableVisitor();
+		vv = new VariableVisitor(false);
 		vv.perform(atlModel);
 		omv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootOut(), 
 			vv.getOclComputedType());

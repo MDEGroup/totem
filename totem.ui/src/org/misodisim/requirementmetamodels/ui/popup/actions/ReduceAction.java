@@ -48,8 +48,8 @@ public class ReduceAction implements IObjectActionDelegate {
 		String path = null;
 		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
-		path = workspaceDirectory.toString();
+		// File workspaceDirectory = workspace.getRoot().getLocation().toFile();
+		// path = workspaceDirectory.toString();
 		if (window != null)
 	    {
 	        IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
@@ -67,7 +67,8 @@ public class ReduceAction implements IObjectActionDelegate {
 	                }
 	            }
 	            if (file != null) {
-	                path+=file.toString().substring(1);
+	                // path+=file.toString().substring(1);
+	            	path = file.getLocation().toOSString();
 	            }
 	        }
 	    }

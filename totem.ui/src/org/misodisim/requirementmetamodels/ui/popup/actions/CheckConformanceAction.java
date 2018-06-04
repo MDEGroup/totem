@@ -95,9 +95,11 @@ public class CheckConformanceAction implements IObjectActionDelegate {
 	    }
 		RequirementsModel toCheck = new RequirementsModel(path, path.substring(0,path.lastIndexOf("/")+1));  
 		boolean b = toCheck.checkConformance(path2);
+		
+		String paths = "\nMetamodel = " + path2 + "\n" + "DRM = " + path;
 		if (b)
-			MessageDialog.openInformation(shell, "Conformance evaluation", "Metamodel is conform to DRM model");
-		else MessageDialog.openError(shell, "Conformance evaluation", "Metamodel is not conform to DRM model");		
+			MessageDialog.openInformation(shell, "Conformance evaluation", "Metamodel is conform to DRM model" + paths);
+		else MessageDialog.openError(shell, "Conformance evaluation", "Metamodel is not conform to DRM model"  + paths);		
 	}
 
 	/**
