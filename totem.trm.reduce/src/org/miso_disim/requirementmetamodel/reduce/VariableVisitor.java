@@ -8,10 +8,15 @@ import MM_uncertainty.Metamodel;
 import MM_uncertainty.UBoolean;
 import MM_uncertainty.UnknowClass;
 import anatlyzer.atl.model.ATLModel;
+import anatlyzer.atl.types.PrimitiveType;
 import anatlyzer.atlext.ATL.SimpleInPatternElement;
 import anatlyzer.atlext.ATL.SimpleOutPatternElement;
+import anatlyzer.atlext.OCL.BooleanType;
+import anatlyzer.atlext.OCL.IntegerType;
 import anatlyzer.atlext.OCL.Iterator;
 import anatlyzer.atlext.OCL.Parameter;
+import anatlyzer.atlext.OCL.RealType;
+import anatlyzer.atlext.OCL.StringType;
 import anatlyzer.atlext.processing.AbstractVisitor;
 
 public class VariableVisitor extends AbstractVisitor {
@@ -85,9 +90,15 @@ public class VariableVisitor extends AbstractVisitor {
 
 	@Override
 	public void beforeParameter(Parameter self) {
-		Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
-		c.setIsAbstract(UBoolean.DONT_KNOW);
-		oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
+		if(!( (self.getType() instanceof StringType)) ||
+		   ((self.getType() instanceof BooleanType)) ||
+		   ((self.getType() instanceof IntegerType)) ||
+		   ((self.getType() instanceof RealType)))
+		{
+			Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
+			c.setIsAbstract(UBoolean.DONT_KNOW);
+			oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
+		}
 	}
 	@Override
 	public void beforeIterator(Iterator self) {
