@@ -179,6 +179,7 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		System.out.println(self);
 	}
 	private Class getClassFromName(String name){
+		
 		Class klass;
 		try {
 			klass = rootIn.getClasses().stream().filter(z -> name.equals(z.getName())).
@@ -329,13 +330,27 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 			((Feature) sourceType).setMax(TypeUtils.createMany());
 		}
 		if(self.getName().equals("select")) {
-			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getSource()));
+			if(self.getBody() instanceof OperationCallExp) {
+				OperationCallExp temp = (OperationCallExp) self.getBody();
+				if (temp.getOperationName().equals("oclIsKindOf"))
+					oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getBody()));
+			}
+			else
+				oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getSource()));
 		}
 		if(self.getName().equals("sortedBy")) {
 			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getSource()));
 		}
 		if(self.getName().equals("collect")){
 			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getBody()));
+		}
+		if(self.getName().equals("reject")) {
+			if ( oclComputedTypeMap.get(self.getBody()) instanceof Feature){
+				Feature k = (Feature) oclComputedTypeMap.get(self.getBody());
+				FeatureType ft = MM_uncertaintyFactory.eINSTANCE.createAttribute();
+				((Attribute)ft).getType().add(boolDt);
+				k.getHasType().add(ft);
+			}
 		}
 	}
 		
@@ -455,6 +470,15 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		if(ch.size() != 0) {
 			//TODO
 		}
+	}
+	
+	@Override
+	public void inOperationCallExp(OperationCallExp self) {
+		if(self.getOperationName().equals("oclIsKindOf")) {
+			Class c = getClassFromName(((OclModelElement)(self.getArguments().get(0))).getName());
+			oclComputedTypeMap.put(self, c);
+		}
+		
 	}
 	
 	@Override
