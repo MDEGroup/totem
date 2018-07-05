@@ -55,7 +55,7 @@ public class TestMain {
 	public static void main(String args[]) throws ATLCoreException, ParserException {
 //		String transformation = "transformation/Families2Persons.atl";
 //		String transformation = "transformation/PN2matrix.atl";
-		String transformation = "transformation/JavaSource2Table_PaperUserCase.atl";
+		String transformation = "transformation/Class2Table_simple.atl";
 		new ReduceRequirementMetamodels().generateRMM(transformation, "output" + File.separator);
 	}
 	
@@ -101,7 +101,7 @@ public class TestMain {
 			System.err.println("UNABLE TO DISCOVER CALLABLE TYPE");
 		}
 		
-		VariableVisitor vv = new VariableVisitor();
+		VariableVisitor vv = new VariableVisitor(true);
 		vv.perform(atlModel);
 		InputMetamodelVisitor imv = new InputMetamodelVisitor();
 		imv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootIn(), 
@@ -109,7 +109,7 @@ public class TestMain {
 		Metamodel mm = imv.getRootIn();
 		serialize(mm, outputFolder + "Input.ecore");
 		OutputMetamodelVisitor omv = new OutputMetamodelVisitor();
-		vv = new VariableVisitor();
+		vv = new VariableVisitor(false);
 		vv.perform(atlModel);
 		omv.perform(atlModel, callableElementsContextType, callableElementsReturnType, vv.getRootOut(), 
 			vv.getOclComputedType());

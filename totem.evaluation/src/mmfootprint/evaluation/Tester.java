@@ -216,11 +216,7 @@ public class Tester {
 						toCheck = reqmodel_target;
 						targetMetamodelPath = p.toAbsolutePath().toString();
 					}
-					
-					if ( reportFileName.endsWith("JavaSource2Table.atl_Table_RestrictMetapropertyUB_mutant_1.ecore")) {
-						System.out.println("Here");
-					}
-					
+									
 					// Now try with the requirements, using the new meta-model "p" and the original
 					boolean conforms = toCheck.checkConformance(p.toAbsolutePath().toString());
 					if ( ! conforms ) {

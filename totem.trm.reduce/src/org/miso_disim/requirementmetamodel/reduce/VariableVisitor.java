@@ -14,6 +14,8 @@ import anatlyzer.atlext.ATL.SimpleOutPatternElement;
 import anatlyzer.atlext.OCL.BooleanType;
 import anatlyzer.atlext.OCL.IntegerType;
 import anatlyzer.atlext.OCL.Iterator;
+import anatlyzer.atlext.OCL.OclModelElement;
+import anatlyzer.atlext.OCL.OclType;
 import anatlyzer.atlext.OCL.Parameter;
 import anatlyzer.atlext.OCL.RealType;
 import anatlyzer.atlext.OCL.StringType;
@@ -22,7 +24,13 @@ import anatlyzer.atlext.processing.AbstractVisitor;
 public class VariableVisitor extends AbstractVisitor {
 	private Metamodel rootIn = MM_uncertaintyFactory.eINSTANCE.createMetamodel();;
 	
-	private Metamodel rootOut = MM_uncertaintyFactory.eINSTANCE.createMetamodel();;
+	private Metamodel rootOut = MM_uncertaintyFactory.eINSTANCE.createMetamodel();
+
+	private boolean isIn;;
+	
+	public VariableVisitor(boolean isIn) {
+		this.isIn = isIn;
+	}
 	
 	public Metamodel getRootOut() {
 		return rootOut;
@@ -90,6 +98,7 @@ public class VariableVisitor extends AbstractVisitor {
 
 	@Override
 	public void beforeParameter(Parameter self) {
+
 		if(!( (self.getType() instanceof StringType)) ||
 		   ((self.getType() instanceof BooleanType)) ||
 		   ((self.getType() instanceof IntegerType)) ||
@@ -100,6 +109,7 @@ public class VariableVisitor extends AbstractVisitor {
 			oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
 		}
 	}
+
 	@Override
 	public void beforeIterator(Iterator self) {
 		UnknowClass c = MM_uncertaintyFactory.eINSTANCE.createUnknowClass();
