@@ -59,7 +59,6 @@ public class ReduceRequirementMetamodels {
 			if (i >= 0)
 				generateRMM(inputPath, inputPath.substring(0, i+1));
 		} catch (ParserException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

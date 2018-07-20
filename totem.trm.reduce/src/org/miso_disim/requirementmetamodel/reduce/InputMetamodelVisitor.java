@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import MM_uncertainty.Attribute;
 import MM_uncertainty.Boolean_;
@@ -275,10 +276,7 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 				oclComputedTypeMap.get(self.getSource());
 		Object navigationType = oclComputedTypeMap.get(self);
 		List<anatlyzer.atlext.OCL.OclFeature> attrs = checkIsAttribute(self.getName());
-		if(attrs.size() != 0){
-			//TODO
-		}
-		else {
+		if(attrs.size() == 0 || EcoreUtil.isAncestor(attrs, self)){
 			if (sourceType instanceof Feature) {
 				if(navigationType!=null) {
 					Feature feat = (Feature) sourceType;
@@ -311,17 +309,21 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 				}
 			}
 			if (sourceType instanceof Class) {
-				if(checkIsAttribute(self.getName()).size() == 0) {
-					Feature a = checkIsPresent(self.getName(), (Class) sourceType); 
-					Class tempClass = getClassFromName(((Class) sourceType).getName());
-					if(a == null && navigationType instanceof Feature)
-						a = (Feature) navigationType;
-					tempClass.getFeats().add(a);
-					oclComputedTypeMap.put(self, a);
+				
+				Feature a = checkIsPresent(self.getName(), (Class) sourceType); 
+				Class tempClass = getClassFromName(((Class) sourceType).getName());
+				if(a == null && navigationType instanceof Feature)
+					a = (Feature) navigationType;
+				if(a == null && navigationType == null) {
+					a = MM_uncertaintyFactory.eINSTANCE.createFeature();
+					a.setName(self.getName());
+					oclComputedTypeMap.put(self, a);	
 				}
+				tempClass.getFeats().add(a);
+				oclComputedTypeMap.put(self, a);
+				
 			}
 		}
-		///END
 	}
 	@Override
 	public void inIteratorExp(IteratorExp self) {
