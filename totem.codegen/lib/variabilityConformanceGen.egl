@@ -1,6 +1,8 @@
 	
 [% for (vf in VM!VariableFeature.allInstances().select(vf | vf.eContainer.name = 'Source') ) { %]
+  [% if ( not vf.sourceIgnored() ) { %]
   var match_[%=vf.feature.name%]_[%=vf.feature.eContainer.name%]_[%=vf.eContainer.name%] = findSource('[%=vf.feature.eContainer.name%]', '[%=vf.feature.name%]');
+  [% } %]
 [% }%]
 
 [% for (vf in VM!VariableFeature.allInstances().select(vf | vf.eContainer.name = 'Target') ) { %]
@@ -10,7 +12,8 @@
 [% var allWithConstraints := 
 	VM!AttributeTypeChoice.allInstances().select(a | a.constraints.size() > 0).
 	includingAll( VM!ReferenceTypeChoice.allInstances().select(a | a.constraints.size() > 0) ).
-	includingAll( VM!FeatureCardinalityChoice.allInstances().select(a | a.constraints.size() > 0) )	
+	includingAll( VM!FeatureCardinalityChoice.allInstances().select(a | a.constraints.size() > 0) ).
+	select(choice | not choice.getVariableFeature().sourceIgnored())	
 	; 
 %]
 
@@ -135,6 +138,12 @@ operation OrRequires gen() { %]
 [% operation VariableFeature genVariableName(prefix : String) : String {
      return prefix + '_'+ self.feature.name + '_' + self.feature.eContainer.name + '_' + self.eContainer.name;
    }
+   
+   operation VariableFeature sourceIgnored()  : Boolean {
+     //return false;
+     return (self.feature.eContainer.eClass.name = 'UnknowClass');
+   }
+   
 
   operation VM!AttributeTypeChoice getVariableFeature() : VariableFeature {
   	return self.eContainer.eContainer.eContainer.eContainer;
@@ -151,6 +160,10 @@ operation OrRequires gen() { %]
   operation VM!AttributeTypeChoice genCondition() : String {
      // vf is the VariableFeature 
      var vf := self.getVariableFeature(); 
+     if ( vf.sourceIgnored() ) {
+     	return "true";
+     }
+     
      var mm = "SourceMM!";
      if ( vf.eContainingFeature.name = 'target' )
      	mm := "TargetMM!";
@@ -189,6 +202,10 @@ operation OrRequires gen() { %]
   operation VM!FeatureMaxCardinalityChoice genCondition() : String {
      // vf is the VariableFeature 
      var vf := self.getVariableFeature(); 
+     if ( vf.sourceIgnored() ) {
+     	return "true";
+     }
+
      // checking <> null in case the structural match in the conforming algorithm of the meta-model is
      // by subclasses, and thus, the feature cannot be matched by name here... could this be fixed more elegantly?
 	 var res := vf.genVariableName('match') + '<> null and ' 
