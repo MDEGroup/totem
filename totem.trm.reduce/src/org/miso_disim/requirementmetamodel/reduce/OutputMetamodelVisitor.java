@@ -135,7 +135,8 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 			}
 			
 			if ( feat == null ) {
-				throw new IllegalStateException("Type not computed for expression in " + self.getValue().getLocation());
+				feat = MM_uncertaintyFactory.eINSTANCE.createFeature();
+				System.out.println("Type not computed for expression in " + self.getValue().getLocation());
 			}
 			
 			feat.setName(self.getPropertyName());
@@ -251,7 +252,7 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 			klass = MM_uncertaintyFactory.eINSTANCE.createClass();
 			klass.setName(name);
 			rootOut.getClasses().add(klass);
-		return klass;
+			return klass;
 		}
 	}
 	@Override
@@ -305,10 +306,12 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		f.setMax(TypeUtils.createMany());
 		if (self.getElementType() instanceof OclModelElement){
 			OclModelElement temp = (OclModelElement) self.getElementType();
-			Reference r = MM_uncertaintyFactory.eINSTANCE.createReference();
-			Class c = getClassFromName(temp.getName());
-			r.getTarget().add(c);
-			f.getHasType().add(r);
+			if(rootOut.getClasses().stream().anyMatch(z -> temp.getName().equals(z.getName()))){
+				Reference r = MM_uncertaintyFactory.eINSTANCE.createReference();
+				Class c = getClassFromName(temp.getName());
+				r.getTarget().add(c);
+				f.getHasType().add(r);
+			}
 		}
 		else {
 			f = (Feature) oclComputedTypeMap.get(self.getElementType());
@@ -420,19 +423,19 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		
 	@Override
 	public void beforeVariableExp(VariableExp self) {
-		if (self.getReferredVariable().getVarName().equals("self")) {
-			String name = isContainerContextHelper(self);
-			if(name != null){
-				Class klass = getClassFromName(name);
-				oclComputedTypeMap.put(self.getReferredVariable(), klass);
-			}
-		}
-		else if(self.getReferredVariable().getVarName().equals("thisModule")) {
-			//System.out.println("PRINT: THIS MODULE");
-		}
-		else {
-			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getReferredVariable()));
-		}
+//		if (self.getReferredVariable().getVarName().equals("self")) {
+//			String name = isContainerContextHelper(self);
+//			if(name != null){
+//				Class klass = getClassFromName(name);
+//				oclComputedTypeMap.put(self.getReferredVariable(), klass);
+//			}
+//		}
+//		else if(self.getReferredVariable().getVarName().equals("thisModule")) {
+//			//System.out.println("PRINT: THIS MODULE");
+//		}
+//		else {
+//			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getReferredVariable()));
+//		}
 	}
 	
 	@Override
@@ -505,10 +508,10 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 	}
 	@Override
 	public void beforeOperationCallExp(OperationCallExp self) {
-		if(self.getOperationName().equals("allInstances")) {
-			OclModelElement ome = (OclModelElement) self.getSource();
-			oclComputedTypeMap.put(self, getClassFromName(ome.getName()));
-		}
+//		if(self.getOperationName().equals("allInstances")) {
+//			OclModelElement ome = (OclModelElement) self.getSource();
+//			oclComputedTypeMap.put(self, getClassFromName(ome.getName()));
+//		}
 		if(self.getOperationName().equals("toString")) {
 			Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
 			Attribute attr = MM_uncertaintyFactory.eINSTANCE.createAttribute();
