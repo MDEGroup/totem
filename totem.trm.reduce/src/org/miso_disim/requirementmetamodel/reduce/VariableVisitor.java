@@ -85,36 +85,43 @@ public class VariableVisitor extends AbstractVisitor {
 	
 	@Override
 	public void beforeSimpleInPatternElement(SimpleInPatternElement self) {
-		Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
-		c.setIsAbstract(UBoolean.DONT_KNOW);
-		oclComputedType.put(self, c);
+		if ( isIn ) {
+			Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
+			c.setIsAbstract(UBoolean.DONT_KNOW);
+			oclComputedType.put(self, c); 
+		}
 	}
 	@Override
 	public void beforeSimpleOutPatternElement(SimpleOutPatternElement self) {
-		Class c = getClassFromName(klassHashMapOut, self.getType().getName(), rootOut);
-		c.setIsAbstract(UBoolean.FALSE);
-		oclComputedType.put(self, c);
+		if ( ! isIn ) {
+			Class c = getClassFromName(klassHashMapOut, self.getType().getName(), rootOut);
+			c.setIsAbstract(UBoolean.FALSE);
+			oclComputedType.put(self, c);
+		}
 	}
 
 	@Override
 	public void beforeParameter(Parameter self) {
-
-		if(!( (self.getType() instanceof StringType)) ||
-		   ((self.getType() instanceof BooleanType)) ||
-		   ((self.getType() instanceof IntegerType)) ||
-		   ((self.getType() instanceof RealType)))
-		{
-			Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
-			c.setIsAbstract(UBoolean.DONT_KNOW);
-			oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
+		if ( isIn ) {
+			if(!( (self.getType() instanceof StringType)) ||
+			   ((self.getType() instanceof BooleanType)) ||
+			   ((self.getType() instanceof IntegerType)) ||
+			   ((self.getType() instanceof RealType)))
+			{
+				Class c = getClassFromName(klassHashMapIn, self.getType().getName(), rootIn);
+				c.setIsAbstract(UBoolean.DONT_KNOW);
+				oclComputedType.put(self, getClassFromName(klassHashMapIn, self.getType().getName(),rootIn));
+			}
 		}
 	}
 
 	@Override
 	public void beforeIterator(Iterator self) {
-		UnknowClass c = MM_uncertaintyFactory.eINSTANCE.createUnknowClass();
-		c.setName(self.getVarName());
-		oclComputedType.put(self, c);
+		if ( isIn ) {
+			UnknowClass c = MM_uncertaintyFactory.eINSTANCE.createUnknowClass();
+			c.setName(self.getVarName());
+			oclComputedType.put(self, c);
+		}
 	}
 	
 	

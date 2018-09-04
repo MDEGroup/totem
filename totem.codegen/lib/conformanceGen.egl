@@ -1,7 +1,7 @@
 [% ('all instances = '+UM!Class.all).println(); %]
 var result := 
 [% for (c in UM!Class.allInstances()) { %]
-  mm!EClass.allInstances().exists(c|c.matches_[%=c.getIdentifier()%](Set{}, false, true))
+  mm!EClass.allInstances().exists(c|c.matches_[%=c.getIdentifier()%](Set{}, false, [%=c.subsAllowed%]))
 [% if (hasMore) { %]
   and
 [%   }
@@ -10,7 +10,7 @@ var result :=
 
 
 [% for (c in UM!Class.allInstances()) { %]
-if ( not mm!EClass.allInstances().exists(c|c.matches_[%=c.getIdentifier()%](Set{}, false, true)) ) {
+if ( not mm!EClass.allInstances().exists(c|c.matches_[%=c.getIdentifier()%](Set{}, false, [%=c.subsAllowed%])) ) {
 "[%=c.getIdentifier()%]".println("Cannot find match: ");
 }
 [% } %]

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.eclipse.core.resources.IFile;
@@ -19,6 +20,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
@@ -48,6 +50,7 @@ import anatlyzer.atl.errors.Problem;
 import anatlyzer.atl.errors.ProblemStatus;
 import anatlyzer.atl.errors.atl_error.BindingPossiblyUnresolved;
 import anatlyzer.atl.errors.atl_error.BindingWithoutRule;
+import anatlyzer.atl.errors.atl_error.InvalidArgument;
 import anatlyzer.atl.model.ATLModel;
 import anatlyzer.atl.util.ATLUtils;
 import anatlyzer.atl.util.ATLUtils.ModelInfo;
@@ -129,6 +132,9 @@ public class Tester {
 		// (1) generate requirements model of the transformation
 		else if (!this.generateRequirementsModel())         error = "The evaluation CANNOT be performed\nbecause the requirements model could not be generated";
 		
+//		if ( true )
+//			return;
+		
 		if (error.isEmpty()) {
 			report.clear();
 			
@@ -171,6 +177,10 @@ public class Tester {
 		String outMMname = info.entrySet().stream().filter(entry -> entry.getValue().isOutput()).findFirst().orElseThrow(() -> new IllegalStateException()).getKey();
 			
 		for (String name : metamodels.keySet()) {
+			// This a hack to avoid and issue with meta-models that reference the Ecore metatypes.
+			if ( name.equals("_ECORE_"))
+				continue;
+			
 			String folder = getMutantsFolder(name);
 			try {
 				// Find all meta-models in the folder
@@ -178,8 +188,14 @@ public class Tester {
 				for (java.nio.file.Path p : mutantMetamodels) {
 					Map<String, Resource> newMetamodels = new HashMap<String, Resource>(metamodels); 
 
+
+					if ( ! pick(p) ) {
+						continue;
+					}
+					
 					System.out.println("Evaluating: " + p.toString());
 					
+			
 					ResourceSetImpl rs = new ResourceSetImpl();
 					Resource r  = rs.getResource(URI.createFileURI(p.toAbsolutePath().toString()), true);
 					
@@ -187,6 +203,11 @@ public class Tester {
 						report.setMutantDoesNotValidate(p.toString());
 						continue;
 					}
+					
+//					if ( ! pick(p.toString(), r) ) {
+//						continue;
+//					}
+		
 					
 					newMetamodels.put(name, r);
 					GlobalNamespace namespace = new GlobalNamespace(newMetamodels.values(), newMetamodels);
@@ -237,6 +258,49 @@ public class Tester {
 
 		}
 		
+	}
+
+	private boolean pick(java.nio.file.Path p) {
+		// Example filename: FileStorageStrategy_mutant_11023_InlineMetaclass.ecore
+		String s = p.getFileName().toString();
+		String[] parts = s.split("_");
+		if ( parts.length >= 1 ) { 
+			String kind = parts[parts.length - 1];
+
+			int count = mutationCounter.getOrDefault(kind, 0);
+			if ( maxAppliedMutation != -1 && count >= maxAppliedMutation) {
+				return false;
+			}
+				
+			mutationCounter.put(kind, count + 1);
+			return true;
+
+		}
+		
+		return false;
+	}
+
+	private HashMap<String, Integer> mutationCounter = new HashMap<String, Integer>();
+	private int maxAppliedMutation = 10;
+	
+	private boolean pick(String fname, Resource r) {
+		EPackage pkg = (EPackage) r.getContents().get(0);
+		Optional<EAnnotation> opt = pkg.getEAnnotations().stream().filter(a -> a.getSource().equals("MutationRegistry")).findAny();
+		if ( ! opt.isPresent() ) {
+			System.out.println("Not present: " + fname);
+			return false;
+		}
+		
+		EAnnotation ann = opt.get();
+		String kind = ann.getDetails().get("MutationKind");
+		
+		int count = mutationCounter.getOrDefault(kind, 0);
+		if ( maxAppliedMutation != -1 && count >= maxAppliedMutation) {
+			return false;
+		}
+			
+		mutationCounter.put(kind, count + 1);
+		return true;
 	}
 
 	/**
@@ -484,8 +548,17 @@ public class Tester {
 	 * @return
 	 */
 	private boolean isErrorExcluded(Problem error) {
-		return  error instanceof BindingPossiblyUnresolved || 
-				error instanceof BindingWithoutRule;
+		if ( error instanceof BindingPossiblyUnresolved || 
+			 error instanceof BindingWithoutRule ) {
+			return true;
+		}
+		
+		if ( error instanceof InvalidArgument ) {
+			InvalidArgument e = (InvalidArgument) error;
+			return e.getDescription().startsWith("Invalid argument for oclIsKindOf");
+		}
+		
+		return false;
 	}
 
 	
