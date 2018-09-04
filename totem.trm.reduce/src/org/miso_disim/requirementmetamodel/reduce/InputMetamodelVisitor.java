@@ -20,6 +20,7 @@ import MM_uncertainty.FeatureType;
 import MM_uncertainty.Integer_;
 import MM_uncertainty.MM_uncertaintyFactory;
 import MM_uncertainty.Metamodel;
+import MM_uncertainty.Number;
 import MM_uncertainty.Real_;
 import MM_uncertainty.Reference;
 import MM_uncertainty.String_;
@@ -350,6 +351,10 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 			if ( oclComputedTypeMap.get(self.getBody()) instanceof Feature){
 				Feature k = (Feature) oclComputedTypeMap.get(self.getBody());
 				FeatureType ft = MM_uncertaintyFactory.eINSTANCE.createAttribute();
+				Number cardinality = MM_uncertaintyFactory.eINSTANCE.createNumber();
+				cardinality.setAllowMore(false);
+				cardinality.setValue(1);
+				k.setMax(cardinality);
 				((Attribute)ft).getType().add(boolDt);
 				k.getHasType().add(ft);
 			}
