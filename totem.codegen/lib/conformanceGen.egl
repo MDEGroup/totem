@@ -185,6 +185,11 @@ operation EReference isProcessedOpposite() : Boolean {
    }
    
    operation DataType getTypeCheck() : String { return ''; } 
+   operation Enum getTypeCheck() : String {
+   	 if ( self.name = "?" ) 
+   	 	return "true";
+     return 'f.eAttributeType.name = \'' + self.name + '\'';
+   }
    operation String_ getTypeCheck() : String {
      return 'f.eAttributeType.name.endsWith("String")';
    }

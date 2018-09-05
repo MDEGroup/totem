@@ -3,6 +3,7 @@ package org.miso_disim.requirementmetamodel.reduce;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -319,12 +320,28 @@ public class OutputMetamodelVisitor extends AbstractVisitor {
 		oclComputedTypeMap.put(self, f);
 	}
 	
+	private Map<String, MM_uncertainty.Enum> stringToEnum = new HashMap<>();
+	
 	@Override
 	public void inEnumLiteralExp(EnumLiteralExp self) {
-		// TODO: We are faking enum literals with strings...
+		// TODO: Faking enum literals with strings is not a good idea
 		Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
 		Attribute a = MM_uncertaintyFactory.eINSTANCE.createAttribute();
-		a.getType().add(stringDt);
+		
+		// TODO: This is just wrong. We can't do this right because
+		// in ATL there is no way to get the enum name.
+		String enumName = "?";
+		// The code generator will check if the name is '?' and avoid checking the name
+		if ( ! stringToEnum.containsKey(enumName) ) {
+			MM_uncertainty.Enum enum_ = MM_uncertaintyFactory.eINSTANCE.createEnum();
+			enum_.setName(enumName);
+			stringToEnum.put(enumName, enum_);
+			this.rootOut.getDataType().add(enum_);
+		}
+		
+		MM_uncertainty.Enum dtEnum = stringToEnum.get(enumName);
+				
+		a.getType().add(dtEnum);
 		f.getHasType().add(a);
 		oclComputedTypeMap.put(self, f);		
 	}
