@@ -19,7 +19,14 @@ import java.util.stream.Stream;
 public class Report {
 
 	private Map<String,SortedSet<Record>> report =  new HashMap<String,SortedSet<Record>>();
+	private String resultFileName = "result.txt";
 
+	public Report() { }
+	public Report(String resultFileName) {
+		this.resultFileName = resultFileName;
+	}
+	 
+	
 	/** clear report **/
 	public void clear () {
 		report.clear();
@@ -61,6 +68,7 @@ public class Report {
 	}
 	
 	private List<String> invalidMutants = new ArrayList<String>();
+	
 	public void setMutantDoesNotValidate(String string) {
 		invalidMutants.add(string);
 	}	
@@ -90,7 +98,7 @@ public class Report {
 	/** print report to console 
 	 * @throws FileNotFoundException */
 	public void printToConsole(String temporalFolder) throws FileNotFoundException {
-		ReportConsole console = new ReportConsole(new FileOutputStream(temporalFolder + File.separator + "result.txt"));
+		ReportConsole console = new ReportConsole(new FileOutputStream(temporalFolder + File.separator + resultFileName));
 		console.clear();
 		long total          = 0;
 		long falsePositives = 0;

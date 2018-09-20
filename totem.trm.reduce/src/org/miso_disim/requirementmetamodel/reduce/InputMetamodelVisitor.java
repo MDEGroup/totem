@@ -80,6 +80,7 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		
 		// This is to ensure that all classes have mandatoryAllowed = true
 		this.rootIn.getClasses().forEach(c -> c.setMandatoryAllowed(true));
+		//this.rootIn.getClasses().forEach(c -> c.setSubsAllowed(true));
 		
 		return rootIn;
 	}
@@ -328,6 +329,7 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 	}
 	@Override
 	public void inIteratorExp(IteratorExp self) {
+		System.out.println(self.getLocation());
 		Object sourceType = oclComputedTypeMap.get(self.getSource()) ;
 		if(sourceType instanceof Feature) {
 			((Feature) sourceType).setMax(TypeUtils.createMany());

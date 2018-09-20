@@ -104,7 +104,12 @@ rule FeatureKindGroup2Feature extends Node2Feature {
    from n : TRM!FeatureKindGroup
      to f : FM!Feature (     	
      	name <- 'Kind ' + n.toNodeName(),
-     	children <- Sequence { n.attOrRef.attributeChoice, n.attOrRef.referenceChoice },
+     	children <- 
+			if not n.attOrRef.oclIsUndefined()  then
+				Sequence { n.attOrRef.attributeChoice, n.attOrRef.referenceChoice }
+			else 
+				Sequence { }
+     		endif,
      	kind <- #ALTERNATIVE
      )	 
 }

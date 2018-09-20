@@ -55,7 +55,7 @@ public class RequirementsModel {
 			// load egl template
 			if (module.parse(getResourceFile(REQUIREMENTS_MODEL_GENERATOR, CodeGenConstants.CODEGEN_PLUGIN_NAME))) {
 				// load requirements model
-				IModel model = createEmfModel(REQUIREMENTS_MODEL_NAME, this.fileRequirementsModel, getResourceFile(REQUIREMENTS_METAMODEL_FILE, CodeGenConstants.REQ_PLUGIN_NAME).getAbsolutePath(), true, true, false);
+				IModel model = createEmfModel();
 				module.getContext().getModelRepository().addModel(model);
 				// execute egl template
 				Object result = module.execute();
@@ -69,6 +69,10 @@ public class RequirementsModel {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public IModel createEmfModel() {
+		return createEmfModel(REQUIREMENTS_MODEL_NAME, this.fileRequirementsModel, getResourceFile(REQUIREMENTS_METAMODEL_FILE, CodeGenConstants.REQ_PLUGIN_NAME).getAbsolutePath(), true, true, false);
 	}
 
 	/**

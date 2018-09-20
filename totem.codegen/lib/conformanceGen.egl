@@ -115,13 +115,13 @@ operation EClass matches_[%=c.getIdentifier()%](visited : Set(EClass), ignoreNam
 }
 [%}%]
 
-operation EStructuralFeature satMinCardinality(val: int, less: Boolean, more: Boolean) : Boolean {
+operation EStructuralFeature satMinCardinality(val: Integer, less: Boolean, more: Boolean) : Boolean {
      if (less) return self.lowerBound <= val;
      if (more) return self.lowerBound >= val;
      return self.lowerBound = val;
 }
 
-operation EStructuralFeature satMaxCardinality(val: int, less: Boolean, more: Boolean) : Boolean {
+operation EStructuralFeature satMaxCardinality(val: Integer, less: Boolean, more: Boolean) : Boolean {
      if (less) return self.upperBound <= val;
      if (more) return self.upperBound >= val;
      return self.upperBound = val;

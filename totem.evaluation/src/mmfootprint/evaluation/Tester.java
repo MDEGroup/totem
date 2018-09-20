@@ -41,6 +41,7 @@ import org.miso_disim.requirementmetamodel.reduce.TestMain;
 
 import anatlyzer.atl.analyser.Analyser;
 import anatlyzer.atl.analyser.AnalysisResult;
+import anatlyzer.atl.analyser.IAnalyserResult;
 import anatlyzer.atl.analyser.batch.RuleConflictAnalysis.OverlappingRules;
 import anatlyzer.atl.analyser.namespaces.GlobalNamespace;
 import anatlyzer.atl.editor.builder.AnalyserExecutor;
@@ -70,21 +71,23 @@ import transML.utils.modeling.EMFUtils;
 public class Tester {
 	
 	private String   atlFile;          // name of transformation file
-	private EMFModel atlModel;         // model of the original transformation
-	private GlobalNamespace namespace; // meta-models used by the transformation (union of inputMetamodels and outputMetamodels)
+	protected EMFModel atlModel;         // model of the original transformation
+	protected IAnalyserResult analysisResult;
+	
+	protected GlobalNamespace namespace; // meta-models used by the transformation (union of inputMetamodels and outputMetamodels)
 	private List<String> inputMetamodels  = new ArrayList<String>(); // input metamodels (IN)
 	private List<String> outputMetamodels = new ArrayList<String>(); // output metamodels (OUT)
     private HashMap<String, ModelInfo> aliasToPaths = new HashMap<String, ModelInfo>();
 	private ResourceSet rs;
-	private Report report;
+	protected Report report;
     
     // requirement model
 	private final String REQUIREMENTS_MODEL_SOURCE      = "Input.ecore";
 	private final String REQUIREMENTS_MODEL_TARGET      = "Output.ecore";
 	private final String REQUIREMENTS_MODEL_VARIABILITY = "variability.xmi";
-    private RequirementsModel reqmodel_source = null; // REQUIREMENTS_MODEL_SOURCE
-    private RequirementsModel reqmodel_target = null; // REQUIREMENTS_MODEL_TARGET
-    private VariabilityModel reqmodel_varity = null; // REQUIREMENTS_MODEL_VARIABILITY
+    protected RequirementsModel reqmodel_source = null; // REQUIREMENTS_MODEL_SOURCE
+    protected RequirementsModel reqmodel_target = null; // REQUIREMENTS_MODEL_TARGET
+    protected VariabilityModel reqmodel_varity = null; // REQUIREMENTS_MODEL_VARIABILITY
 	
 	// temporal folders
 	private String folderMutants; 
@@ -111,7 +114,8 @@ public class Tester {
 		this.folderRMM     = temporalFolder + File.separator + "rmm"     + File.separator;
 		this.folderMutants = temporalFolder + File.separator + "mutants" + File.separator;
 		
-		this.deleteDirectory(folderRMM, true); // delete temporal folder
+		// Don't delete this automatically...
+		// this.deleteDirectory(folderRMM, true); // delete temporal folder
 	}
 
 	/**
@@ -156,7 +160,7 @@ public class Tester {
 		}
 		
 		// otherwise, return an error
-		else report.printError(error);		
+		else report.printError(error);
 	}
 	
 	
@@ -281,6 +285,9 @@ public class Tester {
 	}
 
 	private HashMap<String, Integer> mutationCounter = new HashMap<String, Integer>();
+	/** 
+	 * This limits the number of mutation that we apply 
+	 */
 	private int maxAppliedMutation = 10;
 	
 	private boolean pick(String fname, Resource r) {
@@ -306,7 +313,7 @@ public class Tester {
 	/**
 	 * It prints the result of the evaluation to the console.
 	 */
-	private void printReport () {
+	protected void printReport () {
 		try {
 			report.printToConsole(temporalFolder);
 		} catch (FileNotFoundException e) {
@@ -332,7 +339,7 @@ public class Tester {
 	 * It generates the requirements model of a transformation
 	 * @return true if the requirements model was generated, false otherwise.
 	 */
-	private boolean generateRequirementsModel () {
+	protected boolean generateRequirementsModel () {
 		try {
 			// generate requirements model
 			new TestMain().generateRMM(atlFile, folderRMM);
@@ -421,6 +428,8 @@ public class Tester {
 //		}
 		Analyser analyser = new Analyser(namespace, atlTransformation);
 		analyser.perform();
+		
+		this.analysisResult = analyser;
 		
 		// build list of problems found 
 		ProblemStatus status  = null;

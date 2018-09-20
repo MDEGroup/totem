@@ -10,7 +10,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
-import mmfootprint.evaluation.Tester;
+import mmfootprint.evaluation.TesterFootprint;
 
 public class EvaluationAction implements IObjectActionDelegate {
 
@@ -39,7 +39,7 @@ public class EvaluationAction implements IObjectActionDelegate {
 		String trafo  = completePath.toString();
 		String folder = completePath.removeLastSegments(1).toString() + "/temp";
 	    try {
-	    	new Tester(trafo, folder).runEvaluation();
+	    	new TesterFootprint(trafo, folder).runEvaluation();
 			MessageDialog.openInformation(shell, "Evaluation", "Finished!!!");
 	    }
 	    catch (Exception e) {
