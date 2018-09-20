@@ -19,6 +19,7 @@ import MM_uncertainty.Feature;
 import MM_uncertainty.FeatureType;
 import MM_uncertainty.Integer_;
 import MM_uncertainty.MM_uncertaintyFactory;
+import MM_uncertainty.Many;
 import MM_uncertainty.Metamodel;
 import MM_uncertainty.Number;
 import MM_uncertainty.Real_;
@@ -349,16 +350,19 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		if(self.getName().equals("collect")){
 			oclComputedTypeMap.put(self, oclComputedTypeMap.get(self.getBody()));
 		}
+
 		if(self.getName().equals("reject")) {
-			if ( oclComputedTypeMap.get(self.getBody()) instanceof Feature){
-				Feature k = (Feature) oclComputedTypeMap.get(self.getBody());
-				FeatureType ft = MM_uncertaintyFactory.eINSTANCE.createAttribute();
-				Number cardinality = MM_uncertaintyFactory.eINSTANCE.createNumber();
-				cardinality.setAllowMore(false);
-				cardinality.setValue(1);
-				k.setMax(cardinality);
-				((Attribute)ft).getType().add(boolDt);
-				k.getHasType().add(ft);
+			if ( oclComputedTypeMap.get(self.getSource()) instanceof Feature){
+				Feature source = (Feature) oclComputedTypeMap.get(self.getSource());
+				if (!(source.getMax() instanceof Many)) {
+					Many many = MM_uncertaintyFactory.eINSTANCE.createMany();
+					source.setMax(many);
+				}
+				oclComputedTypeMap.put(self, source);
+			}
+			if ( oclComputedTypeMap.get(self.getSource()) instanceof Class){
+				Class source = (Class) oclComputedTypeMap.get(self.getSource());
+				oclComputedTypeMap.put(self, source);
 			}
 		}
 	}
