@@ -28,6 +28,7 @@ import MM_uncertainty.String_;
 import MM_uncertainty.UBoolean;
 import MM_uncertainty.UnknowClass;
 import anatlyzer.atl.model.ATLModel;
+import anatlyzer.atl.util.ATLSerializer;
 import anatlyzer.atlext.ATL.Callable;
 import anatlyzer.atlext.ATL.ContextHelper;
 import anatlyzer.atlext.ATL.LazyRule;
@@ -36,6 +37,7 @@ import anatlyzer.atlext.ATL.Module;
 import anatlyzer.atlext.ATL.OutPatternElement;
 import anatlyzer.atlext.OCL.BooleanType;
 import anatlyzer.atlext.OCL.CollectionOperationCallExp;
+import anatlyzer.atlext.OCL.IfExp;
 import anatlyzer.atlext.OCL.IntegerExp;
 import anatlyzer.atlext.OCL.IntegerType;
 import anatlyzer.atlext.OCL.Iterator;
@@ -58,6 +60,7 @@ import anatlyzer.atlext.OCL.StringExp;
 import anatlyzer.atlext.OCL.StringType;
 import anatlyzer.atlext.OCL.VariableExp;
 import anatlyzer.atlext.processing.AbstractVisitor;
+import anatlyzer.atlext.processing.AbstractVisitor.VisitingActions;
 
 public class InputMetamodelVisitor extends AbstractVisitor {
 
@@ -81,7 +84,10 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		
 		// This is to ensure that all classes have mandatoryAllowed = true
 		this.rootIn.getClasses().forEach(c -> c.setMandatoryAllowed(true));
-		//this.rootIn.getClasses().forEach(c -> c.setSubsAllowed(true));
+		this.rootIn.getClasses().forEach(c -> { 
+			if ( UBoolean.TRUE.equals(c.getIsAbstract()) )
+				c.setSubsAllowed(true);
+		});
 		
 		return rootIn;
 	}
@@ -210,6 +216,49 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 	public VisitingActions preOperationCallExp(OperationCallExp self) {
 		return actions("source","arguments");
 	}
+	
+	@Override
+	public VisitingActions preIfExp(IfExp self) {
+		return actions("type", 
+				method("openIfScope", self),
+				"condition", 
+				"thenExpression" , 
+				method("openElseScope", self), 
+				"elseExpression",
+				method("closeIfElseScope", self));
+	}	
+
+	private HashMap<String, Class> kindsOfs = new HashMap<String, Class>();
+	
+	public void openIfScope(IfExp self) {
+		if ( self.getCondition() instanceof OperationCallExp && ((OperationCallExp) self.getCondition()).getOperationName().equals("oclIsKindOf")) {
+			OperationCallExp exp = (OperationCallExp) self.getCondition();
+			OclModelElement m = (OclModelElement) exp.getArguments().get(0);
+			Class c = getClassFromName(m.getName());
+		
+			String expId = computeExprId(exp.getSource());
+			kindsOfs.put(expId, c);			
+		}
+		
+	}
+
+	public void openElseScope(IfExp self) {
+		// TODO: Reverse the current scope
+	}
+
+
+	public void closeIfElseScope(IfExp self) {
+		if ( self.getCondition() instanceof OperationCallExp && ((OperationCallExp) self.getCondition()).getOperationName().equals("oclIsKindOf")) {
+			OperationCallExp exp = (OperationCallExp) self.getCondition();
+			String expId = computeExprId(exp.getSource());
+			kindsOfs.remove(expId);
+		}
+	}
+	private String computeExprId(OclExpression oclExpression) {
+		return ATLSerializer.serialize(oclExpression);
+	}
+
+	
 	@Override
 	public void beforeIntegerType(IntegerType self) {
 		Feature f = MM_uncertaintyFactory.eINSTANCE.createFeature();
@@ -277,6 +326,13 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		sourceType = (self.getSource() instanceof VariableExp)?
 				oclComputedTypeMap.get(((VariableExp)self.getSource()).getReferredVariable()): 
 				oclComputedTypeMap.get(self.getSource());
+			
+		// Check if there is an implicit casting due to an if expression 		
+		String exprId = computeExprId(self.getSource());		
+		if ( this.kindsOfs.containsKey(exprId) ) {
+			sourceType = this.kindsOfs.get(exprId);
+		}
+		
 		Object navigationType = oclComputedTypeMap.get(self);
 		List<anatlyzer.atlext.OCL.OclFeature> attrs = checkIsAttribute(self.getName());
 		if(attrs.size() == 0 || EcoreUtil.isAncestor(attrs, self)){

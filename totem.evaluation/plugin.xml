@@ -28,7 +28,7 @@
                class="mmfootprint.evaluation.popup.actions.EvaluationFootprint"
                enablesFor="1"
                id="mm-footprint.evaluation.EvaluationFootprint"
-               label="EVALUATE Requirements MM"
+               label="EVALUATE Requirements Footprint"
                menubarPath="org.miso-disim.requirementmetamodels.ui.menu1/mm-footprint.evaluation.menu1">
          		<!-- Beware that the parent menu is defined in totem.ui -->
          </action>
