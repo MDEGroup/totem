@@ -85,7 +85,8 @@ public class InputMetamodelVisitor extends AbstractVisitor {
 		// This is to ensure that all classes have mandatoryAllowed = true
 		this.rootIn.getClasses().forEach(c -> c.setMandatoryAllowed(true));
 		this.rootIn.getClasses().forEach(c -> { 
-			if ( UBoolean.TRUE.equals(c.getIsAbstract()) )
+			//We never set isAbstract to true explicitly... it is difficult 
+			// if ( UBoolean.TRUE.equals(c.getIsAbstract()) )
 				c.setSubsAllowed(true);
 		});
 		
