@@ -1,5 +1,8 @@
 package mmfootprint.evaluation;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -8,13 +11,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.epsilon.eol.models.IModel;
 import org.eclipse.m2m.atl.core.ATLCoreException;
 
+import anatlyzer.atl.analyser.Analyser;
 import anatlyzer.atl.analyser.namespaces.MetamodelNamespace;
+import anatlyzer.atl.editor.builder.AnalyserExecutor;
 import anatlyzer.atl.footprint.TrafoMetamodelData;
 import anatlyzer.atl.model.ATLModel;
 import anatlyzer.atl.util.ATLUtils;
 import anatlyzer.atl.util.ATLUtils.ModelInfo;
 import anatlyzer.atl.util.AnalyserUtils.PreconditionParseError;
 import mmfootprint.codegen.RequirementsModel;
+import mmfootprint.evaluation.report.ReportConsole;
 import transML.exceptions.transException;
 
 /**
@@ -33,7 +39,7 @@ public class TesterFootprint extends Tester {
 			throws ATLCoreException, transException, PreconditionParseError {
 		super(trafo, temporalFolder);
 		
-		this.footprintReport = new FootprintReport();
+		this.footprintReport = new FootprintReport(temporalFolder);
 	}
 
 	@Override
@@ -45,7 +51,12 @@ public class TesterFootprint extends Tester {
 		if ( error.isEmpty() ) {
 			extractMetamodelFootprint();
 			compareFootprints();
-			footprintReport.printToConsole();
+			try {
+				footprintReport.printToConsole();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			report.printError(error);
 		}	
@@ -61,9 +72,9 @@ public class TesterFootprint extends Tester {
 		footprintReport.append("Direct used classes: ", footprint.getDirectUsedClasses().size() + "");
 		footprintReport.append("           Features: ", footprint.getUsedFeatures().size() + "");
 		
-		footprintReport.append("");
-		footprintReport.append("Direct used classes: ", footprint.getDirectUsedClasses().size() + "");
-		footprintReport.append("           Features: ", footprint.getUsedFeatures().size() + "");
+//		footprintReport.append("DRM");
+//		footprintReport.append("Direct used classes: ", reqmodel.getDirectUsedClasses().size() + "");
+//		footprintReport.append("           Features: ", footprint.getUsedFeatures().size() + "");
 		
 		IModel m = reqmodel.createEmfModel();
 		//m.getAllOfType("Class");
@@ -84,6 +95,10 @@ public class TesterFootprint extends Tester {
 
 		MetamodelNamespace input = this.namespace.getNamespace(inMMname);
 		MetamodelNamespace output = this.namespace.getNamespace(outMMname);
+		
+		Analyser analyser = new Analyser(namespace, model);
+		analyser.perform();
+		
 		
         TrafoMetamodelData footprintInput = new TrafoMetamodelData(model, input);
         TrafoMetamodelData footprintOutput = new TrafoMetamodelData(model, output);
@@ -117,15 +132,24 @@ public class TesterFootprint extends Tester {
 	
 	public static class FootprintReport {
 		private StringBuffer buffer = new StringBuffer();
+		private String temporalFolder;
+		private String resultFileName;
 		
+		public FootprintReport(String temporalFolder) {
+			this.temporalFolder = temporalFolder;
+			this.resultFileName = "footprint.txt";
+		}
+
 		public void append(String... strings) {
 			String s = String.join("", strings);
 			buffer.append(s);
 			buffer.append("\n");			
 		}
 		
-		public void printToConsole() {
-			
+		public void printToConsole() throws FileNotFoundException {
+			ReportConsole console = new ReportConsole(new FileOutputStream(temporalFolder + File.separator + resultFileName));
+		
+			console.print(buffer.toString());
 		}
 		
 	}

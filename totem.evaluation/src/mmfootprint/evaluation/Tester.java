@@ -288,7 +288,7 @@ public class Tester {
 	/** 
 	 * This limits the number of mutation that we apply 
 	 */
-	private int maxAppliedMutation = 10;
+	private int maxAppliedMutation = 100;
 	
 	private boolean pick(String fname, Resource r) {
 		EPackage pkg = (EPackage) r.getContents().get(0);
