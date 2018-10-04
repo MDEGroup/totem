@@ -96,7 +96,7 @@ operation EClass matches_[%=c.getIdentifier()%](visited : Set(EClass), ignoreNam
 '[%=el%]'[%if (hasMore){%],[%}%]
    [%}%]}
        .includesAll(self.eAllStructuralFeatures->
-			select( f | f.isRequired and not f.isProcessedOpposite() and f.defaultValue.isUndefined() )->collect(f | f.name) )   
+			select( f | f.isRequired and not f.isProcessedOpposite() and (not f.isDerived()) and f.defaultValue.isUndefined() )->collect(f | f.name) )   
 [% }%]
    and self.eAllSuperTypes->collect(f | f.name)->includesAll ( Set{[%for (anc in c.ancs) {%]'[%=anc.name%]'[%if (hasMore){%],[%}%][%}%]} )
    and self.eAllSuperTypes->collect(f | f.name)->excludesAll ( Set{[%for (anc in c.antiancs) {%]'[%=anc.name%]'[%if (hasMore){%],[%}%][%}%]} )
