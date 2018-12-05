@@ -5,7 +5,13 @@ TOTEM is an MDE tool able to extract a typing requirements model (TRM) from an A
 <p>
 Click the image below to see a sample demo of TOTEM at work.
 <br/>
-  [![totem](http://img.youtube.com/vi/peER1aZIXuE/0.jpg)](https://www.youtube.com/watch?v=peER1aZIXuE TOTEM")
-  [![totem](http://img.youtube.com/vi/ztoAyQajcKg/0.jpg)](https://www.youtube.com/watch?v=ztoAyQajcKg TOTEM")
+  <h2>TOTEM Overview</h2>
+  
+  [![TOTEM Overview](http://img.youtube.com/vi/peER1aZIXuE/0.jpg)](http://www.youtube.com/watch?v=peER1aZIXuE "TOTEM Overview")
+
+  <h2>TOTEM DRM Editor</h2>
+  
+  [![TOTEM DRM editor](http://img.youtube.com/vi/ztoAyQajcKg/0.jpg)](http://www.youtube.com/watch?v=ztoAyQajcKg "TOTEM DRM editor")
+
 </p>
 
