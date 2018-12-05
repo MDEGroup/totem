@@ -63,6 +63,8 @@ public class ReduceRequirementMetamodels {
 		}
 	}
 	public void generateRMM(String transformation, String outputFolder) throws ATLCoreException, ParserException {
+		String trafoName = transformation.substring(transformation.lastIndexOf("/") +1,
+				                                    transformation.length()).replace(".atl", "");
 		System.out.println("START PROCESS");
 		AtlParser atlParser = new AtlParser();
 		ModelFactory modelFactory = new EMFModelFactory();
@@ -119,7 +121,7 @@ public class ReduceRequirementMetamodels {
 			if(feature.getMin()==null)
 				feature.setMin(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
 		}
-		serialize(mm, outputFolder + "_sourceDRM.ecore");
+		serialize(mm, outputFolder + trafoName + "_sourceDRM.mm_uncertainty");
 		OutputMetamodelVisitor omv = new OutputMetamodelVisitor();
 		vv = new VariableVisitor(false);
 		vv.perform(atlModel);
@@ -135,7 +137,7 @@ public class ReduceRequirementMetamodels {
 			if(feature.getMin()==null)
 				feature.setMin(MM_uncertaintyFactory.eINSTANCE.createUnknownCardinality());
 		}
-		serialize(mmout, outputFolder + "_targetDRM.ecore");
+		serialize(mmout, outputFolder + trafoName +"_targetDRM.mm_uncertainty");
 		System.out.println("END PROCESS");
 		
 		// Variability discovery
@@ -153,7 +155,7 @@ public class ReduceRequirementMetamodels {
 		TargetInferenceContext tgt = new TargetInferenceContext(mmout, omv.traceLinks); 
 		
 		VariabilityModel vm = new VariabilityDiscoverer(atlModel, src, tgt).perform();
-		serialize(vm, outputFolder + "_compatibilityModel.xmi");
+		serialize(vm, outputFolder  + trafoName + "_compatibilityModel.xmi");
 		
 		System.out.println("Done!");
 	}

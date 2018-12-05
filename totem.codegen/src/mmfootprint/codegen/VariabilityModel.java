@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-
+ 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.epsilon.common.util.StringProperties;
@@ -13,7 +13,7 @@ import org.eclipse.epsilon.egl.EglFileGeneratingTemplateFactory;
 import org.eclipse.epsilon.egl.EglTemplateFactoryModuleAdapter;
 import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.eol.EolModule;
-import org.eclipse.epsilon.eol.IEolExecutableModule;
+import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.exceptions.models.EolModelLoadingException;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.models.IModel;
@@ -51,7 +51,7 @@ public class VariabilityModel {
 	 */
 	private void genEOL () {
 		try {
-			IEolExecutableModule module = new EglTemplateFactoryModuleAdapter(new EglFileGeneratingTemplateFactory());
+			IEolModule module = new EglTemplateFactoryModuleAdapter(new EglFileGeneratingTemplateFactory());
 			// load egl template
 			if (module.parse(getResourceFile(REQUIREMENTS_MODEL_GENERATOR, CodeGenConstants.CODEGEN_PLUGIN_NAME))) {
 				// load requirements model
@@ -79,7 +79,7 @@ public class VariabilityModel {
 	public boolean checkConformance (String sourceFileMetamodel, String targetFileMetamodel) {
 		boolean result = false;
 		try {
-			IEolExecutableModule module = new EolModule();
+			IEolModule module = new EolModule();
 			// load eol file
 			if (module.parse(new File(this.fileCheckConformance))) {
 				// load metamodel

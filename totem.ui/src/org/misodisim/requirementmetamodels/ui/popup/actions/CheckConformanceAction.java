@@ -28,7 +28,7 @@ import mmfootprint.codegen.RequirementsModel;
 public class CheckConformanceAction implements IObjectActionDelegate {
 
 	private Shell shell;
-	
+
 	/**
 	 * Constructor for Action1.
 	 */
@@ -54,52 +54,56 @@ public class CheckConformanceAction implements IObjectActionDelegate {
 		File workspaceDirectory = workspace.getRoot().getLocation().toFile();
 		path = workspaceDirectory.toString();
 		path2 = workspaceDirectory.toString();
-		
-		if (window != null)
-	    {
-	        IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
-	        
-	        
-	        if (selection instanceof IStructuredSelection) {
-	            IStructuredSelection ssel = (IStructuredSelection) selection;
-	            if(ssel.size() != 2) {
-	            	MessageDialog.openInformation(shell, "Error", "You have to select 2 files");
-	            }
-	            Iterator iterator = ssel.iterator();
-	            Object rmodel = iterator.next();
-	            Object metamodel = iterator.next();
-	            IFile file  = (IFile) Platform.getAdapterManager().getAdapter(rmodel,
-	                    IFile.class);
-	            if (file == null) {
-	                if (rmodel instanceof IAdaptable) {
-	                    file = (IFile) ((IAdaptable) rmodel).getAdapter(IFile.class);
-	                    System.out.println(file);
-	                }
-	            }
-	            if (file != null) {
-	                path+=file.toString().substring(1);
-	            }
-	            IFile file2  = (IFile) Platform.getAdapterManager().getAdapter(metamodel,
-	                    IFile.class);
-	            if (file2 == null) {
-	                if (rmodel instanceof IAdaptable) {
-	                    file = (IFile) ((IAdaptable) metamodel).getAdapter(IFile.class);
-	                    System.out.println(file2);
-	                }
-	            }
-	            if (file != null) {
-	                path2+=file2.toString().substring(1);
-	            }
-	            
-	        }
-	    }
-		RequirementsModel toCheck = new RequirementsModel(path, path.substring(0,path.lastIndexOf("/")+1));  
-		boolean b = toCheck.checkConformance(path2);
-		
+
+		if (window != null) {
+			IStructuredSelection selection = (IStructuredSelection) window.getSelectionService().getSelection();
+
+			if (selection instanceof IStructuredSelection) {
+				IStructuredSelection ssel = (IStructuredSelection) selection;
+				if (ssel.size() != 2) {
+					MessageDialog.openInformation(shell, "Error", "You have to select 2 files");
+				}
+				Iterator iterator = ssel.iterator();
+				Object rmodel = iterator.next();
+				Object metamodel = iterator.next();
+				IFile file = (IFile) Platform.getAdapterManager().getAdapter(rmodel, IFile.class);
+				if (file == null) {
+					if (rmodel instanceof IAdaptable) {
+						file = (IFile) ((IAdaptable) rmodel).getAdapter(IFile.class);
+						System.out.println(file);
+					}
+				}
+				if (file != null) {
+					path += file.toString().substring(1);
+				}
+				IFile file2 = (IFile) Platform.getAdapterManager().getAdapter(metamodel, IFile.class);
+				if (file2 == null) {
+					if (rmodel instanceof IAdaptable) {
+						file = (IFile) ((IAdaptable) metamodel).getAdapter(IFile.class);
+						System.out.println(file2);
+					}
+				}
+				if (file != null) {
+					path2 += file2.toString().substring(1);
+				}
+
+			}
+		}
+		boolean b=false;
+		if (path.endsWith("mm_uncertainty")) {
+			RequirementsModel toCheck = new RequirementsModel(path,
+					                                          path.substring(0, path.lastIndexOf("/") + 1));
+			 b = toCheck.checkConformance(path2);
+		} else {
+			RequirementsModel toCheck = new RequirementsModel(path2,
+					                                          path2.substring(0, path.lastIndexOf("/") + 1));
+			 b = toCheck.checkConformance(path);
+		}
 		String paths = "\nMetamodel = " + path2 + "\n" + "DRM = " + path;
 		if (b)
 			MessageDialog.openInformation(shell, "Conformance evaluation", "Metamodel is conform to DRM model" + paths);
-		else MessageDialog.openError(shell, "Conformance evaluation", "Metamodel is not conform to DRM model"  + paths);		
+		else
+			MessageDialog.openError(shell, "Conformance evaluation", "Metamodel is not conform to DRM model" + paths);
 	}
 
 	/**
